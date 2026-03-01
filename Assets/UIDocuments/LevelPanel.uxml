@@ -1,0 +1,68 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIDocuments/LevelStyle.uss?fileID=7433441132597879392&amp;guid=2517550378a6c924cb26b935ba8d3197&amp;type=3#LevelStyle" />
+    <ui:VisualElement name="Root" class="unity-ui-document__root" style="flex-grow: 0; width: 100%; height: 100%; background-color: rgba(255, 225, 0, 0); flex-direction: column; align-items: center; align-self: auto; display: flex; justify-content: center;">
+        <ui:VisualElement name="TopBar" class="TopHeader" style="flex-grow: 1; flex-direction: row; justify-content: center; height: 241px;">
+            <ui:VisualElement name="Left" class="TopBar-Left" style="flex-grow: 1;" />
+            <ui:VisualElement name="Right" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Root-Content" class="ContentArea">
+            <ui:VisualElement name="LevelPage" class="Page ActivePage LevelPage">
+                <ui:VisualElement name="UnitBar" class="UnitBar" style="flex-grow: 1;">
+                    <ui:VisualElement name="TitleContainer" class="TopBar-Right" style="flex-grow: 1; flex-direction: column;">
+                        <ui:VisualElement name="Title" class="UnitTitle" style="flex-grow: 1; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;);" />
+                        <ui:VisualElement name="Subtitle" class="UnitSubtitle" style="flex-grow: 1; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Root-LevelList" class="LevelListRoot">
+                    <ui:ScrollView name="Root-LevelList-ScrollView" class="LevelListScrollView">
+                        <ui:VisualElement name="LevelList-Content" class="LevelListContent">
+                            <ui:VisualElement name="CharacterRow" class="CharacterRow">
+                                <ui:VisualElement name="CharacterIcon" class="CharacterIcon" />
+                                <ui:VisualElement name="CurvedPathContainer" class="CurvedPathContainer">
+                                    <ui:VisualElement name="LevelRow1" class="LevelButtonRow LeftAlign">
+                                        <ui:Button name="LevelButton1" class="LevelButton" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="LevelRow2" class="LevelButtonRow RightAlign">
+                                        <ui:Button name="LevelButton2" class="LevelButton" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="LevelRow3" class="LevelButtonRow LeftAlign">
+                                        <ui:Button name="LevelButton3" class="LevelButton" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="LevelRow4" class="LevelButtonRow RightAlign">
+                                        <ui:Button name="LevelButton4" class="LevelButton" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:ScrollView>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- OTHER PAGES -->
+            <ui:VisualElement name="AchievementPage" class="Page AchievementPage"/>
+            <ui:VisualElement name="ProfilePage" class="Page"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="Root-BottomBar" class="BottomBar">
+
+            <ui:VisualElement class="BottomBar-Container">
+
+                <ui:Button name="LevelNav" class="NavIconButton NavIconSelected">
+                    <ui:VisualElement class="NavIconImage LevelIcon"/>
+                    <ui:Label text="Levels" class="NavIconLabel"/>
+                </ui:Button>
+
+                <ui:Button name="AchievementNav" class="NavIconButton">
+                    <ui:VisualElement class="NavIconImage AchievementIcon"/>
+                    <ui:Label text="Achievements" class="NavIconLabel"/>
+                </ui:Button>
+
+                <ui:Button name="ProfileNav" class="NavIconButton">
+                    <ui:VisualElement class="NavIconImage ProfileIcon"/>
+                    <ui:Label text="Profile" class="NavIconLabel"/>
+                </ui:Button>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
