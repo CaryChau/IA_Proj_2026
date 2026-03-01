@@ -1,0 +1,7 @@
+picture|picture/picture001.jpg|A|B|C|D|0|What is it?
+picture|picture/picture002.jpg|A|B|C|D|1|What is it?
+word|word:A|A|B|C|D|0|?
+word|word:B|A|B|C|D|1|?
+prononuce|prononuce:A|A|B|C|D|0|?
+prononuce|prononuce:B|A|B|C|D|1|?
+abbreviation|abbreviation:AI|ArtificialIntelligence|air|apple|love|0|What is"AI" mean?
