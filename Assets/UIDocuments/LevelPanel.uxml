@@ -37,32 +37,27 @@
                     </ui:ScrollView>
                 </ui:VisualElement>
             </ui:VisualElement>
-
-            <!-- OTHER PAGES -->
-            <ui:VisualElement name="AchievementPage" class="Page AchievementPage"/>
-            <ui:VisualElement name="ProfilePage" class="Page"/>
+            <ui:VisualElement name="AchievementPage" class="Page AchievementPage">
+                <ui:Label name="AchievementTitle" text="Achievements" class="AchievementTitle" />
+                <ui:ScrollView name="AchievementScrollView" mode="Vertical" class="AchievementScrollView" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ProfilePage" class="Page" />
         </ui:VisualElement>
         <ui:VisualElement name="Root-BottomBar" class="BottomBar">
-
             <ui:VisualElement class="BottomBar-Container">
-
                 <ui:Button name="LevelNav" class="NavIconButton NavIconSelected">
-                    <ui:VisualElement class="NavIconImage LevelIcon"/>
-                    <ui:Label text="Levels" class="NavIconLabel"/>
+                    <ui:VisualElement class="NavIconImage LevelIcon" />
+                    <ui:Label text="Levels" class="NavIconLabel" />
                 </ui:Button>
-
                 <ui:Button name="AchievementNav" class="NavIconButton">
-                    <ui:VisualElement class="NavIconImage AchievementIcon"/>
-                    <ui:Label text="Achievements" class="NavIconLabel"/>
+                    <ui:VisualElement class="NavIconImage AchievementIcon" />
+                    <ui:Label text="Achievements" class="NavIconLabel" />
                 </ui:Button>
-
                 <ui:Button name="ProfileNav" class="NavIconButton">
-                    <ui:VisualElement class="NavIconImage ProfileIcon"/>
-                    <ui:Label text="Profile" class="NavIconLabel"/>
+                    <ui:VisualElement class="NavIconImage ProfileIcon" />
+                    <ui:Label text="Profile" class="NavIconLabel" />
                 </ui:Button>
-
             </ui:VisualElement>
-
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

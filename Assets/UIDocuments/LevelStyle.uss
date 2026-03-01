@@ -46,7 +46,7 @@
 .TopBar-Right {
     flex-direction: row;
     align-items: center;
-    gap: 25px;
+    /* gap: 25px; */
 }
 
 .TopStatusBar {
@@ -251,6 +251,57 @@
     opacity: 1;
 }
 
+/* Achievement Page */
+/* ========================= */
+/* TITLE */
+/* ========================= */
+.AchievementPage {
+    flex-direction: column;
+    flex-grow: 1;
+}
+.AchievementTitle {
+    font-size: 40px;
+    -unity-font-style: bold;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.AchievementScrollView {
+    flex-grow: 1;
+}
+
+/* .AchievementScrollView > .unity-scroll-view__content-container {
+    flex-direction: column;
+} */
+
+.AchievementCard {
+    flex-direction: row;
+    padding: 25px 0;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(255,255,255,0.05);
+}
+
+/* ========================= */
+/* ICON */
+/* ========================= */
+
+.AchievementBigIcon {
+    width: 140px;
+    height: 140px;
+    border-radius: 20px;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-right: 25px;
+}
+
+/* Card */
+.AchievementCard {
+    flex-direction: row;
+    padding: 25px 0;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(255,255,255,0.05);
+}
 /* ========================= */
 /* BOTTOM BAR ROOT */
 /* ========================= */

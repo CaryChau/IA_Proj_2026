@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/MCLevelStyle.uss?fileID=7433441132597879392&amp;guid=f18468be61e15964bb3e63f86c80e0e4&amp;type=3#MCLevelStyle" />
+    <ui:VisualElement class="LevelDetailRoot">
+        <ui:Button name="BackButton" text="← Back" class="BackButton" />
+        <ui:Label name="QuestionLabel" text="Question" class="QuestionLabel" />
+        <ui:Button name="OptionA" class="OptionButton" />
+        <ui:Button name="OptionB" class="OptionButton" />
+        <ui:Button name="OptionC" class="OptionButton" />
+    </ui:VisualElement>
+</ui:UXML>
