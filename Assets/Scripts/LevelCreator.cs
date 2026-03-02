@@ -60,10 +60,10 @@ public class LevelCreator : MonoBehaviour
 
         // Load MC Question UXML
         VisualTreeAsset levelAsset =
-            Resources.Load<VisualTreeAsset>("LevelDetailPage");
+            Resources.Load<VisualTreeAsset>("UIDocuments/MCLevelPage");
 
         VisualElement levelDetail = levelAsset.CloneTree();
-        levelDetail.name = "LevelDetailPage";
+        levelDetail.name = "MCLevelPage";
         levelDetail.AddToClassList("Page");
         levelDetail.AddToClassList("ActivePage");
 
