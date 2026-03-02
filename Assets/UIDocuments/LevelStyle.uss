@@ -1,5 +1,3 @@
-/* ROOT */
-
 .unity-ui-document__root {
     flex-grow: 1;
     flex-direction: column;
@@ -11,7 +9,6 @@
     position: relative;
 }
 
-/* Page base */
 .Page {
     position: absolute;
     width: 100%;
@@ -19,34 +16,25 @@
     display: none;
 }
 
-/* Visible page */
 .ActivePage {
     display: flex;
 }
-
-/* ========================= */
-/* TOP GREEN HEADER */
-/* ========================= */
 
 .TopHeader {
     height: 180px;
     min-height: 90px;
     background-color: rgb(120, 199, 66);
     flex-direction: row;
-    
 }
 
-/* Left container */
 .TopBar-Left {
     flex-direction: row;
     align-items: center;
 }
 
-/* Right container */
 .TopBar-Right {
     flex-direction: row;
     align-items: center;
-    /* gap: 25px; */
 }
 
 .TopStatusBar {
@@ -79,13 +67,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
     padding-top: 20px;
     padding-bottom: 30px;
 }
 
 .UnitTitle {
     font-size: 48px;
+    
     color: white;
     -unity-font-style: bold;
     -unity-text-align: middle-center;
@@ -98,22 +86,10 @@
     -unity-text-align: middle-center;
 }
 
-/* ========================= */
-/* MAIN SCROLL AREA */
-/* ========================= */
-
-/* ========================= */
-/* LEVEL LIST ROOT */
-/* ========================= */
-
 .LevelListRoot {
     flex-grow: 1;
     background-color: rgb(245, 245, 245);
 }
-
-/* ========================= */
-/* SCROLLVIEW */
-/* ========================= */
 
 .LevelListScrollView {
     flex-grow: 1;
@@ -125,33 +101,20 @@
     padding-bottom: 120px;
 }
 
-/* ========================= */
-/* CHARACTER + PATH ROW */
-/* ========================= */
-
 .CharacterRow {
     flex-direction: row;
     position: relative;
 }
-
-/* ========================= */
-/* CHARACTER ICON */
-/* ========================= */
 
 .CharacterIcon {
     width: 120px;
     height: 120px;
     margin-left: 40px;
     margin-right: 20px;
-
-    background-image: resource("CharacterIcon");
+    background-image: resource('CharacterIcon');
     background-size: contain;
     background-repeat: no-repeat;
 }
-
-/* ========================= */
-/* CURVED PATH CONTAINER */
-/* ========================= */
 
 .CurvedPathContainer {
     flex-grow: 1;
@@ -159,17 +122,12 @@
     position: relative;
 }
 
-/* ========================= */
-/* LEVEL BUTTON ROW */
-/* ========================= */
-
 .LevelButtonRow {
     height: 180px;
     justify-content: center;
     align-items: center;
 }
 
-/* Alternating alignment to fake curve */
 .LeftAlign {
     align-items: flex-start;
     margin-left: 60px;
@@ -180,10 +138,6 @@
     margin-right: 60px;
 }
 
-/* ========================= */
-/* LEVEL BUTTON */
-/* ========================= */
-
 .LevelButton {
     width: 140px;
     height: 140px;
@@ -192,10 +146,6 @@
     border-bottom-width: 8px;
     border-bottom-color: rgb(90, 170, 40);
 }
-
-/* ========================= */
-/* JUMP BUTTON */
-/* ========================= */
 
 .JumpBubble {
     position: absolute;
@@ -229,10 +179,6 @@
     background-color: rgb(135, 215, 80);
 }
 
-/* ========================= */
-/* STARS UNDER CHARACTER */
-/* ========================= */
-
 .StarRow {
     flex-direction: row;
     justify-content: center;
@@ -251,14 +197,11 @@
     opacity: 1;
 }
 
-/* Achievement Page */
-/* ========================= */
-/* TITLE */
-/* ========================= */
 .AchievementPage {
     flex-direction: column;
     flex-grow: 1;
 }
+
 .AchievementTitle {
     font-size: 40px;
     -unity-font-style: bold;
@@ -270,20 +213,12 @@
     flex-grow: 1;
 }
 
-/* .AchievementScrollView > .unity-scroll-view__content-container {
-    flex-direction: column;
-} */
-
 .AchievementCard {
     flex-direction: row;
     padding: 25px 0;
     border-bottom-width: 1px;
-    border-bottom-color: rgba(255,255,255,0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
 }
-
-/* ========================= */
-/* ICON */
-/* ========================= */
 
 .AchievementBigIcon {
     width: 140px;
@@ -295,106 +230,71 @@
     margin-right: 25px;
 }
 
-/* Card */
 .AchievementCard {
     flex-direction: row;
     padding: 25px 0;
     border-bottom-width: 1px;
-    border-bottom-color: rgba(255,255,255,0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
 }
-/* ========================= */
-/* BOTTOM BAR ROOT */
-/* ========================= */
 
 .BottomBar {
     height: 180px;
     width: 100%;
     position: absolute;
     bottom: 0;
-
     background-color: white;
-
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
-
     border-top-width: 4px;
     border-top-color: rgb(230, 230, 230);
-
     justify-content: center;
     align-items: center;
 }
-
-/* ========================= */
-/* INNER CONTAINER */
-/* ========================= */
 
 .BottomBar-Container {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
     width: 100%;
     height: 100%;
 }
-
-/* ========================= */
-/* NAV BUTTON */
-/* ========================= */
 
 .NavIconButton {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     width: 240px;
     height: 140px;
-
     border-width: 0;
-    background-color: rgba(0,0,0,0);
-
+    background-color: rgba(0, 0, 0, 0);
     -unity-text-align: middle-center;
 }
-
-/* ========================= */
-/* NAV ICON IMAGE */
-/* ========================= */
 
 .NavIconImage {
     width: 70px;
     height: 70px;
-
     background-size: contain;
     background-repeat: no-repeat;
-
     margin-bottom: 10px;
 }
 
-/* Example icon classes */
 .LevelIcon {
-    background-image: resource("icon_level");
+    background-image: resource('Textures/icon_home');
 }
 
 .AchievementIcon {
-    background-image: resource("icon_achievement");
+    background-image: resource('Textures/icon_award');
 }
 
 .ProfileIcon {
-    background-image: resource("icon_profile");
+    background-image: resource('Textures/icon_account');
 }
-
-/* ========================= */
-/* NAV LABEL */
-/* ========================= */
 
 .NavIconLabel {
     font-size: 24px;
     color: rgb(120, 120, 120);
     -unity-font-style: bold;
 }
-
-/* ========================= */
-/* SELECTED STATE */
-/* ========================= */
 
 .NavIconSelected .NavIconLabel {
     color: rgb(120, 199, 66);
@@ -404,14 +304,9 @@
     -unity-background-image-tint-color: rgb(120, 199, 66);
 }
 
-/* Optional subtle hover */
 .NavIconButton:hover .NavIconLabel {
     color: rgb(100, 180, 60);
 }
-
-/* ========================= */
-/* FLOATING SCROLL BUTTON */
-/* ========================= */
 
 .ScrollUpButton {
     position: absolute;
@@ -427,11 +322,13 @@
     align-items: center;
 }
 
-/* ========================= */
-/* GLOBAL BUTTON STYLE */
-/* ========================= */
-
 .unity-button {
     border-width: 0;
     -unity-text-align: middle-center;
+}
+.LevelPage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
