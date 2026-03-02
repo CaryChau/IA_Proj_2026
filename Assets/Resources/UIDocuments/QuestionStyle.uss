@@ -1,0 +1,129 @@
+/* Root container */
+.root {
+    flex-direction: column;
+    background-color: #d0f0c0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+/* Top bar styles */
+.topBar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.score {
+    font-size: 14px;
+    color: #000;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+
+.level {
+    font-size: 14px;
+    color: #000;
+}
+
+/* Main content area */
+.content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    margin-top: 20px;
+}
+
+/* Level text */
+.levelText {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Button grid styles */
+.buttonGrid {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buttonRow {
+    flex-direction: row;
+    gap: 10px;
+}
+
+.gameButton {
+    width: 80px;
+    height: 50px;
+    font-size: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.gameButton:hover {
+    background-color: #eee;
+}
+
+.timer-fill {
+    width: 100%; /* Full width initially */
+    height: 10px; /* Adjust height as needed */
+    background-color: green; /* Default color, will change dynamically */
+    transform-origin: left; /* So it scales from the left side */
+    scale-x: 1; /* Initial scale, will be updated in script */
+}
+
+/* Basic button styles */
+.option-button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+/* Styles for different states */
+.correct {
+    background-color: #4CAF50; /* Green background for correct answer */
+    border: 2px solid #2E7D32; /* Darker green border */
+}
+
+.wrong {
+    background-color: #F44336; /* Red background for wrong answer */
+    border: 2px solid #C62828; /* Darker red border */
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.enabled {
+    opacity: 1.0;
+    cursor: pointer;
+}
+
+/* Additional visual elements, e.g., icons or overlays */
+.option-button.correct::after {
+    content: "✔"; /* Checkmark icon */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #2E7D32;
+}
+
+.option-button.wrong::after {
+    content: "✖"; /* Cross icon */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #C62828;
+}

@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/QuestionStyle.uss?fileID=7433441132597879392&amp;guid=c7dde60aa2316494b83d8b9a926dc8a4&amp;type=3#QuestionStyle" />
+    <ui:VisualElement name="VisualElement" class="root">
+        <ui:VisualElement name="topBar" class="topBar" style="flex-direction: column;">
+            <ui:VisualElement name="TimerFill" class="timer-fill" style="height: 50px;" />
+            <ui:Label name="ScoreLabel" text="Score: 0" class="score" />
+            <ui:Label text="Title" class="title" />
+            <ui:Label name="QuestionText" text="Question will appear here" />
+            <ui:Image name="QuestionImage" />
+        </ui:VisualElement>
+        <ui:VisualElement name="OptionButtons" class="content" style="flex-direction: column; align-items: center; align-self: center; justify-content: space-between;">
+            <ui:Label text="Level 1" class="levelText" />
+            <ui:VisualElement class="buttonGrid">
+                <ui:VisualElement class="buttonRow">
+                    <ui:Button name="Button1" text="A" class="option-button" />
+                    <ui:Button name="Button2" text="B" class="option-button" />
+                </ui:VisualElement>
+                <ui:VisualElement class="buttonRow">
+                    <ui:Button name="Button3" text="C" class="option-button" />
+                    <ui:Button name="Button4" text="D" class="option-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="FinalScore" style="flex-grow: 1; position: absolute; align-items: center; justify-content: center; align-self: center; top: 50%;">
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
