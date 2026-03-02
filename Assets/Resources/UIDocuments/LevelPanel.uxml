@@ -1,20 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UIDocuments/LevelStyle.uss?fileID=7433441132597879392&amp;guid=2517550378a6c924cb26b935ba8d3197&amp;type=3#LevelStyle" />
+    <Style src="project://database/Assets/Resources/UIDocuments/LevelStyle.uss?fileID=7433441132597879392&amp;guid=2517550378a6c924cb26b935ba8d3197&amp;type=3#LevelStyle" />
     <ui:VisualElement name="Root" class="unity-ui-document__root" style="flex-grow: 0; width: 100%; height: 100%; background-color: rgba(255, 225, 0, 0); flex-direction: column; align-items: center; align-self: auto; display: flex; justify-content: center;">
-        <ui:VisualElement name="TopBar" class="TopHeader" style="flex-grow: 1; flex-direction: row; justify-content: center; height: 241px; display: flex; position: relative;">
-            <ui:VisualElement name="Left" class="TopBar-Left" style="flex-grow: 1;" />
-            <ui:VisualElement name="Right" class="TopBar-Right" style="flex-grow: 1; display: none;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="Root-Content" class="ContentArea">
+        <ui:VisualElement name="TopBar" class="TopHeader" style="flex-grow: 1; flex-direction: row-reverse; justify-content: flex-end; height: 180px; display: flex; position: absolute; align-self: flex-start; align-items: stretch; top: 0; width: 100%;" />
+        <ui:VisualElement name="Root-Content" class="ContentArea" style="width: 100%; top: 180px; position: absolute; flex-direction: column;">
             <ui:VisualElement name="LevelPage" class="Page ActivePage LevelPage" style="position: relative; display: flex;">
                 <ui:VisualElement name="UnitBar" class="UnitBar" style="flex-grow: 1;">
-                    <ui:VisualElement name="TitleContainer" class="TopBar-Right" style="flex-grow: 1; flex-direction: column;">
-                        <ui:Label name="Title" text="hello title" class="UnitTitle" style="flex-grow: 1; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;);" />
-                        <ui:Label name="Subtitle" text="hello subtitle" class="UnitSubtitle" style="flex-grow: 1; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;);" />
+                    <ui:VisualElement name="TitleContainer" class="UnitTitleContainer" style="flex-grow: 1; flex-direction: column; width: 100%; background-color: rgba(0, 0, 0, 0); padding-bottom: 30px; padding-top: 20px;">
+                        <ui:Label name="Title" text="hello title" class="UnitTitle" style="flex-grow: 1; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;); justify-content: flex-start; align-self: center; align-items: center; font-size: 50px;" />
+                        <ui:Label name="Subtitle" text="hello subtitle" class="UnitSubtitle" style="flex-grow: 1; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;); font-size: 44px; -unity-text-align: upper-center;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="Root-LevelList" class="LevelListRoot" />
-                <ui:ScrollView name="Root-LevelList-ScrollView" class="LevelListScrollView">
+                <ui:ScrollView name="Root-LevelList-ScrollView" class="LevelListScrollView" mode="Vertical" style="width: 50%; align-self: center;">
                     <ui:VisualElement name="LevelList-Content" class="LevelListContent">
                         <ui:VisualElement name="CharacterRow" class="CharacterRow">
                             <ui:VisualElement name="CharacterIcon" class="CharacterIcon" />
