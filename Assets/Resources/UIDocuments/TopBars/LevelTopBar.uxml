@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement class="LevelTopBar" style="flex-direction: row-reverse; margin-right: 13px;">
+        <ui:Label text="⚡ 5" class="EnergyLabel" />
+        <ui:Label text="💰 1200" class="BalanceLabel" />
+    </ui:VisualElement>
+</ui:UXML>
