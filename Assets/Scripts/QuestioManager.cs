@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 
 public class QuestionManager : MonoBehaviour
@@ -15,6 +17,15 @@ public class QuestionManager : MonoBehaviour
         public string[] options;
         public int correctAnswer;
         public string questionText;
+        public bool isCorrect;
+        public string playerAnswer;
+    }
+
+    [System.Serializable]
+    public class QuestionTypeSetting
+    {
+        public string typeName;
+        public bool isEnabled;
     }
 
     [Header("UI References")]
@@ -22,47 +33,61 @@ public class QuestionManager : MonoBehaviour
     public Image questionImage;
     public Button[] optionButtons;
     public TMP_Text[] optionTexts;
+    public Image[] optionImages;
     public TMP_Text scoreText;
     public TMP_Text levelText;
     public GameObject gameOverPanel;
     public TMP_Text finalScoreText;
     public AudioSource audioSource;
+    public Image timerFill; 
 
-    [Header("Timer References")]
-    public Image timerFill;
+    [Header("End Panel Buttons")]
+    public Button mainMenuButton;
+    public Button restartButton;
+    public Button reviewButton;
+    public Button nextLevelButton;
+    
+    [Header("Review Panel")]
+    public GameObject reviewPanel;
+    public Transform reviewContentParent;
+    public GameObject reviewItemPrefab;
 
     [Header("Game Settings")]
     public string name = "Questions.txt";
     public int amount = 8;
-    public float time = 10f;
+    public float times = 10f;
+    
+    [Header("kind")]
+    public QuestionTypeSetting[] questionTypes = new QuestionTypeSetting[]
+    {
+        new QuestionTypeSetting { typeName = "picture", isEnabled = true },
+        new QuestionTypeSetting { typeName = "word", isEnabled = false },
+        new QuestionTypeSetting { typeName = "pronounce", isEnabled = false },
+        new QuestionTypeSetting { typeName = "abbreviation", isEnabled = false }
+    };
 
     private List<Question> allQuestions = new List<Question>();
     private List<Question> currentRoundQuestions = new List<Question>();
+    private List<Question> answeredQuestions = new List<Question>();
     private int currentQuestionIndex = 0;
     private int score = 0;
     private int currentLevel = 1;
     private float timer;
     private bool isAnswered = false;
 
-    private string[] allQuestionTypes = new string[]
-    {
-        "picture",
-        "word",
-        "prononuce",
-        "abbreviation"
-    };
-
     void Start()
     {
         LoadQuestions();
+        SetupEndButtons();
         StartNewRound();
     }
 
     void Update()
     {
-        if (!isAnswered)
+        if (!isAnswered && currentQuestionIndex < currentRoundQuestions.Count)
         {
-            timer -= Time.deltaTime;        
+            timer -= Time.deltaTime;
+            
             UpdateTimerDisplay();
             
             if (timer <= 0)
@@ -73,12 +98,11 @@ public class QuestionManager : MonoBehaviour
         }
     }
 
-
     void UpdateTimerDisplay()
     {
         if (timerFill != null)
         {
-            float fillAmount = timer / time;
+            float fillAmount = timer / times;
             timerFill.fillAmount = fillAmount;
             
             if (fillAmount > 0.5f)
@@ -94,6 +118,16 @@ public class QuestionManager : MonoBehaviour
                 timerFill.color = Color.red;
             }
         }
+    }
+
+    void SetupEndButtons()
+    {
+        mainMenuButton.onClick.AddListener(() => SceneManager.LoadScene("Main"));
+        restartButton.onClick.AddListener(RestartGame);
+        reviewButton.onClick.AddListener(ShowReviewPanel);
+        nextLevelButton.onClick.AddListener(GoToNextLevel);
+        
+        nextLevelButton.interactable = false;
     }
 
     void LoadQuestions()
@@ -114,19 +148,6 @@ public class QuestionManager : MonoBehaviour
                 string fileContent = File.ReadAllText(filePath);
                 ParseQuestions(fileContent);
             }
-            else
-            {
-                Debug.Log("not found: " + filePath);
-            }
-        }
-        CheckQuestionTypes();
-    }
-
-    void CheckQuestionTypes()
-    {
-        foreach (string type in allQuestionTypes)
-        {
-            int count = allQuestions.FindAll(q => q.type == type).Count;
         }
     }
 
@@ -162,55 +183,41 @@ public class QuestionManager : MonoBehaviour
     void StartNewRound()
     {
         currentRoundQuestions.Clear();
+        answeredQuestions.Clear();
         currentQuestionIndex = 0;
+        score = 0;
+        scoreText.text = "Score: 0";
         
-        GenerateMixedQuestions();
+        List<string> enabledTypes = questionTypes
+            .Where(t => t.isEnabled)
+            .Select(t => t.typeName)
+            .ToList();
         
-        ShowQuestion();
-    }
-void GenerateMixedQuestions()
-    {
-        for (int i = 0; i < allQuestionTypes.Length; i++)
+        for (int i = 0; i < amount; i++)
         {
-            AddRandomQuestionOfType(allQuestionTypes[i]);
-        }
-        
-        for (int i = 0; i < 4; i++)
-        {
-            string randomType = allQuestionTypes[Random.Range(0, allQuestionTypes.Length)];
-            AddRandomQuestionOfType(randomType);
-        }
-        ShuffleQuestions();
-    }
-
-    void AddRandomQuestionOfType(string type)
-    {
-        List<Question> typeQuestions = allQuestions.FindAll(q => q.type == type);
-        
-        if (typeQuestions.Count > 0)
-        {
-            int randomIndex = Random.Range(0, typeQuestions.Count);
-            currentRoundQuestions.Add(typeQuestions[randomIndex]);
-        }
-        else
-        {
-            if (allQuestions.Count > 0)
+            string randomType = enabledTypes[Random.Range(0, enabledTypes.Count)];
+            List<Question> typeQuestions = allQuestions.FindAll(q => q.type == randomType);
+            
+            if (typeQuestions.Count > 0)
             {
-                int randomIndex = Random.Range(0, allQuestions.Count);
-                currentRoundQuestions.Add(allQuestions[randomIndex]);
+                int randomIndex = Random.Range(0, typeQuestions.Count);
+                Question selectedQuestion = typeQuestions[randomIndex];
+                
+                Question newQuestion = new Question
+                {
+                    type = selectedQuestion.type,
+                    content = selectedQuestion.content,
+                    options = selectedQuestion.options.ToArray(),
+                    correctAnswer = selectedQuestion.correctAnswer,
+                    questionText = selectedQuestion.questionText,
+                    isCorrect = false,
+                    playerAnswer = ""
+                };
+                
+                currentRoundQuestions.Add(newQuestion);
             }
-        }
-    }
-
-    void ShuffleQuestions()
-    {
-        for (int i = 0; i < currentRoundQuestions.Count; i++)
-        {
-            Question temp = currentRoundQuestions[i];
-            int randomIndex = Random.Range(i, currentRoundQuestions.Count);
-            currentRoundQuestions[i] = currentRoundQuestions[randomIndex];
-            currentRoundQuestions[randomIndex] = temp;
-        }
+        }   
+        ShowQuestion();
     }
 
     void ShowQuestion()
@@ -222,18 +229,7 @@ void GenerateMixedQuestions()
         }
 
         isAnswered = false;
-        timer = time;
-
-        if (timerFill != null)
-        {
-            timerFill.fillAmount = 1f;
-            timerFill.color = Color.green;
-        }
-        
-        if (levelText != null)
-        {
-            levelText.text = "Level: " + (currentQuestionIndex + 1);
-        }
+        timer = times;
         
         Question q = currentRoundQuestions[currentQuestionIndex];
         
@@ -243,20 +239,38 @@ void GenerateMixedQuestions()
             btn.GetComponent<Image>().color = Color.white;
         }
 
+        bool isImageOption = (q.type == "word");
+        
+        for (int i = 0; i < optionButtons.Length; i++)
+        {
+            if (isImageOption)
+            {
+                optionTexts[i].gameObject.SetActive(false);
+                optionImages[i].gameObject.SetActive(true);
+                StartCoroutine(LoadOptionImage(optionImages[i], q.options[i]));
+            }
+            else
+            {
+                optionTexts[i].gameObject.SetActive(true);
+                optionImages[i].gameObject.SetActive(false);
+                optionTexts[i].text = q.options[i];
+            }
+        }
+
         switch (q.type)
         {
             case "picture":
                 questionImage.gameObject.SetActive(true);
-                LoadImage(q.content);
+                StartCoroutine(LoadImageCoroutine(q.content));
                 questionText.text = q.questionText;
                 break;
                 
             case "word":
                 questionImage.gameObject.SetActive(false);
-                questionText.text = q.questionText + "\n\n" + q.content;
+                questionText.text = q.questionText + "\n\nword: " + q.content;
                 break;
                 
-            case "prononuce":
+            case "pronounce":
                 questionImage.gameObject.SetActive(false);
                 questionText.text = q.questionText;
                 PlayPronunciation(q.content);
@@ -267,25 +281,28 @@ void GenerateMixedQuestions()
                 questionText.text = q.questionText + "\n\n" + q.content;
                 break;
         }
-
-        for (int i = 0; i < optionTexts.Length; i++)
-        {
-            if (i < q.options.Length)
-            {
-                optionTexts[i].text = q.options[i];
-            }
-        }
+        
+        levelText.text = "Level " + currentLevel;
     }
 
-    void LoadImage(string imagePath)
+    IEnumerator LoadOptionImage(Image targetImage, string imagePath)
     {
         string fullPath = Path.Combine(Application.streamingAssetsPath, imagePath);
-        StartCoroutine(LoadImageCoroutine(fullPath));
+        WWW www = new WWW(fullPath);
+        yield return www;
+        
+        if (string.IsNullOrEmpty(www.error))
+        {
+            Texture2D texture = www.texture;
+            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            targetImage.sprite = sprite;
+        }
     }
 
     IEnumerator LoadImageCoroutine(string path)
     {
-        WWW www = new WWW(path);
+        string fullPath = Path.Combine(Application.streamingAssetsPath, path);
+        WWW www = new WWW(fullPath);
         yield return www;
         
         if (string.IsNullOrEmpty(www.error))
@@ -321,16 +338,22 @@ void GenerateMixedQuestions()
         isAnswered = true;
         Question q = currentRoundQuestions[currentQuestionIndex];
         
+        q.playerAnswer = q.options[optionIndex];
+        
         if (optionIndex == q.correctAnswer)
         {
             optionButtons[optionIndex].GetComponent<Image>().color = Color.green;
             score += 10;
+            q.isCorrect = true;
         }
         else
         {
             optionButtons[optionIndex].GetComponent<Image>().color = Color.red;
             optionButtons[q.correctAnswer].GetComponent<Image>().color = Color.green;
+            q.isCorrect = false;
         }
+
+        answeredQuestions.Add(q);
 
         foreach (Button btn in optionButtons)
         {
@@ -350,9 +373,16 @@ void GenerateMixedQuestions()
 
     void TimeOut()
     {
+        if (isAnswered) return;
+        
         isAnswered = true;
         
         Question q = currentRoundQuestions[currentQuestionIndex];
+        
+        q.playerAnswer = "Timeout";
+        q.isCorrect = false;
+        answeredQuestions.Add(q);
+        
         optionButtons[q.correctAnswer].GetComponent<Image>().color = Color.green;
         
         foreach (Button btn in optionButtons)
@@ -366,16 +396,60 @@ void GenerateMixedQuestions()
     void EndRound()
     {
         gameOverPanel.SetActive(true);
-        finalScoreText.text = "GameOver\nScore: " + score;
+        finalScoreText.text = "Score: " + score + " / 80";
+        nextLevelButton.interactable = (score >= 0);
+    }
+
+    public void ShowReviewPanel()
+    {
+        reviewPanel.SetActive(true);
+        
+        foreach (Transform child in reviewContentParent)
+        {
+            Destroy(child.gameObject);
+        }
+        
+        for (int i = 0; i < answeredQuestions.Count; i++)
+        {
+            Question q = answeredQuestions[i];
+            GameObject item = Instantiate(reviewItemPrefab, reviewContentParent);
+            
+            Text[] texts = item.GetComponentsInChildren<Text>();
+            if (texts.Length >= 3)
+            {
+                texts[0].text = "Question: " + (i + 1);
+                texts[1].text = q.questionText;
+                texts[2].text = "your answer: " + q.playerAnswer + "\nconrrect answer: " + q.options[q.correctAnswer];
+            }
+            
+            Image bgImage = item.GetComponent<Image>();
+            if (bgImage != null)
+            {
+                bgImage.color = q.isCorrect ? Color.green : Color.red;
+            }
+        }
     }
 
     public void RestartGame()
     {
         score = 0;
-        currentLevel = 1;
         currentQuestionIndex = 0;
         scoreText.text = "Score: 0";
         gameOverPanel.SetActive(false);
+        reviewPanel.SetActive(false);
         StartNewRound();
+    }
+
+    public void GoToNextLevel()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    public void SetQuestionTypeEnabled(int typeIndex, bool enabled)
+    {
+        if (typeIndex >= 0 && typeIndex < questionTypes.Length)
+        {
+            questionTypes[typeIndex].isEnabled = enabled;
+        }
     }
 }
