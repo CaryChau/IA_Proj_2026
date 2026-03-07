@@ -47,10 +47,10 @@ public class QuestionManager : MonoBehaviour
     public Button reviewButton;
     public Button nextLevelButton;
     
-    [Header("Review Panel")]
-    public GameObject reviewPanel;
-    public Transform reviewContentParent;
-    public GameObject reviewItemPrefab;
+    // [Header("Review Panel")]
+    // public GameObject reviewPanel;
+    // public Transform reviewContentParent;
+    // public GameObject reviewItemPrefab;
 
     [Header("Game Settings")]
     public string name = "Questions.txt";
@@ -75,6 +75,9 @@ public class QuestionManager : MonoBehaviour
     private float timer;
     private bool isAnswered = false;
 
+    private bool isReviewMode = false;
+    private int reviewQuestionIndex = 0;
+
     void Start()
     {
         LoadQuestions();
@@ -84,7 +87,7 @@ public class QuestionManager : MonoBehaviour
 
     void Update()
     {
-        if (!isAnswered && currentQuestionIndex < currentRoundQuestions.Count)
+        if (!isAnswered && currentQuestionIndex < currentRoundQuestions.Count && !isReviewMode)
         {
             timer -= Time.deltaTime;
             
@@ -96,6 +99,37 @@ public class QuestionManager : MonoBehaviour
                 TimeOut();
             }
         }
+
+        if (isReviewMode && Input.GetMouseButtonDown(0))
+        {
+            GameObject clickedObject = GetClickedObject();
+            if (clickedObject == null || !IsButtonOrChild(clickedObject))
+            {
+                ShowNextReviewQuestion();
+            }
+        }
+    }
+
+    GameObject GetClickedObject()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+        return null;
+    }
+
+    bool IsButtonOrChild(GameObject obj)
+    {
+        foreach (Button btn in optionButtons)
+        {
+            if (obj == btn.gameObject || obj.transform.IsChildOf(btn.transform))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void UpdateTimerDisplay()
@@ -402,32 +436,96 @@ public class QuestionManager : MonoBehaviour
 
     public void ShowReviewPanel()
     {
-        reviewPanel.SetActive(true);
+        // reviewPanel.SetActive(true);
+        gameOverPanel.SetActive(false);
+        isReviewMode = true;
+        reviewQuestionIndex = 0;
         
-        foreach (Transform child in reviewContentParent)
+        if (timerFill != null)
         {
-            Destroy(child.gameObject);
+            timerFill.gameObject.SetActive(false);
         }
         
-        for (int i = 0; i < answeredQuestions.Count; i++)
+        ShowReviewQuestion();
+    }
+
+    void ShowReviewQuestion()
+    {
+        if (reviewQuestionIndex >= answeredQuestions.Count)
         {
-            Question q = answeredQuestions[i];
-            GameObject item = Instantiate(reviewItemPrefab, reviewContentParent);
+            isReviewMode = false;
+            // reviewPanel.SetActive(false);
+            gameOverPanel.SetActive(true);
             
-            Text[] texts = item.GetComponentsInChildren<Text>();
-            if (texts.Length >= 3)
+            if (timerFill != null)
             {
-                texts[0].text = "Question: " + (i + 1);
-                texts[1].text = q.questionText;
-                texts[2].text = "your answer: " + q.playerAnswer + "\nconrrect answer: " + q.options[q.correctAnswer];
+                timerFill.gameObject.SetActive(true);
+            }
+            return;
+        }
+
+        Question q = answeredQuestions[reviewQuestionIndex];
+        
+        questionText.text = $"review mode question: {reviewQuestionIndex + 1}/{answeredQuestions.Count}\n\n" + q.questionText;
+        
+        switch (q.type)
+        {
+            case "picture":
+                questionImage.gameObject.SetActive(true);
+                StartCoroutine(LoadImageCoroutine(q.content));
+                break;
+                
+            case "word":
+                questionImage.gameObject.SetActive(false);
+                questionText.text += "\n\nword: " + q.content;
+                break;
+                
+            case "pronounce":
+                questionImage.gameObject.SetActive(false);
+                break;
+                
+            case "abbreviation":
+                questionImage.gameObject.SetActive(false);
+                questionText.text += "\n\n" + q.content;
+                break;
+        }
+
+        bool isImageOption = (q.type == "word");
+        for (int i = 0; i < optionButtons.Length; i++)
+        {
+            if (isImageOption)
+            {
+                optionTexts[i].gameObject.SetActive(false);
+                optionImages[i].gameObject.SetActive(true);
+                StartCoroutine(LoadOptionImage(optionImages[i], q.options[i]));
+            }
+            else
+            {
+                optionTexts[i].gameObject.SetActive(true);
+                optionImages[i].gameObject.SetActive(false);
+                optionTexts[i].text = q.options[i];
             }
             
-            Image bgImage = item.GetComponent<Image>();
-            if (bgImage != null)
+            Image btnImage = optionButtons[i].GetComponent<Image>();
+            if (i == q.correctAnswer)
             {
-                bgImage.color = q.isCorrect ? Color.green : Color.red;
+                btnImage.color = Color.green;
+            }
+            else if (q.playerAnswer == q.options[i] && !q.isCorrect)
+            {
+                btnImage.color = Color.red;
+            }
+            else
+            {
+                btnImage.color = Color.white;
             }
         }
+    }
+
+    void ShowNextReviewQuestion()
+    {
+        reviewQuestionIndex++;
+        ShowReviewQuestion();
     }
 
     public void RestartGame()
@@ -436,7 +534,14 @@ public class QuestionManager : MonoBehaviour
         currentQuestionIndex = 0;
         scoreText.text = "Score: 0";
         gameOverPanel.SetActive(false);
-        reviewPanel.SetActive(false);
+        // reviewPanel.SetActive(false);
+        isReviewMode = false;
+        
+        if (timerFill != null)
+        {
+            timerFill.gameObject.SetActive(true);
+        }
+        
         StartNewRound();
     }
 
