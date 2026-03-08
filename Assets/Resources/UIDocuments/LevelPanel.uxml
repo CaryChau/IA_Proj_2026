@@ -4,38 +4,17 @@
         <ui:VisualElement name="TopBar" class="TopHeader" style="flex-grow: 1; flex-direction: row-reverse; justify-content: flex-end; height: 180px; display: flex; position: absolute; align-self: flex-start; align-items: stretch; top: 0; width: 100%;">
             <ui:VisualElement name="TopBarContent" style="flex-grow: 1; width: 100%; height: 100%;" />
         </ui:VisualElement>
-        <ui:VisualElement name="Root-Content" class="ContentArea" style="width: 100%; top: 180px; position: absolute; flex-direction: column;">
+        <ui:VisualElement name="Root-Content" class="ContentArea" style="width: 100%; top: 180px; position: absolute; flex-direction: column; height: 84%;">
             <ui:VisualElement name="LevelPage" class="Page ActivePage LevelPage" style="position: relative; display: flex;">
-                <ui:VisualElement name="UnitBar" class="UnitBar" style="flex-grow: 1;">
+                <ui:VisualElement name="UnitBar" class="UnitBar" style="flex-grow: 1; position: relative; height: 20%;">
                     <ui:VisualElement name="TitleContainer" class="UnitTitleContainer" style="flex-grow: 1; flex-direction: column; width: 100%; background-color: rgba(0, 0, 0, 0); padding-bottom: 30px; padding-top: 20px;">
                         <ui:Label name="Title" text="hello title" class="UnitTitle" style="flex-grow: 1; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;); justify-content: flex-start; align-self: center; align-items: center; font-size: 50px;" />
                         <ui:Label name="Subtitle" text="hello subtitle" class="UnitSubtitle" style="flex-grow: 1; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;); font-size: 44px; -unity-text-align: upper-center;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:ScrollView name="Root-LevelList-ScrollView" mode="Vertical" class="LevelListScrollView" style="width: 50%; align-self: center;">
-                    <ui:VisualElement name="LevelList-Content" class="LevelListContent">
-                        <ui:VisualElement name="CharacterRow" class="CharacterRow">
-                            <ui:VisualElement name="CharacterIcon" class="CharacterIcon" />
-                            <ui:VisualElement name="CurvedPathContainer" class="CurvedPathContainer">
-                                <ui:VisualElement name="LevelRow1" class="LevelButtonRow LeftAlign">
-                                    <ui:Button name="LevelButton1" text="1" class="LevelButton" style="overflow: hidden; font-size: 60px; -unity-font-style: bold;" />
-                                </ui:VisualElement>
-                                <ui:VisualElement name="LevelRow2" class="LevelButtonRow RightAlign">
-                                    <ui:Button name="LevelButton2" text="2" class="LevelButton" style="font-size: 60px; -unity-font-style: bold;" />
-                                </ui:VisualElement>
-                                <ui:VisualElement name="LevelRow3" class="LevelButtonRow LeftAlign">
-                                    <ui:Button name="LevelButton3" text="3" class="LevelButton" style="font-size: 60px; -unity-font-style: bold;" />
-                                </ui:VisualElement>
-                                <ui:VisualElement name="LevelRow4" class="LevelButtonRow RightAlign">
-                                    <ui:Button name="LevelButton4" text="4" class="LevelButton" style="font-size: 60px; -unity-font-style: bold;" />
-                                </ui:VisualElement>
-                            </ui:VisualElement>
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-                </ui:ScrollView>
+                <ui:ScrollView name="Root-LevelList-ScrollView" mode="Vertical" class="LevelListScrollView" style="width: 100%; align-self: center; display: flex; height: 80%; margin-top: 0; margin-left: 0; align-items: flex-start; justify-content: center;" />
             </ui:VisualElement>
-            <ui:VisualElement name="AchievementPage" class="Page AchievementPage" style="background-color: rgba(255, 255, 255, 0);">
-                <ui:Label name="AchievementTitle" text="Achievements" class="AchievementTitle" style="position: absolute; top: 0; align-self: flex-start; flex-direction: row; height: 180px; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e2154ee0cc0dc604a8113d9dc6a5c230&amp;type=3#NotInter-Regular&quot;);" />
+            <ui:VisualElement name="AchievementPage" class="Page AchievementPage" style="background-color: rgba(255, 255, 255, 0); display: none; position: relative; top: 0;">
                 <ui:ScrollView name="AchievementScrollView" mode="Vertical" class="AchievementScrollView" />
             </ui:VisualElement>
             <ui:VisualElement name="ProfilePage" class="Page" />

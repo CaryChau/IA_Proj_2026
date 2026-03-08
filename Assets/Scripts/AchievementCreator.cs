@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine;
+using System.Linq;
 public class AchievementData
 {
-    public string Title;
-    public string Description;
-    public int Current;
-    public int Max;
-    public int Level;
-    public string IconClass; // LegendaryIcon, ChallengerIcon etc
+    public string title;
+    public string condition;
+    public int level;
+    public float progress; // 0-1
+    public Texture2D icon;
 }
 
 public class AchievementCreator : MonoBehaviour
 {
     private ScrollView scrollView;
-
+    public VisualTreeAsset achievementCardTemplate;
+    private List<Texture2D> cardIconList;
     void Start()
     {
+        cardIconList = Resources.LoadAll<Texture2D>("Textures/AchievementIcons").ToList<Texture2D>();
         var root = GetComponent<UIDocument>().rootVisualElement;
         scrollView = root.Q<ScrollView>("AchievementScrollView");
 
@@ -30,21 +32,19 @@ public class AchievementCreator : MonoBehaviour
         {
             new AchievementData
             {
-                Title = "Legendary",
-                Description = "Complete 75 legendary levels",
-                Current = 53,
-                Max = 75,
-                Level = 6,
-                IconClass = "LegendaryIcon"
+                title = "Legendary",
+                condition = "Complete 75 legendary levels",
+                progress = 0.5f,
+                level = 6,
+                icon = cardIconList[0]
             },
             new AchievementData
             {
-                Title = "Challenger",
-                Description = "Earn 5000 XP in timed challenges",
-                Current = 4100,
-                Max = 5000,
-                Level = 5,
-                IconClass = "ChallengerIcon"
+                title = "Challenger",
+                condition = "Earn 5000 XP in timed challenges",
+                progress = 0.5f,
+                level = 5,
+                icon = cardIconList[0]
             }
         };
 
@@ -57,56 +57,36 @@ public class AchievementCreator : MonoBehaviour
 
     VisualElement CreateAchievementCard(AchievementData data)
     {
-        var card = new VisualElement();
+        VisualElement card = achievementCardTemplate.Instantiate();
+
         card.AddToClassList("AchievementCard");
+        card.style.display = DisplayStyle.Flex;
 
-        // ICON
-        var icon = new VisualElement();
-        icon.AddToClassList("AchievementBigIcon");
-        icon.AddToClassList(data.IconClass);
+        var left = card.Q<VisualElement>("LeftLevel");
+        var right = card.Q<VisualElement>("RightDesc");
 
-        var levelLabel = new Label($"LEVEL {data.Level}");
-        levelLabel.AddToClassList("LevelBadge");
-        icon.Add(levelLabel);
+        var icon = card.Q<VisualElement>("IconBg");
+        var levelText = card.Q<Label>("LevelText");
 
-        // CONTENT
-        var content = new VisualElement();
-        content.AddToClassList("AchievementContent");
+        var title = card.Q<Label>("Title");
+        var condition = card.Q<Label>("ConditionTxt");
 
-        var title = new Label(data.Title);
-        title.AddToClassList("AchievementName");
+        var progressBar = card.Q<VisualElement>("BarImg");
 
-        var description = new Label(data.Description);
-        description.AddToClassList("AchievementDescription");
+        /* Populate content */
 
-        // PROGRESS ROW
-        var progressRow = new VisualElement();
-        progressRow.AddToClassList("ProgressRow");
+        levelText.text = "Lv " + data.level;
 
-        var progressBackground = new VisualElement();
-        progressBackground.AddToClassList("ProgressBarBackground");
+        title.text = data.title;
 
-        var progressFill = new VisualElement();
-        progressFill.AddToClassList("ProgressBarFill");
+        condition.text = data.condition;
 
-        float percent = (float)data.Current / data.Max * 100f;
-        progressFill.style.width = Length.Percent(percent);
+        if (data.icon != null)
+        {
+            icon.style.backgroundImage = new StyleBackground(data.icon);
+        }
 
-        progressBackground.Add(progressFill);
-
-        var progressText = new Label($"{data.Current}/{data.Max}");
-        progressText.AddToClassList("ProgressText");
-
-        progressRow.Add(progressBackground);
-        progressRow.Add(progressText);
-
-        // Build hierarchy
-        content.Add(title);
-        content.Add(description);
-        content.Add(progressRow);
-
-        card.Add(icon);
-        card.Add(content);
+        progressBar.style.width = Length.Percent(data.progress * 100f);
 
         return card;
     }

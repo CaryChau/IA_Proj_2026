@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/LevelStyle.uss?fileID=7433441132597879392&amp;guid=2517550378a6c924cb26b935ba8d3197&amp;type=3#LevelStyle" />
+    <ui:VisualElement name="CharacterRow" class="CharacterRow" style="align-items: center; top: 0; left: 0; width: 50%; justify-content: flex-start; align-self: center; height: 100%; position: relative;">
+        <ui:VisualElement name="CharacterIcon" class="CharacterIcon" style="position: absolute; align-items: flex-start;" />
+        <ui:VisualElement name="CurvedPathContainer" class="CurvedPathContainer" style="justify-content: flex-start; align-items: stretch; height: 1260px; position: absolute;">
+            <ui:VisualElement class="LevelButtonRow Row1" style="position: relative; top: auto;">
+                <ui:Button name="LevelButton1" class="LevelButton" style="font-size: 50px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="LevelButtonRow Row2" style="top: auto;">
+                <ui:Button name="LevelButton2" class="LevelButton" style="font-size: 50px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" class="LevelButtonRow Row3" style="top: auto;">
+                <ui:Button name="LevelButton3" class="LevelButton" style="font-size: 50px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="LevelButtonRow Row4" style="top: auto;">
+                <ui:Button name="LevelButton4" class="LevelButton" style="font-size: 50px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="LevelButtonRow Row5" style="top: auto;">
+                <ui:Button name="LevelButton5" class="LevelButton" style="font-size: 50px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

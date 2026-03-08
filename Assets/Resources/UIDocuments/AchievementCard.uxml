@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/AchievementCard.uss?fileID=7433441132597879392&amp;guid=a41ae396829d44c4fb820f6e8e25ddcc&amp;type=3#AchievementCard" />
+    <ui:VisualElement name="AchievementRow" class="AchievementCard">
+        <ui:VisualElement name="LeftLevel" class="LeftLevel">
+            <ui:VisualElement name="IconBg" class="IconBg" />
+            <ui:Label text="Level 5" name="LevelText" class="LevelText" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RightDesc" class="RightDesc">
+            <ui:Label text="Title" name="Title" class="IconTitle" />
+            <ui:Label text="Condition" name="ConditionTxt" class="ConditionTxt" />
+            <ui:VisualElement name="ProgressBar" class="ProgressBar">
+                <ui:VisualElement name="BarImg" class="BarImg" />
+                <ui:VisualElement name="BarBg" class="BarBg" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

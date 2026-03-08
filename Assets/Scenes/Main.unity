@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03326fa4f90b7934ba23c13c99ea5eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRowTemplate: {fileID: 9197481963319205126, guid: 428234b85c79ce54a9095670d6f1b981, type: 3}
 --- !u!114 &378504925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9739910690cc45645a9bc3becf394360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  achievementCardTemplate: {fileID: 9197481963319205126, guid: 54a6bd2c6b7557d4dbcc519d19950771, type: 3}
 --- !u!114 &378504926
 MonoBehaviour:
   m_ObjectHideFlags: 0

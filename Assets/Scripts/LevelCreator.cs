@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 public class LevelCreator : MonoBehaviour
 {
     private VisualElement root;
     private VisualElement levelPage;
     private VisualElement contentRoot;
-
+    public VisualTreeAsset characterRowTemplate;
     private List<VisualElement> pages;
     private List<Button> navButtons;
 
@@ -20,7 +21,7 @@ public class LevelCreator : MonoBehaviour
         topBarCreator = GetComponent<TopBarCreator>();
         root = GetComponent<UIDocument>().rootVisualElement;
         levelPage = root.Q<VisualElement>("LevelPage");
-
+        // characterRowTemplate = root.Q<VisualElement>("CharacterRowTemplate");
         scrollView = levelPage.Q<ScrollView>("Root-LevelList-ScrollView");
         SetupPages();
         InitBottomBar();
@@ -35,7 +36,8 @@ public class LevelCreator : MonoBehaviour
 
         foreach (var button in navButtons)
         {
-            button.clicked += () => {
+            button.clicked += () =>
+            {
                 OnNavClicked(button);
             };
             Debug.Log("Found button: " + button.name);
@@ -75,76 +77,67 @@ public class LevelCreator : MonoBehaviour
             targetPage.AddToClassList("ActivePage");
             topBarCreator.ShowTopBar(targetPageName);
         }
-            
+
     }
 
     void GenerateLevelRows(int characterCount)
     {
         scrollView.Clear();
-
+        // scrollView.contentContainer.style.alignItems = new StyleEnum<Align>(Align.FlexStart);
         int levelNumber = 1;
 
         for (int i = 0; i < characterCount; i++)
         {
-            VisualElement characterRow = CreateCharacterRow(ref levelNumber);
+            VisualElement characterRow = CreateCharacterRow(ref levelNumber, i);
+            // characterRow.SetSize()
             scrollView.Add(characterRow);
         }
     }
 
-    VisualElement CreateCharacterRow(ref int levelNumber)
+    VisualElement CreateCharacterRow(ref int levelNumber, int rowNum)
     {
-        // Root Row
-        VisualElement characterRow = new VisualElement();
-        characterRow.AddToClassList("CharacterRow");
+        // Clone template
+        VisualElement row = characterRowTemplate.Instantiate(); 
+        row.style.height = new StyleLength(new Length(1560f, LengthUnit.Pixel)); 
 
-        // Character Icon
-        VisualElement characterIcon = new VisualElement();
-        characterIcon.AddToClassList("CharacterIcon");
+        // Debug.Log(levelNumber + " " + (levelNumber-1) * 20f); 
+        // row.style.top = new StyleLength(new Length(rowNum * 20f, LengthUnit.Percent));
+        row.style.display = DisplayStyle.Flex; // make visible
 
-        // Optional: randomly tint icon
+        // Character icon
+        var characterIcon = row.Q<VisualElement>("CharacterIcon");
+
         characterIcon.style.backgroundColor =
             new Color(Random.value, Random.value, Random.value);
 
-        characterRow.Add(characterIcon);
+        // Get container
+        var curvedContainer = row.Q<VisualElement>("CurvedPathContainer");
 
-        // Curved Path Container
-        VisualElement curvedContainer = new VisualElement();
-        curvedContainer.AddToClassList("CurvedPathContainer");
+        // Get buttons
+        Button btn1 = row.Q<Button>("LevelButton1");
+        Button btn2 = row.Q<Button>("LevelButton2");
+        Button btn3 = row.Q<Button>("LevelButton3");
+        Button btn4 = row.Q<Button>("LevelButton4");
+        Button btn5 = row.Q<Button>("LevelButton5");
 
-        for (int i = 0; i < levelsPerCharacter; i++)
+        Button[] buttons = { btn1, btn2, btn3, btn4, btn5 };
+
+        foreach (var button in buttons)
         {
-            VisualElement levelRow = new VisualElement();
-            levelRow.AddToClassList("LevelButtonRow");
+            int capturedLevel = levelNumber;
 
-            if (i % 2 == 0)
-                levelRow.AddToClassList("LeftAlign");
-            else
-                levelRow.AddToClassList("RightAlign");
+            button.text = capturedLevel.ToString();
 
-            Button levelButton = new Button();
-            levelButton.text = levelNumber.ToString();
-            levelButton.AddToClassList("LevelButton");
-
-            levelButton.style.fontSize = 60;
-            levelButton.style.unityFontStyleAndWeight = FontStyle.Bold;
-
-            int capturedLevel = levelNumber; // prevent closure bug
-            levelButton.clicked += () =>
+            button.clicked += () =>
             {
                 OnLevelClicked(capturedLevel);
             };
 
-            levelRow.Add(levelButton);
-            curvedContainer.Add(levelRow);
-
             levelNumber++;
         }
 
-        characterRow.Add(curvedContainer);
-
-        return characterRow;
+        return row;
     }
-
     void OnLevelClicked(int level)
     {
         Debug.Log("Clicked Level: " + level);
