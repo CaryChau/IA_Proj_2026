@@ -1,0 +1,45 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="project://database/Assets/Resources/UIDocuments/ProfilePage.uss?fileID=7433441132597879392&amp;guid=73e3f8dad4c27ab4c90f2cbe6cb9b654&amp;type=3#ProfilePage" />
+    
+<!-- Root container -->
+    <ui:VisualElement name="ProfilePage" class="screen">
+
+        <!-- Header / Illustration area -->
+        <ui:VisualElement name="Header" class="header">
+            <!-- Put your illustration as background via USS, or add Image element below -->
+            <ui:VisualElement name="HeaderIllustration" class="header__illustration" />
+
+            <!-- Optional settings button (top-right). Remove if you don't want it -->
+            <ui:Button name="SettingsButton" class="icon-button header__settings" tooltip="Settings">
+                <ui:VisualElement class="icon icon--gear" />
+            </ui:Button>
+        </ui:VisualElement>
+
+        <!-- Content area -->
+        <ui:ScrollView name="ContentScroll" class="content" vertical-scroller-visibility="Auto">
+            <ui:VisualElement class="profile">
+
+                <ui:Label name="UserNameLabel" text="Matt" class="profile__name" />
+                <ui:Label name="UserMetaLabel" text="@DCiiieee • Joined August 2014" class="profile__meta" />
+
+                <!-- Badge row (flag + +15) -->
+                <ui:VisualElement class="profile__badges">
+                    <ui:VisualElement class="badge">
+                        <ui:VisualElement class="badge__flag" />
+                        <ui:Label text="+15" class="badge__text" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Section header -->
+                <ui:Label text="Courses" class="section-title" />
+
+                <!-- Courses placeholder container -->
+                <ui:VisualElement name="CoursesContainer" class="list">
+                    <!-- Add course items dynamically or duplicate template items here -->
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+
+</ui:UXML>

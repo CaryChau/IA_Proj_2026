@@ -26,6 +26,7 @@ public class AchievementCreator : MonoBehaviour
         LoadAchievements();
     }
 
+    // TODO: update with listener
     void LoadAchievements()
     {
         var achievements = new List<AchievementData>
