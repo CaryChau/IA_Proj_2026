@@ -13,9 +13,8 @@ public class LevelCreator : MonoBehaviour
 
     private ScrollView scrollView;
     private TopBarCreator topBarCreator;
-
+    private string curNavName = null;
     private int levelsPerCharacter = 4;
-
     void Start()
     {
         topBarCreator = GetComponent<TopBarCreator>();
@@ -56,6 +55,11 @@ public class LevelCreator : MonoBehaviour
 
     void OnNavClicked(Button clickedButton)
     {
+        if (curNavName == clickedButton.name)
+        {
+            return;
+        }
+        curNavName = clickedButton.name;
         // Remove selected state from all nav buttons
         foreach (var btn in navButtons)
             btn.RemoveFromClassList("NavIconSelected");
@@ -65,10 +69,16 @@ public class LevelCreator : MonoBehaviour
 
         // Determine which page to show
         string targetPageName = clickedButton.name.Replace("Nav", "Page");
-
+        VisualElement lastPage = null;
         // Hide all pages
         foreach (var page in pages)
-            page.RemoveFromClassList("ActivePage");
+        {
+            if (page.ClassListContains("ActivePage"))
+            {
+                page.RemoveFromClassList("ActivePage");
+                lastPage = page;
+            }
+        }
 
         // Show target page
         var targetPage = root.Q<VisualElement>(targetPageName);
@@ -76,6 +86,12 @@ public class LevelCreator : MonoBehaviour
         {
             targetPage.AddToClassList("ActivePage");
             topBarCreator.ShowTopBar(targetPageName);
+            PageAnimator.FadeTo(lastPage, 1, 0, 500, () => {
+                lastPage.style.display = DisplayStyle.None;
+                lastPage.style.opacity = 0;
+                targetPage.style.opacity = 1;
+                targetPage.style.display = DisplayStyle.Flex;
+            });
         }
 
     }
@@ -100,8 +116,6 @@ public class LevelCreator : MonoBehaviour
         VisualElement row = characterRowTemplate.Instantiate(); 
         row.style.height = new StyleLength(new Length(1560f, LengthUnit.Pixel)); 
 
-        // Debug.Log(levelNumber + " " + (levelNumber-1) * 20f); 
-        // row.style.top = new StyleLength(new Length(rowNum * 20f, LengthUnit.Percent));
         row.style.display = DisplayStyle.Flex; // make visible
 
         // Character icon

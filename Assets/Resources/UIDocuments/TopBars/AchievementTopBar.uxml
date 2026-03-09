@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement class="AchievementTopBar">
-        <ui:Label text="Achievements" class="TopBarTitle" style="font-size: 75px; margin-left: 21px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+        <ui:Label text="Achievements" style="font-size: 75px; margin-left: 21px; color: rgb(255, 255, 255); -unity-font-style: bold; margin-top: 40px;" />
     </ui:VisualElement>
 </ui:UXML>
