@@ -1,5 +1,20 @@
-picture|picture/picture001.jpg|A|B|C|D|0|What is it?
-picture|picture/picture002.jpg|A|B|C|D|1|What is it?
+picture|picture/picture001.png|Tablet|Capsule|Suppository|Powder|0|What is it?
+picture|picture/picture002.png|Granule|Capsule|Lozenge|Poultice|1|What is it?
+picture|picture/picture003.png|Tablet|Cream|Suppository|Capsule|2|What is it?
+picture|picture/picture004.png|Powder|Tablet|Cream|Gel|0|What is it?
+picture|picture/picture005.png|Suppository|Tablet|Cream|Granule|3|What is it?
+picture|picture/picture006.png|Granule|Lozenge|Cream|Tablet|1|What is it?
+picture|picture/picture007.png|Capsule|Tablet|Cream|Granule|2|What is it?
+picture|picture/picture008.png|Powder|Lotion|Suppository|Capsule|1|What is it?
+picture|picture/picture009.png|Suppository|Tablet|Cream|Gel|3|What is it?
+picture|picture/picture010.png|Ointment|Tablet|Poultice|Gel|0|What is it?
+picture|picture/picture011.png|Poultice|Tablet|Paste|Gel|2|What is it?
+picture|picture/picture012.png|Suppository|Poultice|Cream|Gel|1|What is it?
+picture|picture/picture013.png|Poultice|Tablet|Capsule|Solution|3|What is it?
+picture|picture/picture014.png|Granule|Tablet|Emulsion|Capsule|2|What is it?
+picture|picture/picture015.png|Suppository|Suspension|Poultice|Gel|1|What is it?
+picture|picture/picture016.png|Inhaler|Tablet|Lozenge|Gel|0|What is it?
+picture|picture/picture017.png|Lozenge|Tablet|Injection|Gel|2|What is it?
 word|word:A|A|B|C|D|0|?
 word|word:B|A|B|C|D|1|?
 prononuce|prononuce:A|A|B|C|D|0|?
