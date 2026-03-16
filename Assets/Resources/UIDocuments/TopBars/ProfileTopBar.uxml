@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/TopBars/ProfileTopBar.uss?fileID=7433441132597879392&amp;guid=1b15de6d8fbbd004aa92980aabc57fc4&amp;type=3#ProfileTopBar" />
     <ui:VisualElement class="ProfileTopBar">
-        <ui:VisualElement name="Avatar" class="AvatarIcon" />
-        <ui:Button text="⚙" class="SettingButton" style="position: relative; top: 4px; left: 284px; width: 50px; height: 50px;" />
+        <ui:Label name="UserLabel" class="UserLabel" text="Username" />
+        <ui:Button name="SettingButton" class="SettingButton"/>
     </ui:VisualElement>
 </ui:UXML>
