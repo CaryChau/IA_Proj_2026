@@ -15,8 +15,33 @@ picture|picture/picture014.png|Granule|Tablet|Emulsion|Capsule|2|What is it?
 picture|picture/picture015.png|Suppository|Suspension|Poultice|Gel|1|What is it?
 picture|picture/picture016.png|Inhaler|Tablet|Lozenge|Gel|0|What is it?
 picture|picture/picture017.png|Lozenge|Tablet|Injection|Gel|2|What is it?
-word|word:A|A|B|C|D|0|?
-word|word:B|A|B|C|D|1|?
+word|Tablet|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Capsule|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|1|?
+word|Suppository|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Powder|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Granule|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Lozenge|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Gream|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Lotion|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Gel|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Ointment|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Paste|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Poultice|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Solution|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Emulsion|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Suspension|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Inhaler|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Injection|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
 prononuce|prononuce:A|A|B|C|D|0|?
 prononuce|prononuce:B|A|B|C|D|1|?
 abbreviation|abbreviation:AI|ArtificialIntelligence|air|apple|love|0|What is"AI" mean?
+text||Eye drops|Rectal suppositories|Skin patches|Nasal spray|1|Paracetamol is commonly available in which dosage form?
+text||Intravenous infusion|Oral liquid|Nasal drops|Eye drops|1|Which dosage form is chlorpheniramine commonly supplied as for adults?
+text||Oral tablets|Eye drops|Skin patches|Rectal suppositories|0|Which of the following is a common dosage form of Ibuprofen for pain relief?
+text||Powder|Lozenge|Cream|Gel|0|Which dosage form of Acetylcysteins is available?
+text||Nasal spray|Oral syrup|Skin patches|Eye drops|1|Which is a common dosage form of bromhexine for adults?
+text||Eye drops|Injection only|Inhaler|Oral tablet|3|Lisinopril is usually given as:
+text||Oral tablets|Patch|Emulsion|Powder|0|Which dosage form is standard for Metoprolol?
+text||Oral tablets|Injection only|Skin patches|Granule|0|Amlodipine is usually prescribed as:
+text||Powder|Lozenge|Tablet|Suppository|2|Which is the usual oral dosage form of Furosemide?
+text||Lozenge|Nasal spray|Oral liquid|Powder|2|Warfarin is mainly taken as:
