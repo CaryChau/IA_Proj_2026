@@ -315,8 +315,6 @@ public class QuestionManager : MonoBehaviour
                 questionText.text = q.questionText + "\n\n" + q.content;
                 break;
         }
-        
-        levelText.text = "Level " + currentLevel;
     }
 
     IEnumerator LoadOptionImage(Image targetImage, string imagePath)
@@ -547,7 +545,7 @@ public class QuestionManager : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Level2");
     }
 
     public void SetQuestionTypeEnabled(int typeIndex, bool enabled)

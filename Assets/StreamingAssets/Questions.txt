@@ -1,3 +1,4 @@
+#类型|路径&标题|选项A|选项B|选项C|选项D|正确答案|题目
 picture|picture/picture001.png|Tablet|Capsule|Suppository|Powder|0|What is it?
 picture|picture/picture002.png|Granule|Capsule|Lozenge|Poultice|1|What is it?
 picture|picture/picture003.png|Tablet|Cream|Suppository|Capsule|2|What is it?
@@ -15,23 +16,23 @@ picture|picture/picture014.png|Granule|Tablet|Emulsion|Capsule|2|What is it?
 picture|picture/picture015.png|Suppository|Suspension|Poultice|Gel|1|What is it?
 picture|picture/picture016.png|Inhaler|Tablet|Lozenge|Gel|0|What is it?
 picture|picture/picture017.png|Lozenge|Tablet|Injection|Gel|2|What is it?
-word|Tablet|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Capsule|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|1|?
-word|Suppository|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Powder|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Granule|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Lozenge|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Gream|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Lotion|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Gel|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Ointment|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Paste|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Poultice|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Solution|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Emulsion|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Suspension|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Inhaler|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
-word|Injection|picture/picture001.png|picture/picture001.png|picture/picture001.png|picture/picture001.png|0|?
+word|Tablet|picture/picture006.png|picture/picture001.png|picture/picture012.png|picture/picture003.png|1|which picture ?
+word|Capsule|picture/picture014.png|picture/picture010.png|picture/picture002.png|picture/picture005.png|2|which picture ?
+word|Suppository|picture/picture007.png|picture/picture009.png|picture/picture004.png|picture/picture003.png|3|which picture ?
+word|Powder|picture/picture004.png|picture/picture013.png|picture/picture016.png|picture/picture011.png|0|which picture ?
+word|Granule|picture/picture003.png|picture/picture006.png|picture/picture014.png|picture/picture005.png|3|which picture ?
+word|Lozenge|picture/picture011.png|picture/picture004.png|picture/picture006.png|picture/picture017.png|2|which picture ?
+word|Cream|picture/picture010.png|picture/picture007.png|picture/picture013.png|picture/picture002.png|1|which picture ?
+word|Lotion|picture/picture008.png|picture/picture012.png|picture/picture009.png|picture/picture005.png|0|which picture ?
+word|Gel|picture/picture016.png|picture/picture009.png|picture/picture003.png|picture/picture014.png|1|which picture ?
+word|Ointment|picture/picture002.png|picture/picture011.png|picture/picture010.png|picture/picture009.png|2|which picture ?
+word|Paste|picture/picture005.png|picture/picture015.png|picture/picture001.png|picture/picture011.png|3|which picture ?
+word|Poultice|picture/picture013.png|picture/picture012.png|picture/picture007.png|picture/picture016.png|1|which picture ?
+word|Solution|picture/picture013.png|picture/picture014.png|picture/picture010.png|picture/picture006.png|0|which picture ?
+word|Emulsion|picture/picture009.png|picture/picture014.png|picture/picture011.png|picture/picture015.png|1|which picture ?
+word|Suspension|picture/picture017.png|picture/picture003.png|picture/picture015.png|picture/picture004.png|2|which picture ?
+word|Inhaler|picture/picture001.png|picture/picture016.png|picture/picture005.png|picture/picture016.png|3|which picture ?
+word|Injection|picture/picture017.png|picture/picture015.png|picture/picture017.png|picture/picture010.png|0|which picture ?
 prononuce|prononuce:A|A|B|C|D|0|?
 prononuce|prononuce:B|A|B|C|D|1|?
 abbreviation|abbreviation:AI|ArtificialIntelligence|air|apple|love|0|What is"AI" mean?
