@@ -17,6 +17,8 @@ public class ProfileCreator : MonoBehaviour
         var root = GetComponent<UIDocument>().rootVisualElement;
         profilePage = root.Q<VisualElement>("ProfilePage");
         SetupProfilePage();
+        BindToModel();
+        // send protocol later
     }
 
     
@@ -85,9 +87,9 @@ public class ProfileCreator : MonoBehaviour
         model.HeaderChanged += UpdateHeader;
 
         // Initial paint (apply current values immediately)
-        UpdateNameLabel(model.Name);
-        UpdateMetaLabel(model.Meta);
-        UpdateHeader(model.HeaderTexture);
+        // UpdateNameLabel(model.Name);
+        // UpdateMetaLabel(model.Meta);
+        // UpdateHeader(model.HeaderTexture);
     }
 
     public void UnbindModel()

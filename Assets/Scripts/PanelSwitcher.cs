@@ -39,8 +39,8 @@ public class PanelSwitcher : MonoBehaviour
         }
 
         // Probe once for UIDocument.sortingOrder (available in newer Unity)
-        _uidocSortingProp = typeof(UIDocument).GetProperty("sortingOrder",
-            BindingFlags.Public | BindingFlags.Instance);
+        // _uidocSortingProp = typeof(UIDocument).GetProperty("sortingOrder",
+        //     BindingFlags.Public | BindingFlags.Instance);
     }
 
     private void OnEnable()
@@ -107,9 +107,9 @@ public class PanelSwitcher : MonoBehaviour
         }
 
         // Older Unity: use PanelSettings.sortingOrder
-        if (doc.panelSettings != null)
+        if (doc != null)
         {
-            return (int)doc.panelSettings.sortingOrder;
+            return (int)doc.sortingOrder;
         }
 
         return 0;

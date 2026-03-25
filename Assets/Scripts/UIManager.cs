@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class UIManager : MonoBehaviour
 {
@@ -41,4 +42,14 @@ public class UIManager : MonoBehaviour
             return profileVM;
         }
     }
+
+    public void RequestProfileData()
+    {
+        
+    }
+
+    // public void OnProfileData(NetworkMessage msg) // json obj?
+    // {
+    //     // profileVM.SetAll(jsonObj)
+    // }
 }

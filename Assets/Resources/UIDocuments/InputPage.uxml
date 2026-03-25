@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/InputPageStyle.uss?fileID=7433441132597879392&amp;guid=4f0300db8671b5145aebf7c4349f5431&amp;type=3#InputPageStyle" />
+    <ui:VisualElement class="input-page">
+        <ui:VisualElement class="close-icon-container">
+            <ui:Button name="CloseButton" class="close-icon" />
+        </ui:VisualElement>
+        <ui:Label text="Enter your details" class="input-title" />
+        <ui:VisualElement class="input-fields-container">
+            <ui:TextField name="UsernameField" placeholder="Username or email" class="input-field" />
+            <ui:VisualElement class="password-row">
+                <ui:TextField name="PasswordField" placeholder="Password" password="true" class="input-field password-field" />
+                <ui:Button name="ShowPasswordButton" class="eye-icon" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Button name="SignInButton" text="SIGN IN" class="sign-in-button" />
+        <ui:Button name="ForgotPasswordButton" text="FORGOT PASSWORD" class="forgot-password-button" />
+    </ui:VisualElement>
+</ui:UXML>
