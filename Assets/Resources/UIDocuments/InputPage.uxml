@@ -1,18 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/InputPageStyle.uss?fileID=7433441132597879392&amp;guid=4f0300db8671b5145aebf7c4349f5431&amp;type=3#InputPageStyle" />
-    <ui:VisualElement class="input-page">
+    <ui:VisualElement name="VisualElement" class="input-page">
         <ui:VisualElement class="close-icon-container">
             <ui:Button name="CloseButton" class="close-icon" />
         </ui:VisualElement>
-        <ui:Label text="Enter your details" class="input-title" />
+        <ui:Label text="Enter your details" class="input-title" style="font-size: 55px; -unity-font-style: bold;" />
         <ui:VisualElement class="input-fields-container">
-            <ui:TextField name="UsernameField" placeholder="Username or email" class="input-field" />
-            <ui:VisualElement class="password-row">
-                <ui:TextField name="PasswordField" placeholder="Password" password="true" class="input-field password-field" />
-                <ui:Button name="ShowPasswordButton" class="eye-icon" />
+            <ui:TextField name="UsernameField" placeholder="Username or email" password="false" class="input-field" style="height: 100px; margin-right: 0; margin-top: 0; padding-right: 0; padding-left: 0; font-size: 50px;" />
+            <ui:VisualElement name="PasswordField" class="password-row" style="height: 100px; align-self: auto; justify-content: flex-start;">
+                <ui:TextField name="PasswordField" placeholder="Password" password="true" class="input-field password-field" style="margin-top: 0; padding-right: 0; padding-left: 0; margin-right: 0; margin-left: 0; height: 100%; flex-grow: 0; flex-basis: auto;" />
+                <ui:Button name="ShowPasswordButton" class="eye-icon" style="align-items: stretch; justify-content: flex-start;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button name="SignInButton" text="SIGN IN" class="sign-in-button" />
-        <ui:Button name="ForgotPasswordButton" text="FORGOT PASSWORD" class="forgot-password-button" />
+        <ui:Button name="SignInButton" text="SIGN IN" class="sign-in-button" style="height: 100px; font-size: 40px; -unity-font-style: bold;" />
+        <ui:Button name="ForgotPasswordButton" text="FORGOT PASSWORD" class="forgot-password-button" style="font-size: 40px; -unity-font-style: bold; -unity-font: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;);" />
     </ui:VisualElement>
 </ui:UXML>

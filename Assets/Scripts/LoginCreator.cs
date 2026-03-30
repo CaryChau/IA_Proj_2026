@@ -10,6 +10,7 @@ public class LoginCreator : MonoBehaviour
     public VisualTreeAsset targetSetupPageAsset; // Placeholder for future use
 
     private VisualElement root;
+    private VisualElement pageContainer;
     private VisualElement loginPage;
     private VisualElement inputPage;
     private VisualElement targetSetupPage;
@@ -18,14 +19,18 @@ public class LoginCreator : MonoBehaviour
     {
         var uiDoc = GetComponent<UIDocument>();
         root = uiDoc.rootVisualElement;
+        pageContainer = root.Q<VisualElement>("PageContainer");
+        pageContainer.style.backgroundColor = new StyleColor(Color.black);
         ShowLoginPage();
     }
 
     private void ShowLoginPage()
     {
-        root.Clear();
+        pageContainer.Clear();
         loginPage = loginPageAsset.Instantiate();
-        root.Add(loginPage);
+        loginPage.style.height = Length.Percent(100f);;
+        pageContainer.Add(loginPage);
+
 
         var signInBtn = loginPage.Q<Button>("SignInButton");
         var getStartedBtn = loginPage.Q<Button>("GetStartedButton");
@@ -39,7 +44,10 @@ public class LoginCreator : MonoBehaviour
     private void OnSignInClicked()
     {
         if (inputPage == null)
+        {
             inputPage = inputPageAsset.Instantiate();
+            inputPage.style.height = Length.Percent(100f);
+        }
         FadeToPage(inputPage, OnInputPageShow);
     }
 
@@ -53,20 +61,20 @@ public class LoginCreator : MonoBehaviour
 
     private void FadeToPage(VisualElement page, Action cb = null)
     {
-        if (root.childCount > 0)
+        if (pageContainer.childCount > 0)
         {
-            var oldPage = root[0];
+            var oldPage = pageContainer[0];
             PageAnimator.FadeTo(oldPage, 1f, 0f, 300, () => {
-                root.Clear();
-                root.Add(page);
+                pageContainer.Clear();
+                pageContainer.Add(page);
                 PageAnimator.FadeTo(page, 0f, 1f, 300);
                 cb?.Invoke();
             });
         }
         else
         {
-            root.Clear();
-            root.Add(page);
+            pageContainer.Clear();
+            pageContainer.Add(page);
             PageAnimator.FadeTo(page, 0f, 1f, 300);
         }
     }
@@ -78,7 +86,7 @@ public class LoginCreator : MonoBehaviour
         var signInBtn = inputPage.Q<Button>("SignInButton");
         var usernameField = inputPage.Q<TextField>("UsernameField");
         var passwordField = inputPage.Q<TextField>("PasswordField");
-
+        
         // Optionally, add a waiting icon (spinner) to the page
         VisualElement waitingIcon = new VisualElement();
         waitingIcon.style.width = 32;

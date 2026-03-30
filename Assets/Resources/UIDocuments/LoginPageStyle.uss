@@ -2,7 +2,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: #181c1f;
+    background-color: rgb(24, 28, 31);
     width: 100%;
     height: 100%;
 }
@@ -16,7 +16,7 @@
 .back-arrow {
     width: 32px;
     height: 32px;
-    background-image: url('back_arrow.png'); /* Replace with your arrow asset */
+    background-image: url('back_arrow.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-color: transparent;
@@ -31,20 +31,20 @@
 }
 
 .section-label {
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-size: 28px;
-    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
     margin-bottom: 24px;
     text-align: center;
 }
 
 .sign-in-button {
     width: 90%;
-    height: 56px;
-    background-color: #b8f200;
-    color: #222;
+    height: 150px;
+    background-color: rgb(184, 242, 0);
+    color: rgb(34, 34, 34);
     font-size: 22px;
-    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
     border-radius: 20px;
     margin-bottom: 32px;
     margin-top: 8px;
@@ -55,7 +55,7 @@
 .divider {
     width: 90%;
     height: 1px;
-    background-color: #3a3f42;
+    background-color: rgb(58, 63, 66);
     margin: 24px 0;
 }
 
@@ -63,10 +63,10 @@
     width: 90%;
     height: 56px;
     background-color: transparent;
-    color: #b8f200;
+    color: rgb(184, 242, 0);
     font-size: 22px;
-    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
-    border: 2px solid #3a3f42;
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+    border: 2px solid rgb(58, 63, 66);
     border-radius: 20px;
     font-weight: bold;
 }

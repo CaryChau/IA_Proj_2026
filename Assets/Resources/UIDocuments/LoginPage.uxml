@@ -1,12 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/LoginPageStyle.uss?fileID=7433441132597879392&amp;guid=063a7770eeff13e4d9e3d2f1afec3e1a&amp;type=3#LoginPageStyle" />
-    <ui:VisualElement class="login-page">
-        <ui:VisualElement class="back-arrow-container">
+    <ui:VisualElement name="VisualElement" class="login-page" style="justify-content: center; left: 0; top: 0; right: 0; bottom: 0;">
+        <ui:VisualElement class="back-arrow-container" style="display: none;">
             <ui:Button name="BackArrowButton" class="back-arrow" />
         </ui:VisualElement>
         <ui:VisualElement class="content-container">
-            <ui:Label text="Already have an account?" class="section-label" />
-            <ui:Button name="SignInButton" text="SIGN IN" class="sign-in-button" />
+            <ui:Label text="Already have an account?" class="section-label" style="font-size: 70px; -unity-font-style: bold;" />
+            <ui:Button name="SignInButton" text="SIGN IN" class="sign-in-button" style="font-size: 60px; -unity-font-style: bold;" />
             <ui:VisualElement class="divider" />
             <ui:Label text="New to Medicine?" enable-rich-text="true" class="section-label" />
             <ui:Button name="GetStartedButton" text="GET STARTED" class="get-started-button" />
