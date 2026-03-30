@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/ListeningStyle.uss?fileID=7433441132597879392&amp;guid=9aab6cd4a520b7443b5848778d7de562&amp;type=3#ListeningStyle" />
+    <ui:VisualElement class="Viewport">
+        <ui:VisualElement class="PhoneFrame">
+            <ui:VisualElement class="TopBar">
+                <ui:Button name="CloseButton" tooltip="Close" class="IconButton CloseButton" />
+                <ui:VisualElement class="ProgressWrap">
+                    <ui:VisualElement class="ProgressTrack">
+                        <ui:VisualElement name="ProgressFill" class="ProgressFill" style="width: 35%;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="EnergyBadge">
+                    <ui:VisualElement class="BoltIcon" />
+                    <ui:Label name="EnergyValue" text="23" class="EnergyValue" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label name="Title" text="Tap what you hear" class="PageTitle" />
+            <ui:VisualElement class="ExerciseRow">
+                <ui:VisualElement class="Mascot" />
+                <ui:VisualElement class="AudioCard">
+                    <ui:VisualElement class="CardDividerV" />
+                    <ui:Button name="PlayButton" tooltip="Play" class="AudioHalfButton PlayButton" />
+                    <ui:Button name="SlowButton" tooltip="Play slowly" class="AudioHalfButton SlowButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label name="QuestionLabel" text="What interaction is described?" class="Question" style="font-size: 45px; -unity-font-style: bold;" />
+            <ui:Label name="TranscriptLabel" text="Combining paracetamol with alcohol may increase liver damage." class="Transcript isHidden" />
+            <ui:VisualElement class="Options">
+                <ui:Button name="OptionA" text="A. Paracetamol + Ibuprofen" class="OptionButton" style="-unity-font-style: bold; font-size: 40px;" />
+                <ui:Button name="OptionB" text="B. Paracetamol + Alcohol" class="OptionButton" style="font-size: 40px; -unity-font-style: bold;" />
+                <ui:Button name="OptionC" text="C. Paracetamol + Furosemide" class="OptionButton" style="-unity-font-style: bold; font-size: 40px;" />
+            </ui:VisualElement>
+            <ui:Button name="Separator" class="MutedAction" />
+            <ui:Button name="CheckButton" text="CHECK" class="PrimaryAction isDisabled" style="font-size: 40px; -unity-font-style: bold;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

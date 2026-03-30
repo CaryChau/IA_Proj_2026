@@ -1,0 +1,256 @@
+/* ===== Outer preview helper (optional) ===== */
+/* Centers the fixed 1080x1920 frame when viewed in larger panels */
+.Viewport {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;    /* vertical center */
+    justify-content: center;/* horizontal center */
+    background-color: #0B1820; /* editor preview backdrop (outside frame) */
+}
+
+/* ===== Fixed 1080x1920 frame ===== */
+.PhoneFrame {
+    width: 1080px;
+    height: 1920px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #0F1F26; /* page bg */
+    padding-left: 32px;   /* tuned for this resolution */
+    padding-right: 32px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    /* clip anything overflowing the frame */
+    overflow: hidden;
+}
+
+/* ===== Top Bar ===== */
+.TopBar {
+    width: 100%;
+    height: 96px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Close button */
+.IconButton {
+    width: 72px;
+    height: 72px;
+
+    border-top-left-radius: 36px; border-top-right-radius: 36px;
+    border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
+
+    background-color: rgba(255,255,255,0.06);
+    border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;
+}
+.CloseButton {
+    background-image: url("project://Assets/UI/Icons/close_24.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+}
+
+/* Progress */
+.ProgressWrap {
+    flex-grow: 1;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+.ProgressTrack {
+    width: 100%;
+    height: 24px;
+    border-top-left-radius: 12px; border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+    background-color: #20343C;
+}
+.ProgressFill {
+    height: 100%;
+    border-top-left-radius: 12px; border-bottom-left-radius: 12px;
+    background-color: #58CC02;
+}
+
+/* Energy badge */
+.EnergyBadge {
+    height: 48px; min-width: 92px;
+    padding-left: 14px; padding-right: 16px;
+
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+
+    background-color: rgba(255,255,255,0.08);
+    border-top-left-radius: 24px; border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;
+}
+.BoltIcon {
+    width: 24px; height: 24px; margin-right: 10px;
+    background-image: url("project://Assets/UI/Icons/bolt_16.png");
+    background-position: center center; background-repeat: no-repeat; background-size: 24px 24px;
+}
+.EnergyValue { color: #FF6BD6; unity-font-size: 28px; unity-font-style: bold; }
+
+/* ===== Title ===== */
+.PageTitle {
+    color: #EAF3F4;
+    unity-font-size: 56px;
+    unity-font-style: bold;
+
+    margin-top: 12px;
+    margin-bottom: 16px;
+}
+
+/* ===== Exercise Row ===== */
+.ExerciseRow {
+    width: 100%;
+    height: 360px;
+
+    display: flex; flex-direction: row; align-items: center;
+
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+.Mascot {
+    width: 260px;        /* tuned for 1080w */
+    height: 340px;
+    background-image: url("project://Assets/UI/Images/mascot_placeholder.png");
+    background-position: center bottom; background-repeat: no-repeat; background-size: contain;
+    margin-right: 24px;
+}
+.AudioCard {
+    flex-grow: 1;
+    height: 300px; min-height: 300px; position: relative;
+
+    background-color: #17292F;
+    border-top-left-radius: 28px; border-top-right-radius: 28px;
+    border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;
+
+    padding-left: 12px; padding-right: 12px;
+
+    display: flex; flex-direction: row; align-items: center; justify-content: space-between;
+}
+.CardDividerV {
+    position: absolute; left: 50%; top: 24px; bottom: 24px;
+    width: 2px; background-color: #254048;
+}
+.AudioHalfButton {
+    flex-grow: 1;
+    height: 240px;
+    margin-left: 12px; margin-right: 12px;
+
+    border-top-left-radius: 22px; border-top-right-radius: 22px;
+    border-bottom-left-radius: 22px; border-bottom-right-radius: 22px;
+
+    background-color: #0F1F26;
+    border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;
+    border-top-color: #263A41; border-right-color: #263A41; border-bottom-color: #263A41; border-left-color: #263A41;
+
+    color: rgba(0,0,0,0); /* image-only */
+}
+.PlayButton {
+    background-image: url("project://Assets/UI/Icons/speaker_64.png");
+    background-position: center center; background-repeat: no-repeat; background-size: 80px 80px;
+}
+.SlowButton {
+    background-image: url("project://Assets/UI/Icons/turtle_56.png");
+    background-position: center center; background-repeat: no-repeat; background-size: 72px 72px;
+}
+
+/* ===== Question & Transcript ===== */
+.Question {
+    color: #EAF3F4;
+    unity-font-size: 40px;
+    unity-font-style: bold;
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.Transcript {
+    color: rgba(234,243,244,0.70);
+    unity-font-size: 26px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+.isHidden { display: none; }
+
+/* ===== Options (A, B, C) ===== */
+.Options {
+    width: 100%;
+    display: flex; flex-direction: column;
+    margin-top: 6px;
+}
+.OptionButton {
+    height: 112px;
+    margin-top: 16px; margin-bottom: 8px;
+    padding-left: 24px; padding-right: 24px;
+
+    border-top-left-radius: 24px; border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;
+
+    background-color: #1A2B31;
+    color: #D6E4E7;
+    unity-font-size: 32px;
+    unity-font-style: bold;
+    unity-text-align: upper-left;
+
+    border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;
+    border-top-color: #32464D; border-right-color: #32464D; border-bottom-color: #32464D; border-left-color: #32464D;
+}
+.OptionButton:hover { background-color: #22363D; }
+.OptionButton:active { background-color: #253C44; }
+
+/* Selected by user */
+.OptionButton.selected {
+    background-color: #0F1F26;
+    border-top-color: #58CC02; border-right-color: #58CC02; border-bottom-color: #58CC02; border-left-color: #58CC02;
+}
+
+/* Feedback (optional after check) */
+.OptionButton.correct {
+    background-color: #14341A;
+    border-top-color: #58CC02; border-right-color: #58CC02; border-bottom-color: #58CC02; border-left-color: #58CC02;
+    color: #CFF8AE;
+}
+.OptionButton.incorrect {
+    background-color: #341414;
+    border-top-color: #D93939; border-right-color: #D93939; border-bottom-color: #D93939; border-left-color: #D93939;
+    color: #FFD5D5;
+}
+
+/* ===== Muted action ===== */
+.MutedAction {
+    width: 100%;
+    height: 56px;
+    margin-top: 18px; margin-bottom: 12px;
+
+    background-color: transparent;
+    color: rgba(234,243,244,0.45);
+    unity-font-size: 26px; unity-font-style: bold; unity-text-align: middle-center;
+
+    border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;
+}
+
+/* ===== Primary bottom action ===== */
+.PrimaryAction {
+    width: 100%;
+    height: 116px;
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    border-top-left-radius: 34px; border-top-right-radius: 34px;
+    border-bottom-left-radius: 34px; border-bottom-right-radius: 34px;
+
+    unity-font-size: 36px; unity-font-style: bold; unity-text-align: middle-center;
+
+    border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;
+
+    background-color: #58CC02; color: #0E1F26;
+}
+
+/* Disabled appearance */
+.isDisabled { background-color: #2A3A40; color: rgba(255,255,255,0.55); }
