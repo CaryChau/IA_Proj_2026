@@ -1,20 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/ListeningStyle.uss?fileID=7433441132597879392&amp;guid=9aab6cd4a520b7443b5848778d7de562&amp;type=3#ListeningStyle" />
-    <ui:VisualElement class="Viewport">
-        <ui:VisualElement class="PhoneFrame">
-            <ui:VisualElement class="TopBar">
-                <ui:Button name="CloseButton" tooltip="Close" class="IconButton CloseButton" />
-                <ui:VisualElement class="ProgressWrap">
-                    <ui:VisualElement class="ProgressTrack">
-                        <ui:VisualElement name="ProgressFill" class="ProgressFill" style="width: 35%;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement class="EnergyBadge">
-                    <ui:VisualElement class="BoltIcon" />
-                    <ui:Label name="EnergyValue" text="23" class="EnergyValue" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:Label name="Title" text="Tap what you hear" class="PageTitle" />
+    <ui:VisualElement>
+        <ui:VisualElement style="width: 100%; height: 100%;">
+            <ui:Label name="Title" text="Tap what you hear" class="PageTitle" style="font-size: 50px; -unity-font-style: bold;" />
             <ui:VisualElement class="ExerciseRow">
                 <ui:VisualElement class="Mascot" />
                 <ui:VisualElement class="AudioCard">

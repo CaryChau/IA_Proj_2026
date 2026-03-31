@@ -1,0 +1,107 @@
+.Viewport {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(11, 24, 32);
+}
+
+.PhoneFrame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(15, 31, 38);
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    overflow: hidden;
+}
+
+.IconButton {
+    width: 72px;
+    height: 72px;
+    border-top-left-radius: 36px;
+    border-top-right-radius: 36px;
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 36px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.CloseButton {
+    background-image: url('project://Assets/UI/Icons/close_24.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+}
+
+.TopBar {
+    width: 100%;
+    height: 96px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ProgressWrap {
+    flex-grow: 1;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.ProgressTrack {
+    width: 100%;
+    height: 24px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: rgb(32, 52, 60);
+}
+
+.ProgressFill {
+    height: 100%;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-color: rgb(88, 204, 2);
+}
+
+.EnergyBadge {
+    height: 48px;
+    min-width: 92px;
+    padding-left: 14px;
+    padding-right: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.BoltIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    background-image: url('project://Assets/UI/Icons/bolt_16.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+}
+
+.EnergyValue {
+    color: rgb(255, 107, 214);
+    unity-font-size: 28px;
+    unity-font-style: bold;
+}

@@ -1,3 +1,20 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="PageRoot" style="flex-grow: 1;" />
+    <Style src="project://database/Assets/KnowledgeCommon.uss?fileID=7433441132597879392&amp;guid=7a1b6117ebdb70b429d1c763547cc6c1&amp;type=3#KnowledgeCommon" />
+    <ui:VisualElement name="VisualElement" class="Viewport" style="flex-grow: 1;">
+        <ui:VisualElement class="PhoneFrame" style="flex-grow: 1;">
+            <ui:VisualElement name="VisualElement" class="TopBar">
+                <ui:Button name="CloseButton" tooltip="Close" class="IconButton CloseButton" />
+                <ui:VisualElement class="ProgressWrap">
+                    <ui:VisualElement class="ProgressTrack">
+                        <ui:VisualElement name="ProgressFill" class="ProgressFill" style="width: 35%;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="EnergyBadge">
+                    <ui:VisualElement class="BoltIcon" />
+                    <ui:Label name="EnergyValue" text="23" class="EnergyValue" style="font-size: 30px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="PageRoot" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
