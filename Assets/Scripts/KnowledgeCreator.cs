@@ -3,45 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Newtonsoft.Json.Linq;
 public delegate void NextActionHandler();
 public delegate void OnCheckHandler(bool isRight);
 
 [RequireComponent(typeof(UIDocument))]
 public class KnowledgeCreator : MonoBehaviour
-{
-
-    /// <summary>
-    /// Event payload when a new question page is ready inside PageRoot.
-    /// </summary>
-    public sealed class QuestionPageCreatedEventArgs : EventArgs
-    {
-        public int Index { get; }
-        public string Question { get; }
-        public string Answer { get; }
-        public VisualElement PageInstance { get; }
-
-        public QuestionPageCreatedEventArgs(int index, string question, string answer, VisualElement pageInstance)
-        {
-            Index = index;
-            Question = question ?? string.Empty;
-            Answer = answer ?? string.Empty;
-            PageInstance = pageInstance;
-        }
-    }
+{   
     [Header("UXML targets (auto-resolved from attached UIDocument)")]
     [SerializeField] private UIDocument uiDocument;
 
     private VisualElement _root;
     private VisualElement _pageRoot;
     private VisualElement _progressFill;
-
-    [Header("Data (populate in Inspector or via SetData)")]
-    [Tooltip("List of questions (string). Can be plain text or identifiers for audio/pronunciation, etc.")]
-    [SerializeField] private List<string> questions = new List<string>();
     private bool[] finishedList;
-
-    [Tooltip("List of answers (string). Keep it 1:1 with Questions.")]
-    [SerializeField] private List<string> answers = new List<string>();
 
     [Tooltip("Optional per-question UXML resource path (Resources/UIDocuments/...). Leave empty to build the page at runtime.")]
     [SerializeField] private List<string> questionUxmlResources = new List<string>();
@@ -49,29 +24,54 @@ public class KnowledgeCreator : MonoBehaviour
     [Header("Flow")]
     [Tooltip("Start from this index on enable.")]
     [SerializeField] private int startIndex = 0;
+    JObject jsonRoot;
+    JArray questions;
+
+
+    int curLev;
+    private void SetupKnowledge(string jsonString)
+    {
+        if (jsonString == null)
+        {
+            Debug.LogError("json data request failed");
+            return;
+        }
+
+        try
+        {
+            jsonRoot = JObject.Parse(jsonString);
+            curLev = (int)jsonRoot["level"];
+            foreach (var level in (JArray)jsonRoot["levels"])
+            {
+                if ((int)level["level"] == curLev)
+                {
+                    questions = (JArray)level["questions"];
+                }
+            }
+            Total = questions.Count;
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+    }
 
     /// <summary>Zero-based question index currently shown.</summary>
     public int CurrentIndex { get; private set; } = 0;
 
-    /// <summary>Total number of questions considered (min of questions/answers).</summary>
-    public int Total => Mathf.Min(questions?.Count ?? 0, answers?.Count ?? 0);
+    private int Total;
 
     /// <summary>How many questions have been marked as finished (used for progress).</summary>
     public int FinishedCount { get; private set; } = 0;
 
-    /// <summary>
-    /// Raised every time a question page is instantiated and added to PageRoot.
-    /// Handlers should subscribe to this to set up their UI & logic, and then
-    /// later call RegisterEvaluator(...) or otherwise let the creator know how to listen
-    /// for AnswerEvaluated events.
-    /// </summary>
-    public event EventHandler<QuestionPageCreatedEventArgs> QuestionPageCreated;
 
     /// <summary>Raised when all questions are completed.</summary>
     // public event EventHandler<QuizCompletedEventArgs> QuizCompleted;
 
     // We keep a reference to the current evaluator so we can unsubscribe when moving on.
     private QuestionBase _currentEvaluator;
+    
 
     private void Awake()
     {
@@ -79,7 +79,24 @@ public class KnowledgeCreator : MonoBehaviour
             uiDocument = GetComponent<UIDocument>();
 
         finishedList = new bool[questions.Count];
+        UIManager.GetInstance().enableCreator += EnableCreator;
     }
+
+    private void EnableCreator()
+    {
+        this.enabled = true;
+    }
+
+    void OnDisable()
+    {
+        CurrentIndex = 0;
+        for (int i = 0; i < finishedList.Length; i++)
+        {
+            finishedList[i] = false;
+        }
+        UIManager.GetInstance().enableCreator -= EnableCreator;
+    }
+
 
     private void OnEnable()
     {
@@ -90,6 +107,7 @@ public class KnowledgeCreator : MonoBehaviour
             return;
         }
 
+        SetupKnowledge(UIManager.GetInstance().KnowledgeData);
         _progressFill = _root.Q<VisualElement>("ProgressFill");
         _pageRoot     = _root.Q<VisualElement>("PageRoot");
 
@@ -105,31 +123,6 @@ public class KnowledgeCreator : MonoBehaviour
         UpdateProgress(0f);
 
         // Show first question
-        LoadQuestion(CurrentIndex);
-    }
-
-    private void OnDisable()
-    {
-        // Clean up event subscription to the current evaluator if any
-        if (_currentEvaluator != null)
-            _currentEvaluator.onNext -= OnNextAction;
-        _currentEvaluator = null;
-    }
-
-    // ---------- Public API ----------
-
-    /// <summary>
-    /// Replace the internal data at runtime and restart from index 0 (unless otherwise specified).
-    /// </summary>
-    public void SetData(IList<string> newQuestions, IList<string> newAnswers, IList<string> uxmlPaths = null, int startAtIndex = 0)
-    {
-        questions = newQuestions != null ? new List<string>(newQuestions) : new List<string>();
-        answers   = newAnswers   != null ? new List<string>(newAnswers)   : new List<string>();
-        questionUxmlResources = uxmlPaths != null ? new List<string>(uxmlPaths) : new List<string>();
-
-        CurrentIndex  = Mathf.Clamp(startAtIndex, 0, Mathf.Max(0, Total - 1));
-        FinishedCount = 0;
-        UpdateProgress(0f);
         LoadQuestion(CurrentIndex);
     }
 
@@ -169,7 +162,7 @@ public class KnowledgeCreator : MonoBehaviour
         
         if (FinishedCount == Total)
         {
-            // get out of question page
+            // get out of question page and show the Congratulation page
         }
         else
         {
@@ -186,23 +179,43 @@ public class KnowledgeCreator : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Allows external logic to set progress explicitly in [0..1]. Usually not needed,
-    /// since progress advances automatically when answers are evaluated.
-    /// </summary>
-    public void SetProgress(float t)
+    private QuestionBase InstanceQuestion(string type, VisualElement page)
     {
-        UpdateProgress(Mathf.Clamp01(t));
+        switch (type)
+        {
+            case "drag_match":
+                return new DragMatchQuestion(page);
+            case "speaking":
+                return new SpeakingQuestion(page);
+            case "true_false":
+                return new TrueFalseQuestion(page);
+            case "select_one":
+                return new SelectOneQuestion(page);
+            case "listening":
+                return new ListeningQuestion(page);
+            case "spelling":
+                return new SpellingQuestion(page);
+        }
+        return null;
     }
 
     // ---------- Core flow ----------
 
+    JToken FindQuestionByType(int idx)
+    {
+        int i = 0;
+        foreach (JObject question in questions)
+        {
+            if (i == idx)
+                return question;
+            i++;
+        }
+        return null;
+    }
+
     private void LoadQuestion(int index)
     {
         _pageRoot.Clear();
-
-        string q = SafeGet(questions, index);
-        string a = SafeGet(answers,   index);
         string path = SafeGet(questionUxmlResources, index); // may be empty
 
         VisualElement pageInstance;
@@ -214,8 +227,13 @@ public class KnowledgeCreator : MonoBehaviour
             var vta = Resources.Load<VisualTreeAsset>(path);
             if (vta != null)
             {
-                
+                JToken question = FindQuestionByType(index);
+                if (question == null)
+                {
+                    throw new Exception("Can not finid question: " + index);
+                }
                 pageInstance = vta.CloneTree();
+                RegisterQuestion(InstanceQuestion((string)question["type"], pageInstance));
                 _pageRoot.Add(pageInstance);
             }
             else
@@ -231,12 +249,6 @@ public class KnowledgeCreator : MonoBehaviour
             pageInstance = new VisualElement();
             _pageRoot.Add(pageInstance);
         }
-
-        // Notify handlers: a new page instance is ready with the question+answer.
-        QuestionPageCreated?.Invoke(
-            this,
-            new QuestionPageCreatedEventArgs(index, q, a, pageInstance)
-        );
     }
 
     private void UpdateProgress(float t01)

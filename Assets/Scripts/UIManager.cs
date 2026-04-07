@@ -1,26 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class UIManager : MonoBehaviour
+public class UIManager
 {
 
     private static UIManager _uiMgr = null;
-    public UIManager()
+    private string knowledgeData;
+    public string KnowledgeData
     {
-        if (!_uiMgr)
+        get
         {
-            _uiMgr = new UIManager();
+            return knowledgeData;
         }
     }
     public static UIManager GetInstance()
     {
+        if (_uiMgr == null)
+        {
+            _uiMgr = new UIManager();
+        }
         return _uiMgr;
     }
     public Texture2D newHeaderTexture;
 
     private ProfileViewModel profileVM = null;
+    public delegate void EnableCreator();
+    public EnableCreator enableCreator;
 
     // protocol callback
     private void OnProfileUpdate()
@@ -52,4 +60,15 @@ public class UIManager : MonoBehaviour
     // {
     //     // profileVM.SetAll(jsonObj)
     // }
+
+    public void RequestionKnowledge(string topic, int difficulty)
+    {
+        
+    }
+
+    public void OnKnowledgeData(string data)
+    {
+        knowledgeData = data;
+        enableCreator?.Invoke();
+    }
 }

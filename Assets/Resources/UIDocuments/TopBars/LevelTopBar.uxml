@@ -1,6 +1,23 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement class="LevelTopBar" style="flex-direction: row-reverse; margin-right: 13px;">
-        <ui:Label text="⚡ 5" class="EnergyLabel" />
-        <ui:Label text="💰 1200" class="BalanceLabel" />
+    <Style src="project://database/Assets/Resources/UIDocuments/TopBars/LevelTopBar.uss?fileID=7433441132597879392&amp;guid=169fa0a37d150ae43a3bb239860f45d3&amp;type=3#LevelTopBar" />
+    <ui:VisualElement name="LevelTopBarRoot" class="LevelTopBar">
+        <ui:VisualElement class="StatRow">
+            <ui:VisualElement class="StatItem">
+                <ui:VisualElement class="StatIcon FlagIcon" />
+                <ui:Label name="FlagValue" text="1" class="StatValue StatValue--light" style="font-size: 30px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="StatItem">
+                <ui:VisualElement class="StatIcon FlameIcon" />
+                <ui:Label name="FlameValue" text="0" class="StatValue StatValue--muted" style="font-size: 30px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="StatItem">
+                <ui:VisualElement class="StatIcon GemIcon" />
+                <ui:Label name="GemValue" text="685" class="StatValue StatValue--blue" style="font-size: 30px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="StatItem">
+                <ui:VisualElement class="StatIcon HeartIcon" />
+                <ui:Label name="HeartValue" text="25" class="StatValue StatValue--pink" style="font-size: 30px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

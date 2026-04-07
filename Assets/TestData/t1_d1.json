@@ -1,0 +1,341 @@
+{
+  "topic": "Drug Interaction",
+  "difficulty": 1,
+  "levels": [
+    {
+      "level": 1,
+      "questions": [
+        {
+          "id": "drug-int-1-1-drag_match",
+          "type": "drag_match",
+          "prompt": "Match the drug pair to the correct interaction.",
+          "draggables": [
+            { "id": "A", "text": "Increases risk of liver damage" },
+            { "id": "B", "text": "May increase bleeding tendency" },
+            { "id": "C", "text": "Safe when used within normal doses, but may increase kidney burden" }
+          ],
+          "targets": [
+            { "id": "pair-1", "text": "Paracetamol + Alcohol" },
+            { "id": "pair-2", "text": "Paracetamol + Warfarin" },
+            { "id": "pair-3", "text": "Paracetamol + Ibuprofen" }
+          ],
+          "correctMatches": [
+            { "draggableId": "A", "targetId": "pair-1" },
+            { "draggableId": "B", "targetId": "pair-2" },
+            { "draggableId": "C", "targetId": "pair-3" }
+          ]
+        },
+        {
+          "id": "drug-int-1-1-true_false",
+          "type": "true_false",
+          "prompt": "Paracetamol can increase the effect of Warfarin when used regularly.",
+          "answer": true
+        },
+        {
+          "id": "drug-int-1-1-select_one",
+          "type": "select_one",
+          "prompt": "Which drug combination requires caution because it may increase the risk of liver toxicity?",
+          "options": [
+            { "id": "A", "text": "Paracetamol + Amlodipine" },
+            { "id": "B", "text": "Paracetamol + Alcohol" },
+            { "id": "C", "text": "Paracetamol + Lisinopril" },
+            { "id": "D", "text": "Paracetamol + Metoprolol" }
+          ],
+          "correctOptionId": "B"
+        },
+        {
+          "id": "drug-int-1-1-listening",
+          "type": "listening",
+          "audioTranscript": "Combining paracetamol with alcohol may increase liver damage.",
+          "prompt": "What interaction is described?",
+          "options": [
+            { "id": "A", "text": "Paracetamol + Ibuprofen" },
+            { "id": "B", "text": "Paracetamol + Alcohol" },
+            { "id": "C", "text": "Paracetamol + Furosemide" }
+          ],
+          "correctOptionId": "B"
+        },
+        {
+          "id": "drug-int-1-1-spelling",
+          "type": "spelling",
+          "prompt": "Type the name of the drug that may increase bleeding risk when combined with paracetamol.",
+          "answer": "Warfarin"
+        },
+        {
+          "id": "drug-int-1-1-speaking",
+          "type": "speaking",
+          "prompt": "Say the name of the drug that becomes riskier when combined with alcohol due to liver toxicity.",
+          "sampleAnswer": "Paracetamol"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "questions": [
+        {
+          "id": "drug-int-1-2-drag_match",
+          "type": "drag_match",
+          "prompt": "Match the drug pair to the correct interaction.",
+          "draggables": [
+            { "id": "A", "text": "Increased drowsiness and impaired coordination" },
+            { "id": "B", "text": "May enhance blood pressure‑lowering effects (dizziness)" },
+            { "id": "C", "text": "Often combined safely in cold remedies but may increase sedation" }
+          ],
+          "targets": [
+            { "id": "pair-1", "text": "Chlorpheniramine + Alcohol" },
+            { "id": "pair-2", "text": "Chlorpheniramine + Metoprolol" },
+            { "id": "pair-3", "text": "Chlorpheniramine + Paracetamol (Cold combos)" }
+          ],
+          "correctMatches": [
+            { "draggableId": "A", "targetId": "pair-1" },
+            { "draggableId": "B", "targetId": "pair-2" },
+            { "draggableId": "C", "targetId": "pair-3" }
+          ]
+        },
+        {
+          "id": "drug-int-1-2-true_false",
+          "type": "true_false",
+          "prompt": "Chlorpheniramine can cause severe drowsiness when taken with alcohol.",
+          "answer": true
+        },
+        {
+          "id": "drug-int-1-2-select_one",
+          "type": "select_one",
+          "prompt": "Which drug combination increases the risk of excessive sedation?",
+          "options": [
+            { "id": "A", "text": "Chlorpheniramine + Amlodipine" },
+            { "id": "B", "text": "Chlorpheniramine + Warfarin" },
+            { "id": "C", "text": "Chlorpheniramine + Alcohol" },
+            { "id": "D", "text": "Chlorpheniramine + Ibuprofen" }
+          ],
+          "correctOptionId": "C"
+        },
+        {
+          "id": "drug-int-1-2-listening",
+          "type": "listening",
+          "audioTranscript": "Chlorpheniramine can interact with beta‑blockers like Metoprolol, causing dizziness due to enhanced blood pressure‑lowering effects.",
+          "prompt": "Which drug is mentioned as interacting with chlorpheniramine?",
+          "options": [
+            { "id": "A", "text": "Amlodipine" },
+            { "id": "B", "text": "Metoprolol" },
+            { "id": "C", "text": "Acetylcysteine" }
+          ],
+          "correctOptionId": "B"
+        },
+        {
+          "id": "drug-int-1-2-spelling",
+          "type": "spelling",
+          "prompt": "Type the name of the antihistamine that causes drowsiness when mixed with alcohol.",
+          "answer": "Chlorpheniramine"
+        },
+        {
+          "id": "drug-int-1-2-speaking",
+          "type": "speaking",
+          "prompt": "Say the name of the drug that should NOT be mixed with alcohol due to increased sedation.",
+          "sampleAnswer": "Chlorpheniramine"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "questions": [
+        {
+          "id": "drug-int-1-3-drag_match",
+          "type": "drag_match",
+          "prompt": "Match the drug pair to the correct interaction.",
+          "draggables": [
+            { "id": "A", "text": "Increased bleeding risk" },
+            { "id": "B", "text": "Reduced diuretic effect" },
+            { "id": "C", "text": "May reduce blood pressure effect and worsen kidneys" }
+          ],
+          "targets": [
+            { "id": "pair-1", "text": "Ibuprofen + Warfarin" },
+            { "id": "pair-2", "text": "Ibuprofen + Furosemide" },
+            { "id": "pair-3", "text": "Ibuprofen + Lisinopril" }
+          ],
+          "correctMatches": [
+            { "draggableId": "A", "targetId": "pair-1" },
+            { "draggableId": "B", "targetId": "pair-2" },
+            { "draggableId": "C", "targetId": "pair-3" }
+          ]
+        },
+        {
+          "id": "drug-int-1-3-true_false",
+          "type": "true_false",
+          "prompt": "Ibuprofen can increase the risk of stomach bleeding when taken with Warfarin.",
+          "answer": true
+        },
+        {
+          "id": "drug-int-1-3-select_one",
+          "type": "select_one",
+          "prompt": "Which drug class interacts with ibuprofen and reduces kidney function?",
+          "options": [
+            { "id": "A", "text": "Beta‑blockers" },
+            { "id": "B", "text": "ACE inhibitors" },
+            { "id": "C", "text": "Calcium channel blockers" },
+            { "id": "D", "text": "Paracetamol" }
+          ],
+          "correctOptionId": "B"
+        },
+        {
+          "id": "drug-int-1-3-listening",
+          "type": "listening",
+          "audioTranscript": "Ibuprofen can reduce the effect of furosemide, making fluid removal less effective.",
+          "prompt": "Which drug was mentioned?",
+          "options": [
+            { "id": "A", "text": "Paracetamol" },
+            { "id": "B", "text": "Ibuprofen" },
+            { "id": "C", "text": "Furosemide" }
+          ],
+          "correctOptionId": "C"
+        },
+        {
+          "id": "drug-int-1-3-spelling",
+          "type": "spelling",
+          "prompt": "Type the NSAID that interacts with Warfarin to increase bleeding with I_u__o_e_",
+          "answer": "Ibuprofen"
+        },
+        {
+          "id": "drug-int-1-3-speaking",
+          "type": "speaking",
+          "prompt": "Ibuprofen can interact with blood thinners like warfarin.",
+          "sampleAnswer": "Ibuprofen"
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "questions": [
+        {
+          "id": "drug-int-1-4-drag_match",
+          "type": "drag_match",
+          "prompt": "Match the drug pair to the correct interaction.",
+          "draggables": [
+            { "id": "A", "text": "Causes headaches & vasodilation increase" },
+            { "id": "B", "text": "Charcoal reduces acetylcysteine absorption" },
+            { "id": "C", "text": "Beneficial interaction (antidote)" }
+          ],
+          "targets": [
+            { "id": "pair-1", "text": "Acetylcysteine + Nitroglycerin" },
+            { "id": "pair-2", "text": "Acetylcysteine + Activated Charcoal" },
+            { "id": "pair-3", "text": "Acetylcysteine + Paracetamol" }
+          ],
+          "correctMatches": [
+            { "draggableId": "A", "targetId": "pair-1" },
+            { "draggableId": "B", "targetId": "pair-2" },
+            { "draggableId": "C", "targetId": "pair-3" }
+          ]
+        },
+        {
+          "id": "drug-int-1-4-true_false",
+          "type": "true_false",
+          "prompt": "Activated charcoal can decrease acetylcysteine absorption.",
+          "answer": true
+        },
+        {
+          "id": "drug-int-1-4-select_one",
+          "type": "select_one",
+          "prompt": "Which drug is enhanced by acetylcysteine?",
+          "options": [
+            { "id": "A", "text": "Warfarin" },
+            { "id": "B", "text": "Nitroglycerin" },
+            { "id": "C", "text": "Furosemide" },
+            { "id": "D", "text": "Metoprolol" }
+          ],
+          "correctOptionId": "B"
+        },
+        {
+          "id": "drug-int-1-4-listening",
+          "type": "listening",
+          "audioTranscript": "Acetylcysteine works together with paracetamol overdose treatment.",
+          "prompt": "Acetylcysteine is used for overdose of which drug?",
+          "options": [
+            { "id": "A", "text": "Paracetamol" },
+            { "id": "B", "text": "Ibuprofen" },
+            { "id": "C", "text": "Warfarin" }
+          ],
+          "correctOptionId": "A"
+        },
+        {
+          "id": "drug-int-1-4-spelling",
+          "type": "spelling",
+          "prompt": "Type the mucolytic used in paracetamol overdose:",
+          "answer": "Acetylcysteine"
+        },
+        {
+          "id": "drug-int-1-4-speaking",
+          "type": "speaking",
+          "prompt": "Pronounce this sentence clearly:\n‘Acetylcysteine reduces mucus and may affect how other medicines work.’",
+          "sampleAnswer": "Acetylcysteine reduces mucus and may affect how other medicines work."
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "questions": [
+        {
+          "id": "drug-int-1-5-drag_match",
+          "type": "drag_match",
+          "prompt": "Match the drug pair to the correct interaction.",
+          "draggables": [
+            { "id": "A", "text": "Enhances antibiotic penetration into lungs" },
+            { "id": "B", "text": "Opposes action (thick mucus retained)" },
+            { "id": "C", "text": "Increased mucolytic effect" }
+          ],
+          "targets": [
+            { "id": "pair-1", "text": "Bromhexine + Antibiotics" },
+            { "id": "pair-2", "text": "Bromhexine + Cough suppressants" },
+            { "id": "pair-3", "text": "Bromhexine + Acetylcysteine" }
+          ],
+          "correctMatches": [
+            { "draggableId": "A", "targetId": "pair-1" },
+            { "draggableId": "B", "targetId": "pair-2" },
+            { "draggableId": "C", "targetId": "pair-3" }
+          ]
+        },
+        {
+          "id": "drug-int-1-5-true_false",
+          "type": "true_false",
+          "prompt": "Bromhexine may help antibiotics work better in respiratory infections.",
+          "answer": true
+        },
+        {
+          "id": "drug-int-1-5-select_one",
+          "type": "select_one",
+          "prompt": "Which combination should generally be avoided?",
+          "options": [
+            { "id": "A", "text": "Bromhexine + Acetylcysteine" },
+            { "id": "B", "text": "Bromhexine + Cough suppressants" },
+            { "id": "C", "text": "Bromhexine + Ibuprofen" },
+            { "id": "D", "text": "Bromhexine + Furosemide" }
+          ],
+          "correctOptionId": "B"
+        },
+        {
+          "id": "drug-int-1-5-listening",
+          "type": "listening",
+          "audioTranscript": "Bromhexine should not be mixed with cough suppressants because mucus may build up.",
+          "prompt": "Which drug type should be avoided?",
+          "options": [
+            { "id": "A", "text": "Antibiotics" },
+            { "id": "B", "text": "Cough suppressants" },
+            { "id": "C", "text": "Beta-blockers" }
+          ],
+          "correctOptionId": "B"
+        },
+        {
+          "id": "drug-int-1-5-spelling",
+          "type": "spelling",
+          "prompt": "Type the name of the drug that may increase the absorption of Metoprolol: B_om___i_e",
+          "answer": "Bromhexine"
+        },
+        {
+          "id": "drug-int-1-5-speaking",
+          "type": "speaking",
+          "prompt": "Bromhexine can change how cough medicines behave in the body.",
+          "sampleAnswer": "Bromhexine can change how cough medicines behave in the body."
+        }
+      ]
+    }
+  ]
+}

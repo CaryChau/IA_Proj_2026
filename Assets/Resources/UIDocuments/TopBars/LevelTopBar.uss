@@ -1,0 +1,76 @@
+.LevelTopBar {
+    width: 100%;
+    height: 180px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 28px;
+    padding-bottom: 12px;
+    background-color: rgb(15, 31, 38);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.StatRow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.StatItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 200px;
+}
+
+.StatIcon {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+.FlagIcon {
+    background-image: url('project://Assets/UI/Icons/flag_36.png');
+}
+
+.FlameIcon {
+    background-image: url('project://Assets/UI/Icons/flame_36.png');
+}
+
+.GemIcon {
+    background-image: url('project://Assets/UI/Icons/gem_36.png');
+}
+
+.HeartIcon {
+    background-image: url('project://Assets/UI/Icons/heart_36.png');
+}
+
+.StatValue {
+    unity-font-size: 34px;
+    unity-font-style: bold;
+    color: rgb(234, 243, 244);
+}
+
+.StatValue--light {
+    color: rgb(255, 255, 255);
+}
+
+.StatValue--muted {
+    color: rgba(234, 243, 244, 0.55);
+}
+
+.StatValue--blue {
+    color: rgb(108, 201, 255);
+}
+
+.StatValue--pink {
+    color: rgb(255, 107, 214);
+}

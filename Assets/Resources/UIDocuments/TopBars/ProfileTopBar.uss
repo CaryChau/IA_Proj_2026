@@ -1,8 +1,67 @@
 .ProfileTopBar {
+
+
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #121212;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
 }
 
+
 .UserLabel {
+    flex-grow: 1;
+    margin-right: 12px;
+
+    color: #FFFFFF;
+    unity-font-style: normal;
+    unity-font-size: 32px;
+    unity-font-definition: var(--unity-default-font);
+    -unity-font-definition: var(--unity-default-font);
+
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0.95;
 }
 
 .SettingButton {
+    width: 64px;
+    height: 64px;
+
+    border-radius: 16px;
+    background-color: #1E1E1E;
+
+
+    background-image: ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+
+    color: rgba(0,0,0,0);
+    unity-text-align: middle-center;
+
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+
+}
+
+
+.SettingButton:hover {
+    background-color: #2A2A2A;
+}
+.SettingButton:pressed {
+    background-color: #333333;
+    scale: 0.97;
 }

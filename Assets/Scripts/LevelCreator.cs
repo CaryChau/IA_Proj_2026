@@ -104,6 +104,7 @@ public class LevelCreator : MonoBehaviour
 
         for (int i = 0; i < characterCount; i++)
         {
+            // TODO: upgrade the generation with rule in level and difficulty
             VisualElement characterRow = CreateCharacterRow(ref levelNumber, i);
             // characterRow.SetSize()
             scrollView.Add(characterRow);
@@ -152,9 +153,9 @@ public class LevelCreator : MonoBehaviour
 
         return row;
     }
-    void OnLevelClicked(int level)
+    void OnLevelClicked(int level, int difficulty = 0)
     {
-        Debug.Log("Clicked Level: " + level);
+        Debug.Log("Difficulty: " + difficulty + ", Clicked Level: " + level);
 
         // TODO:
         // Load MC Question Page here

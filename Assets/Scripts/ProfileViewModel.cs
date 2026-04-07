@@ -6,7 +6,6 @@ public class ProfileViewModel
     public event Action<string> NameChanged;
     public event Action<string> MetaChanged;
     public event Action<Texture2D> HeaderChanged;
-
     private string _name;
     private string _meta;
     private Texture2D _headerTexture;
