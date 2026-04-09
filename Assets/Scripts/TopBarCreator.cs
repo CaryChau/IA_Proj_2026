@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -20,6 +21,9 @@ public class TopBarCreator : MonoBehaviour
             case "LevelPage":
             {
                 ReplaceTopBar("TopBars/LevelTopBar");
+                var btn = topBarContent.Q<Button>("CourseBtn");
+                var courseCreator = GetComponent<CourseTabCreator>();
+                btn.clicked += courseCreator.ToggleCourseTab;
                 break;
             }
             case "AchievementPage":

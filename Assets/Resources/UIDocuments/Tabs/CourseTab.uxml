@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/Tabs/CourseTabStyle.uss?fileID=7433441132597879392&amp;guid=2fcec35ae1dd24146a648460d4e4e03c&amp;type=3#CourseTabStyle" />
+    <ui:VisualElement name="OverlayBackground" picking-mode="Ignore" class="OverlayBackground OverlayHidden" style="height: 100%; top: 0; right: 0; bottom: 0;" />
+    <ui:VisualElement name="CourseTabRoot" class="CourseTabPanel CourseTabHidden" style="height: auto; overflow: hidden;">
+        <ui:VisualElement name="VisualElement" class="CourseTabContent">
+            <ui:ScrollView name="CourseScroll" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" mode="Horizontal" class="CourseScroll" />
+            <ui:VisualElement class="ScoreCard">
+                <ui:VisualElement class="ScoreHeader">
+                    <ui:Label name="ScoreLeft" text="1" class="ScoreNumber" />
+                    <ui:VisualElement class="ScoreBarTrack">
+                        <ui:VisualElement name="ScoreBarFill" class="ScoreBarFill" style="width: 12%;" />
+                    </ui:VisualElement>
+                    <ui:Label name="ScoreRight" text="2" class="ScoreNumber" />
+                </ui:VisualElement>
+                <ui:Label name="ScoreText" text="Your Drug Interaction Score is 1" class="ScoreText" />
+                <ui:Button name="MoreAboutScore" text="MORE ABOUT SCORE" class="ScoreLink" />
+            </ui:VisualElement>
+            <ui:VisualElement class="SectionDivider" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

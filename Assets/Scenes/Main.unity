@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 378504924}
   - component: {fileID: 378504926}
   - component: {fileID: 378504927}
+  - component: {fileID: 378504928}
   m_Layer: 0
   m_Name: AppContent
   m_TagString: Untagged
@@ -225,6 +226,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profileTemplate: {fileID: 9197481963319205126, guid: e4ab03e9b3adab44bb6761d16199b71d, type: 3}
+--- !u!114 &378504928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378504920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e63a218db49891408638f1837057042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  courseTab: {fileID: 9197481963319205126, guid: 017bab05d6184eb42adeae5b009a4d85, type: 3}
 --- !u!1 &821467063
 GameObject:
   m_ObjectHideFlags: 0

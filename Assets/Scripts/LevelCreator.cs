@@ -15,10 +15,19 @@ public class LevelCreator : MonoBehaviour
     private TopBarCreator topBarCreator;
     private string curNavName = null;
     private int levelsPerCharacter = 4;
+    private VisualElement tabRoot;
+    public VisualElement TabRoot
+    {
+        get
+        {
+            return tabRoot;
+        }
+    }
     void Start()
     {
         topBarCreator = GetComponent<TopBarCreator>();
         root = GetComponent<UIDocument>().rootVisualElement;
+        tabRoot = root.Q<VisualElement>("TabRoot");
         levelPage = root.Q<VisualElement>("LevelPage");
         // characterRowTemplate = root.Q<VisualElement>("CharacterRowTemplate");
         scrollView = levelPage.Q<ScrollView>("Root-LevelList-ScrollView");

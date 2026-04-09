@@ -2,15 +2,15 @@
     <Style src="project://database/Assets/Resources/UIDocuments/TopBars/LevelTopBar.uss?fileID=7433441132597879392&amp;guid=169fa0a37d150ae43a3bb239860f45d3&amp;type=3#LevelTopBar" />
     <ui:VisualElement name="LevelTopBarRoot" class="LevelTopBar">
         <ui:VisualElement class="StatRow">
-            <ui:VisualElement class="StatItem">
+            <ui:Button name="CourseBtn" class="StatItem" style="background-color: rgba(188, 188, 188, 0);">
                 <ui:VisualElement class="StatIcon FlagIcon" />
-                <ui:Label name="FlagValue" text="1" class="StatValue StatValue--light" style="font-size: 30px; -unity-font-style: bold;" />
-            </ui:VisualElement>
-            <ui:VisualElement class="StatItem">
+                <ui:Label name="FlagName" text="Paracetamol" class="StatValue StatValue--light" style="font-size: 30px; -unity-font-style: bold;" />
+            </ui:Button>
+            <ui:VisualElement class="StatItem" style="display: none;">
                 <ui:VisualElement class="StatIcon FlameIcon" />
                 <ui:Label name="FlameValue" text="0" class="StatValue StatValue--muted" style="font-size: 30px; -unity-font-style: bold;" />
             </ui:VisualElement>
-            <ui:VisualElement class="StatItem">
+            <ui:VisualElement class="StatItem" style="display: none;">
                 <ui:VisualElement class="StatIcon GemIcon" />
                 <ui:Label name="GemValue" text="685" class="StatValue StatValue--blue" style="font-size: 30px; -unity-font-style: bold;" />
             </ui:VisualElement>

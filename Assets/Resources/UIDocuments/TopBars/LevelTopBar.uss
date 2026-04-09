@@ -38,7 +38,7 @@
 }
 
 .FlagIcon {
-    background-image: url('project://Assets/UI/Icons/flag_36.png');
+    background-image: resource('Textures/CourseIcon/pill_icon');
 }
 
 .FlameIcon {

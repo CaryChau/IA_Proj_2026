@@ -18,8 +18,6 @@
                 <ui:ScrollView name="AchievementScrollView" mode="Vertical" class="AchievementScrollView" />
             </ui:VisualElement>
             <ui:VisualElement name="ProfilePage" class="Page ProfilePage" />
-            
-
         </ui:VisualElement>
         <ui:VisualElement name="Root-BottomBar" class="BottomBar">
             <ui:VisualElement class="BottomBar-Container">
@@ -37,5 +35,6 @@
                 </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="TabRoot" picking-mode="Ignore" style="flex-grow: 1; width: 100%; height: 100%; position: absolute; left: 0; top: 0; right: 0; bottom: 0; visibility: visible;" />
     </ui:VisualElement>
 </ui:UXML>

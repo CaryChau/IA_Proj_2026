@@ -61,6 +61,16 @@ public class UIManager
     //     // profileVM.SetAll(jsonObj)
     // }
 
+    public void RequestCourseData()
+    {
+        
+    }
+
+    public void OnCourseData(string data)
+    {
+        // get current studying course, so that level creator can setup level content and topbar content
+    }
+
     public void RequestionKnowledge(string topic, int difficulty)
     {
         
