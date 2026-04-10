@@ -11,28 +11,21 @@
                 <ui:Label text="18" class="energy-text" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Label text="选择正确的翻译" class="header-text" />
+        <ui:Label text="這個句子正確嗎" class="header-text" />
         <ui:VisualElement class="character-section">
             <ui:VisualElement class="character-image" />
             <ui:VisualElement class="speech-bubble">
-                <ui:Label text="穿" class="speech-text" />
+                <ui:Label text="Paracetamol can increase&#10;the effect of Warfarin &#10;when used regularly" class="speech-text" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="options-container">
             <ui:VisualElement class="option-card selected">
-                <ui:Label text="zoek3" class="option-pinyin" />
-                <ui:Label text="著" class="option-character" />
+                <ui:Label text="True" class="option-character" />
             </ui:VisualElement>
             <ui:VisualElement class="option-card">
-                <ui:Label text="ji5 ging1" class="option-pinyin" />
-                <ui:Label text="已 經" class="option-character" />
-            </ui:VisualElement>
-            <ui:VisualElement class="option-card">
-                <ui:Label text="toi2" class="option-pinyin" />
-                <ui:Label text="枱" class="option-character" />
+                <ui:Label text="False" class="option-character" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1;" />
         <ui:VisualElement class="bottom-bar">
             <ui:Button text="检查" class="check-button" />
         </ui:VisualElement>
