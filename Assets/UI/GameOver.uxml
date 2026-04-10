@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/NewUSSFile.uss?fileID=7433441132597879392&amp;guid=0a1408268c62bc543ae007c622403e86&amp;type=3#NewUSSFile" />
+    <ui:VisualElement class="screen-container">
+        <ui:VisualElement class="header-section">
+            <ui:VisualElement class="duo-character" />
+            <ui:Label text="单元完成！" class="title-text" />
+        </ui:VisualElement>
+        <ui:VisualElement class="stats-row">
+            <ui:VisualElement class="stat-card yellow-theme">
+                <ui:Label text="总经验" class="stat-label" />
+                <ui:VisualElement class="stat-content">
+                    <ui:VisualElement class="icon-xp" />
+                    <ui:Label name="xp-value" text="30" class="stat-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="stat-card green-theme">
+                <ui:Label text="超级棒" class="stat-label" />
+                <ui:VisualElement class="stat-content">
+                    <ui:VisualElement class="icon-accuracy" />
+                    <ui:Label name="accuracy-value" text="100%" class="stat-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="stat-card blue-theme">
+                <ui:Label text="熟练快手" class="stat-label" />
+                <ui:VisualElement class="stat-content">
+                    <ui:VisualElement class="icon-time" />
+                    <ui:Label name="time-value" text="3:10" class="stat-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Button text="领取经验" class="primary-button" />
+    </ui:VisualElement>
+</ui:UXML>

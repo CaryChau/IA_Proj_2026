@@ -1,0 +1,109 @@
+.root-container {
+    flex-grow: 1;
+    background-color: #FFFFFF;
+    padding: 40px;
+    align-items: center;
+}
+
+/* 頂部進度條 */
+.header {
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.progress-container {
+    flex-grow: 1;
+    height: 30px;
+    background-color: #E5E5E5;
+    border-radius: 15px;
+    margin: 0 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #FFC107;
+    border-radius: 15px;
+}
+
+/* 標題樣式 */
+.title {
+    font-size: 60px;
+    -unity-font-style: bold;
+    color: #4B4B4B;
+    align-self: flex-start;
+    margin-bottom: 60px;
+}
+
+/* 網格佈局 */
+.grid-container {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.column {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+/* 卡片基礎樣式 */
+.card {
+    height: 140px;
+    background-color: #FFFFFF;
+    border-width: 4px;
+    border-color: #E5E5E5;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: #4B4B4B;
+    transition: 0.1s all;
+}
+
+/* 選中狀態 (綠色) */
+.card-selected {
+    background-color: #D7FFB8;
+    border-color: #58CC02;
+    color: #58CC02;
+}
+
+.card-disabled {
+    opacity: 0.3;
+}
+
+/* 帶有拼音的複合卡片 */
+.card-complex {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pinyin {
+    font-size: 24px;
+    color: #AFAFAF;
+}
+
+.pinyin-selected {
+    color: #58CC02;
+}
+
+/* 底部按鈕 */
+.footer {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.check-button {
+    height: 100px;
+    background-color: #E5E5E5;
+    border-radius: 50px;
+    color: #AFAFAF;
+    font-size: 40px;
+    -unity-font-style: bold;
+    border-width: 0;
+}
