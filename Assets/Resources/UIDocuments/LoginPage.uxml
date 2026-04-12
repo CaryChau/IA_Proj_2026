@@ -5,11 +5,11 @@
             <ui:Button name="BackArrowButton" class="back-arrow" />
         </ui:VisualElement>
         <ui:VisualElement class="content-container">
-            <ui:Label text="Already have an account?" class="section-label" style="font-size: 70px; -unity-font-style: bold;" />
-            <ui:Button name="SignInButton" text="SIGN IN" class="sign-in-button" style="font-size: 60px; -unity-font-style: bold;" />
-            <ui:VisualElement class="divider" />
-            <ui:Label text="New to Medicine?" enable-rich-text="true" class="section-label" />
-            <ui:Button name="GetStartedButton" text="GET STARTED" class="get-started-button" />
+            <ui:Label text="Already have an account?" class="section-label" style="font-size: 70px; -unity-font-style: bold; display: none;" />
+            <ui:Button name="SignInButton" text="Get Started" class="sign-in-button" style="font-size: 60px; -unity-font-style: bold; padding-left: 11px;" />
+            <ui:Button name="TransferBtn" text="Account Transfer" class="sign-in-button" style="font-size: 60px; -unity-font-style: bold; padding-left: 11px;" />
+            <ui:VisualElement name="VisualElement" class="divider" />
+            <ui:Label text="New to Medicine?" enable-rich-text="true" class="section-label" style="display: none;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
