@@ -8,7 +8,7 @@ public delegate void NextActionHandler();
 public delegate void OnCheckHandler(bool isRight);
 
 [RequireComponent(typeof(UIDocument))]
-public class KnowledgeCreator : MonoBehaviour
+public class KnowledgeCreator : SequenceDoc
 {   
     [Header("UXML targets (auto-resolved from attached UIDocument)")]
     [SerializeField] private UIDocument uiDocument;

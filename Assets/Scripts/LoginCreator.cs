@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UIElements;
 
-public class LoginCreator : MonoBehaviour
+public class LoginCreator : SequenceDoc
 {
     [Header("UI Document References")]
     public VisualTreeAsset loginPageAsset;
@@ -16,11 +16,12 @@ public class LoginCreator : MonoBehaviour
     private VisualElement pageContainer;
     private VisualElement loginPage;
     private VisualElement inputPage;
-    private VisualElement targetSetupPage;
+    private VisualElement curPage;
+    private UIDocument uiDoc;
 
     private void Awake()
     {
-        var uiDoc = GetComponent<UIDocument>();
+        uiDoc = GetComponent<UIDocument>();
         root = uiDoc.rootVisualElement;
         pageContainer = root.Q<VisualElement>("PageContainer");
         pageContainer.style.backgroundColor = new StyleColor(Color.black);
@@ -83,6 +84,7 @@ public class LoginCreator : MonoBehaviour
                 pageContainer.Clear();
                 pageContainer.Add(page);
                 PageAnimator.FadeTo(page, 0f, 1f, 300);
+                // curPage = page;
                 cb?.Invoke();
             });
         }
@@ -90,6 +92,8 @@ public class LoginCreator : MonoBehaviour
         {
             pageContainer.Clear();
             pageContainer.Add(page);
+            // curPage = page;
+
             PageAnimator.FadeTo(page, 0f, 1f, 300);
         }
     }
@@ -99,7 +103,7 @@ public class LoginCreator : MonoBehaviour
         if (inputPage == null) return;
         var backBtn = inputPage.Q<Button>("BackBtn");
         backBtn.clicked += OnBackToLoginClicked;
-        
+
         var signInBtn = inputPage.Q<Button>("SignInButton");
         signInBtn.text = "ACCOUNT TRANSFER";
         var usernameField = inputPage.Q<TextField>("UsernameField");
@@ -147,6 +151,8 @@ public class LoginCreator : MonoBehaviour
                 {
                     if (success)
                     {
+                        errorLabel.text = "Transfer key set successfully.";
+                        errorLabel.style.display = DisplayStyle.Flex;
                         Debug.Log("Transfer key set successfully!");
                     }
                     else
@@ -231,7 +237,6 @@ public class LoginCreator : MonoBehaviour
             {
                 errorLabel.style.display = DisplayStyle.None;
                 string username = usernameField?.value ?? "";
-                // string transferKey = transferKeyField?.value ?? "";
 
                 // Simple validation
                 if (string.IsNullOrWhiteSpace(username)) //  || string.IsNullOrWhiteSpace(transferKey)
@@ -241,33 +246,36 @@ public class LoginCreator : MonoBehaviour
                     return;
                 }
 
-                signInBtn.SetEnabled(false);
-
-                SignIn(username, SystemInfo.deviceUniqueIdentifier, (success, statusCode) =>
-                {
+                // signInBtn.SetEnabled(false);
+                executed = true;
+                Debug.Log("Login success! Jump to app content module.");
+                // return;
+                // SignIn(username, SystemInfo.deviceUniqueIdentifier, (success, statusCode) =>
+                // {
                     
-                    signInBtn.SetEnabled(true);
-                    if (success)
-                    {
-                        // TODO: Jump to app content module (call your navigation logic here)
-                        Debug.Log("Login success! Jump to app content module.");
-                    }
-                    else if(statusCode == 410)
-                    {
-                        errorLabel.text = "Device ID no longer accessible with this account.";
-                        errorLabel.style.display = DisplayStyle.Flex;
-                    }
-                    else
-                    {
-                        errorLabel.text = "Sign in failed. Please check your credentials or internet connection.";
-                        errorLabel.style.display = DisplayStyle.Flex;
-                    }
-                });
+                //     signInBtn.SetEnabled(true);
+                //     if (success)
+                //     {
+                //         // TODO: Jump to app content module (call your navigation logic here)
+                //         Debug.Log("Login success! Jump to app content module.");
+                //         uiDoc.sortingOrder = 0;
+                //     }
+                //     else if(statusCode == 410)
+                //     {
+                //         errorLabel.text = "Device ID no longer accessible with this account.";
+                //         errorLabel.style.display = DisplayStyle.Flex;
+                //     }
+                //     else
+                //     {
+                //         errorLabel.text = "Sign in failed. Please check your credentials or internet connection.";
+                //         errorLabel.style.display = DisplayStyle.Flex;
+                //     }
+                // });
             };
         }
     }
 
-    [SerializeField] private string backendUrl = "https://your-backend.com/api/enter-app";
+    [SerializeField] private string backendUrl = "https://your-backend.com/api/v1/account/me";
     
     public void SignIn(string accountID, string deviceID, System.Action<bool, int> callback)
     {

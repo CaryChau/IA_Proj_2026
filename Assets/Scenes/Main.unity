@@ -187,6 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03326fa4f90b7934ba23c13c99ea5eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiDoc: {fileID: 378504922}
+  id: b
   characterRowTemplate: {fileID: 9197481963319205126, guid: 428234b85c79ce54a9095670d6f1b981, type: 3}
 --- !u!114 &378504925
 MonoBehaviour:
@@ -300,6 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7f8982038a76f4584434f6d0bdabda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiDoc: {fileID: 821467065}
+  id: a
   loginPageAsset: {fileID: 9197481963319205126, guid: f4027082c2a148f40bbdce593a4841fa, type: 3}
   inputPageAsset: {fileID: 9197481963319205126, guid: aac5348af815d1a48a30d5c08e8f7c38, type: 3}
   targetSetupPageAsset: {fileID: 0}
@@ -337,7 +341,7 @@ MonoBehaviour:
   includeInactive: 1
   documents: []
   hideMode: 1
-  refreshEveryFrame: 0
+  refreshEveryFrame: 1
 --- !u!4 &1093960304
 Transform:
   m_ObjectHideFlags: 0
@@ -500,6 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2031401418}
   - component: {fileID: 2031401419}
+  - component: {fileID: 2031401420}
   m_Layer: 0
   m_Name: KnowledgeModule
   m_TagString: Untagged
@@ -538,6 +543,23 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: df984b30e9a1da94b83f0419420f63d6, type: 3}
   m_SortingOrder: 2
+--- !u!114 &2031401420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031401417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867221bfd9dde204ebfd5f86eadefcf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDoc: {fileID: 2031401419}
+  id: c
+  uiDocument: {fileID: 0}
+  questionUxmlResources: []
+  startIndex: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

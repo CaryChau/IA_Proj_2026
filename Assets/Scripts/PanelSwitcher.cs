@@ -20,13 +20,16 @@ public class PanelSwitcher : MonoBehaviour
     [SerializeField] private bool includeInactive = false;
 
     [Tooltip("Optional manual list; used if autoDiscoverInScene is false or to limit scope.")]
-    [SerializeField] private List<UIDocument> documents = new();
+    [SerializeField] private List<SequenceDoc> documents = new();
+    private UIDocument curWinner;
+
+    private string[] jumpMap = {"ab", "bc"};
 
     [Header("Behavior")]
     [SerializeField] private HideMode hideMode = HideMode.DisplayNone;
 
     [Tooltip("Refresh every frame (useful if sorting orders change frequently). Otherwise call Refresh() manually.")]
-    [SerializeField] private bool refreshEveryFrame = false;
+    [SerializeField] private bool refreshEveryFrame = true;
 
     // Cache: reflection check for UIDocument.sortingOrder if present on this Unity version.
     private static PropertyInfo _uidocSortingProp;
@@ -60,7 +63,7 @@ public class PanelSwitcher : MonoBehaviour
     /// </summary>
     public void Discover()
     {
-        var found = FindObjectsOfType<UIDocument>(includeInactive).ToList();
+        var found = FindObjectsOfType<SequenceDoc>(includeInactive).ToList();
         documents = found;
     }
 
@@ -69,26 +72,33 @@ public class PanelSwitcher : MonoBehaviour
     /// </summary>
     public void Refresh()
     {
-        // Filter to valid documents; if you only want enabled ones to compete, keep isActiveAndEnabled
-        var candidates = documents
-            .Where(d => d != null && d.gameObject.scene.IsValid())
-            .ToList();
+        var winner = curWinner;
+        // for (int i = 0; i < documents.Count; i++)
+        // {
+        //     if (documents[i].executed)
+        //     {
+        //         string executedID = documents[i].id;
 
-        if (candidates.Count == 0)
-            return;
+        //     }
+        //     if (documents[i].uiDoc.sortingOrder == 0 && documents[i] != winner)
+        //     {
+        //         winner = documents[i];
+        //         break;
+        //     }
+        // }
 
-        // Choose the one with the smallest order; tie-breaker = index in 'documents' list
-        var ordered = candidates
-            .Select((doc, idx) => new { Doc = doc, Index = idx, Order = GetEffectiveOrder(doc) })
-            .OrderBy(x => x.Order)
-            .ThenBy(x => x.Index)
-            .ToList();
-
-        var winner = ordered.First().Doc;
-
-        foreach (var entry in ordered)
+        if (curWinner != winner)
         {
-            SetVisible(entry.Doc, entry.Doc == winner);
+            curWinner = winner;
+        }
+        else
+        {
+            return;
+        }
+
+        foreach (var doc in documents)
+        {
+            SetVisible(doc.uiDoc, doc == winner);
         }
     }
 
@@ -139,6 +149,7 @@ public class PanelSwitcher : MonoBehaviour
 
         root.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
         root.pickingMode   = visible ? PickingMode.Position : PickingMode.Ignore;
+        doc.sortingOrder = visible ? 0 : 1;
     }
 
     private System.Collections.IEnumerator ShowNextFrame(UIDocument doc, bool visible)

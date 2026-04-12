@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-public class LevelCreator : MonoBehaviour
+public class LevelCreator : SequenceDoc
 {
     private VisualElement root;
     private VisualElement levelPage;
