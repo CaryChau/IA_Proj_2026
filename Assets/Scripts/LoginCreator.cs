@@ -248,7 +248,7 @@ public class LoginCreator : SequenceDoc
 
                 // signInBtn.SetEnabled(false);
                 // test jump function
-                SetTarget(DocType.Navigation);
+                SetTarget(DocType.Navigation, null);
                 Debug.Log("Login success! Jump to app content module.");
                 // SignIn(username, SystemInfo.deviceUniqueIdentifier, (success, statusCode) =>
                 // {

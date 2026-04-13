@@ -2,6 +2,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+public class OnJumpToQuestionArgs : OnSwitchArgs
+{
+    public int topic;
+    public int difficulty;
+    public int level;
+
+}
 public class LevelCreator : SequenceDoc
 {
     private VisualElement root;
@@ -15,6 +22,7 @@ public class LevelCreator : SequenceDoc
     private TopBarCreator topBarCreator;
     private string curNavName = null;
     private int levelsPerCharacter = 4;
+    private int topicIdx;
     private VisualElement tabRoot;
     public VisualElement TabRoot
     {
@@ -166,13 +174,14 @@ public class LevelCreator : SequenceDoc
 
         return row;
     }
+    
     void OnLevelClicked(int level, int difficulty = 0)
     {
-        Debug.Log("Difficulty: " + difficulty + ", Clicked Level: " + level);
-
-        // TODO:
-        // Load MC Question Page here
-        // Example:
-        // LoadLevelPage(level);
+        topicIdx = 1;
+        SetTarget(DocType.Question, new OnJumpToQuestionArgs{
+            topic = topicIdx,
+            difficulty = difficulty,
+            level = level
+        });
     }
 }

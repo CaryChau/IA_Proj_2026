@@ -27,8 +27,6 @@ public class UIManager
     public Texture2D newHeaderTexture;
 
     private ProfileViewModel profileVM = null;
-    public delegate void EnableCreator();
-    public EnableCreator enableCreator;
 
     // protocol callback
     private void OnProfileUpdate()
@@ -69,16 +67,5 @@ public class UIManager
     public void OnCourseData(string data)
     {
         // get current studying course, so that level creator can setup level content and topbar content
-    }
-
-    public void RequestionKnowledge(string topic, int difficulty)
-    {
-        
-    }
-
-    public void OnKnowledgeData(string data)
-    {
-        knowledgeData = data;
-        enableCreator?.Invoke();
     }
 }

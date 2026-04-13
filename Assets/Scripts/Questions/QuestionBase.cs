@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 using UnityEngine.UIElements;
 public enum QuestionType
 {
@@ -16,10 +17,12 @@ public class QuestionBase
 {
     public NextActionHandler onNext;
     public OnCheckHandler onCheck;
-    private VisualElement pageInstance;
+    protected VisualElement pageInstance;
+    protected JToken questionData;
     
-    public QuestionBase(VisualElement page)
+    public QuestionBase(VisualElement page, JToken data)
     {
         pageInstance = page;
+        questionData = data;
     }
 }

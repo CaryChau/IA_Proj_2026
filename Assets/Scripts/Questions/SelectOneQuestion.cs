@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Newtonsoft.Json.Linq;
 
 public class SelectOneQuestion : QuestionBase
 {
@@ -18,13 +19,13 @@ public class SelectOneQuestion : QuestionBase
     private int currentQuestionIndex = 0;
     private int selectedIndex = -1;
 
-    public SelectOneQuestion(VisualElement page) : base(page)
+    public SelectOneQuestion(VisualElement page, JToken data) : base(page, data)
     {
     }
 
     void OnEnable()
     {
-        root = uiDocument.rootVisualElement;
+        root = pageInstance;
         promptLabel = root.Q<Label>(className: "speech-text");
         optionsContainer = root.Q<VisualElement>(className: "options-container");
         checkButton = root.Q<Button>(className: "check-button");

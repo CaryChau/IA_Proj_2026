@@ -24,6 +24,8 @@ public class QuestionData
     public string prompt;
     public List<OptionData> options;
     public string correctOptionId;
+    public string sampleAnswer;
+    
 }
 
 [Serializable]

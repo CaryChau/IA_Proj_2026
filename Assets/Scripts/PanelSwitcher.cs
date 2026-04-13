@@ -83,7 +83,7 @@ public class PanelSwitcher : MonoBehaviour
     /// </summary>
     public void Refresh()
     {
-        var winner = curWinner;
+        SequenceDoc winner = curWinner;
         // Find the first executed jump request
         foreach (var doc in seqDocs)
         {
@@ -95,6 +95,7 @@ public class PanelSwitcher : MonoBehaviour
                 idMap.TryGetValue(doc.targetId, out SequenceDoc target))
             {
                 winner = target;
+                winner.OnDocSwitch(doc.args);
             }
             else
             {
@@ -104,7 +105,7 @@ public class PanelSwitcher : MonoBehaviour
             // Reset execution state immediately (important!)
             doc.executed = false;
             doc.targetId = DocType.None;
-
+            doc.args = null;
             break; //Only process ONE transition per refresh
         }
 

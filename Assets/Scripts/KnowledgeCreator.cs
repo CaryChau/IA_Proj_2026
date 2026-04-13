@@ -26,35 +26,72 @@ public class KnowledgeCreator : SequenceDoc
     [SerializeField] private int startIndex = 0;
     JObject jsonRoot;
     JArray questions;
-
-
-    int curLev;
-    private void SetupKnowledge(string jsonString)
+    
+    protected void OnDocSwitch(OnJumpToQuestionArgs args)
     {
-        if (jsonString == null)
+        base.OnDocSwitch(args);
+        topic = args.topic;
+        difficulty = args.difficulty;
+        level = args.level;
+        ReadJsonDataFromFile();
+        StartQuestion();
+    }
+
+    
+    private void ReadJsonDataFromFile()
+    {
+        // 1) Build file name: t1_d1.json
+        string fileName = $"t{topic}_d{difficulty}.json";
+
+        string jsonText;
+        try
         {
-            Debug.LogError("json data request failed");
+            var textAsset = Resources.Load<TextAsset>("TestData/" + fileName);
+            jsonText = textAsset.text;
+        }
+        catch (Exception ex)
+        {
             return;
         }
 
+        // 3) Parse entire document as JObject (keeps all unknown fields)
+        JObject root;
         try
         {
-            jsonRoot = JObject.Parse(jsonString);
-            curLev = (int)jsonRoot["level"];
-            foreach (var level in (JArray)jsonRoot["levels"])
+            root = JObject.Parse(jsonText);
+        }
+        catch (Exception ex)
+        {
+            return;
+        }
+
+        // 4) Validate and find the requested level
+        JArray levelsArray = root["levels"] as JArray;
+        if (levelsArray == null)
+        {
+            return;
+        }
+
+        JObject matchedLevel = null;
+        foreach (var item in levelsArray)
+        {
+            if (item is JObject lvlObj)
             {
-                if ((int)level["level"] == curLev)
+                int lvl = lvlObj.Value<int?>("level") ?? -1;
+                if (lvl == level)
                 {
-                    questions = (JArray)level["questions"];
+                    matchedLevel = lvlObj;
+                    break;
                 }
             }
-            Total = questions.Count;
         }
-        catch (System.Exception)
+
+        if (matchedLevel == null)
         {
-            
-            throw;
+            return;
         }
+        questions = matchedLevel["questions"] as JArray;
+        Total = questions.Count;
     }
 
     /// <summary>Zero-based question index currently shown.</summary>
@@ -76,42 +113,23 @@ public class KnowledgeCreator : SequenceDoc
     {
         if (uiDocument == null)
             uiDocument = GetComponent<UIDocument>();
-
-        // UIManager.GetInstance().enableCreator += EnableCreator;
-    }
-
-    private void EnableCreator()
-    {
-        this.enabled = true;
     }
 
     void OnDisable()
     {
         CurrentIndex = 0;
-        // for (int i = 0; i < finishedList.Length; i++)
-        // {
-        //     finishedList[i] = false;
-        // }
-        // UIManager.GetInstance().enableCreator -= EnableCreator;
     }
 
-    private void ReadJsonDataFromFile()
+    private int topic, difficulty, level;
+    
+    private void StartQuestion()
     {
-        // load json data from Resources/TestData/.json
-    }
-
-
-    private void OnEnable()
-    {
-        return;
         _root = uiDocument?.rootVisualElement;
         if (_root == null)
         {
             Debug.LogError("KnowledgeCreator: UIDocument/rootVisualElement not found.");
             return;
         }
-
-        SetupKnowledge(UIManager.GetInstance().KnowledgeData);
         finishedList = new bool[questions.Count];
 
         _progressFill = _root.Q<VisualElement>("ProgressFill");
@@ -169,6 +187,8 @@ public class KnowledgeCreator : SequenceDoc
         if (FinishedCount == Total)
         {
             // get out of question page and show the Congratulation page
+            CurrentIndex = 0;
+
         }
         else
         {
@@ -185,22 +205,22 @@ public class KnowledgeCreator : SequenceDoc
         }
     }
 
-    private QuestionBase InstanceQuestion(string type, VisualElement page)
+    private QuestionBase InstanceQuestion(string type, VisualElement page, JToken data)
     {
         switch (type)
         {
             case "drag_match":
-                return new DragMatchQuestion(page);
+                return new DragMatchQuestion(page, data);
             case "speaking":
-                return new SpeakingQuestion(page);
+                return new SpeakingQuestion(page, data);
             case "true_false":
-                return new TrueFalseQuestion(page);
+                return new TrueFalseQuestion(page, data);
             case "select_one":
-                return new SelectOneQuestion(page);
+                return new SelectOneQuestion(page, data);
             case "listening":
-                return new ListeningQuestion(page);
+                return new ListeningQuestion(page, data);
             case "spelling":
-                return new SpellingQuestion(page);
+                return new SpellingQuestion(page, data);
         }
         return null;
     }
@@ -239,7 +259,7 @@ public class KnowledgeCreator : SequenceDoc
                     throw new Exception("Can not finid question: " + index);
                 }
                 pageInstance = vta.CloneTree();
-                RegisterQuestion(InstanceQuestion((string)question["type"], pageInstance));
+                RegisterQuestion(InstanceQuestion((string)question["type"], pageInstance, question));
                 _pageRoot.Add(pageInstance);
             }
             else
