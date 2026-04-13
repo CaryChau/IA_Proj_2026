@@ -175,7 +175,7 @@ public class LevelCreator : SequenceDoc
         return row;
     }
     
-    void OnLevelClicked(int level, int difficulty = 0)
+    void OnLevelClicked(int level, int difficulty = 1)
     {
         topicIdx = 1;
         SetTarget(DocType.Question, new OnJumpToQuestionArgs{

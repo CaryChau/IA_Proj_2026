@@ -19,7 +19,7 @@ public class SequenceDoc : MonoBehaviour
     {
         
     }
-    public void OnDocSwitch(OnSwitchArgs args)
+    public virtual void OnDocSwitch(OnSwitchArgs args)
     {
         this.args = args;
     }

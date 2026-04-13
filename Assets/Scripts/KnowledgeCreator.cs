@@ -27,12 +27,13 @@ public class KnowledgeCreator : SequenceDoc
     JObject jsonRoot;
     JArray questions;
     
-    protected void OnDocSwitch(OnJumpToQuestionArgs args)
+    public override void OnDocSwitch(OnSwitchArgs args)
     {
+        OnJumpToQuestionArgs argsNew = (OnJumpToQuestionArgs)args;
         base.OnDocSwitch(args);
-        topic = args.topic;
-        difficulty = args.difficulty;
-        level = args.level;
+        topic = argsNew.topic;
+        difficulty = argsNew.difficulty;
+        level = argsNew.level;
         ReadJsonDataFromFile();
         StartQuestion();
     }
