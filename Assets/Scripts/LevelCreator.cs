@@ -23,6 +23,10 @@ public class LevelCreator : SequenceDoc
             return tabRoot;
         }
     }
+    public LevelCreator(DocType initID = DocType.Navigation) : base(initID)
+    {
+        
+    }
     void Start()
     {
         topBarCreator = GetComponent<TopBarCreator>();

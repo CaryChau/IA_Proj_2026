@@ -247,9 +247,9 @@ public class LoginCreator : SequenceDoc
                 }
 
                 // signInBtn.SetEnabled(false);
-                executed = true;
+                // test jump function
+                SetTarget(DocType.Navigation);
                 Debug.Log("Login success! Jump to app content module.");
-                // return;
                 // SignIn(username, SystemInfo.deviceUniqueIdentifier, (success, statusCode) =>
                 // {
                     
@@ -258,7 +258,6 @@ public class LoginCreator : SequenceDoc
                 //     {
                 //         // TODO: Jump to app content module (call your navigation logic here)
                 //         Debug.Log("Login success! Jump to app content module.");
-                //         uiDoc.sortingOrder = 0;
                 //     }
                 //     else if(statusCode == 410)
                 //     {
@@ -276,7 +275,11 @@ public class LoginCreator : SequenceDoc
     }
 
     [SerializeField] private string backendUrl = "https://your-backend.com/api/v1/account/me";
-    
+
+    public LoginCreator(DocType initId = DocType.Login) : base(initId)
+    {
+    }
+
     public void SignIn(string accountID, string deviceID, System.Action<bool, int> callback)
     {
         StartCoroutine(SignInRequest(accountID, deviceID, callback));

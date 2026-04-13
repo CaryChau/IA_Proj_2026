@@ -3,7 +3,13 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+public enum DocType
+{
+    None,
+    Navigation,
+    Login,
+    Question
+}
 public class PanelSwitcher : MonoBehaviour
 {
     public enum HideMode
@@ -20,10 +26,10 @@ public class PanelSwitcher : MonoBehaviour
     [SerializeField] private bool includeInactive = false;
 
     [Tooltip("Optional manual list; used if autoDiscoverInScene is false or to limit scope.")]
-    [SerializeField] private List<SequenceDoc> documents = new();
-    private UIDocument curWinner;
+    private List<SequenceDoc> seqDocs = new();
+    private SequenceDoc curWinner;
 
-    private string[] jumpMap = {"ab", "bc"};
+    private Dictionary<DocType, SequenceDoc> idMap;
 
     [Header("Behavior")]
     [SerializeField] private HideMode hideMode = HideMode.DisplayNone;
@@ -64,7 +70,12 @@ public class PanelSwitcher : MonoBehaviour
     public void Discover()
     {
         var found = FindObjectsOfType<SequenceDoc>(includeInactive).ToList();
-        documents = found;
+        seqDocs = found;
+        idMap = new Dictionary<DocType, SequenceDoc>();
+        foreach (var doc in seqDocs)
+        {
+            idMap[doc.id] = doc;
+        }
     }
 
     /// <summary>
@@ -73,30 +84,35 @@ public class PanelSwitcher : MonoBehaviour
     public void Refresh()
     {
         var winner = curWinner;
-        // for (int i = 0; i < documents.Count; i++)
-        // {
-        //     if (documents[i].executed)
-        //     {
-        //         string executedID = documents[i].id;
-
-        //     }
-        //     if (documents[i].uiDoc.sortingOrder == 0 && documents[i] != winner)
-        //     {
-        //         winner = documents[i];
-        //         break;
-        //     }
-        // }
-
-        if (curWinner != winner)
+        // Find the first executed jump request
+        foreach (var doc in seqDocs)
         {
-            curWinner = winner;
+            if (!doc.executed)
+                continue;
+
+            // Resolve target
+            if (doc.targetId != DocType.None &&
+                idMap.TryGetValue(doc.targetId, out SequenceDoc target))
+            {
+                winner = target;
+            }
+            else
+            {
+                Debug.LogWarning($"PanelSwitcher: Invalid targetId '{doc.targetId}' from '{doc.id}'");
+            }
+
+            // Reset execution state immediately (important!)
+            doc.executed = false;
+            doc.targetId = DocType.None;
+
+            break; //Only process ONE transition per refresh
         }
-        else
-        {
+
+        if (curWinner == winner)
             return;
-        }
-
-        foreach (var doc in documents)
+        curWinner = winner;
+        // handle animation between UI documents with fade-in-out
+        foreach (var doc in seqDocs)
         {
             SetVisible(doc.uiDoc, doc == winner);
         }
@@ -149,7 +165,7 @@ public class PanelSwitcher : MonoBehaviour
 
         root.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
         root.pickingMode   = visible ? PickingMode.Position : PickingMode.Ignore;
-        doc.sortingOrder = visible ? 0 : 1;
+        doc.sortingOrder = visible ? 1 : 0;
     }
 
     private System.Collections.IEnumerator ShowNextFrame(UIDocument doc, bool visible)

@@ -65,21 +65,19 @@ public class KnowledgeCreator : SequenceDoc
     /// <summary>How many questions have been marked as finished (used for progress).</summary>
     public int FinishedCount { get; private set; } = 0;
 
-
-    /// <summary>Raised when all questions are completed.</summary>
-    // public event EventHandler<QuizCompletedEventArgs> QuizCompleted;
-
     // We keep a reference to the current evaluator so we can unsubscribe when moving on.
     private QuestionBase _currentEvaluator;
-    
+
+    public KnowledgeCreator(DocType initId = DocType.Question) : base(initId)
+    {
+    }
 
     private void Awake()
     {
         if (uiDocument == null)
             uiDocument = GetComponent<UIDocument>();
 
-        finishedList = new bool[questions.Count];
-        UIManager.GetInstance().enableCreator += EnableCreator;
+        // UIManager.GetInstance().enableCreator += EnableCreator;
     }
 
     private void EnableCreator()
@@ -90,16 +88,22 @@ public class KnowledgeCreator : SequenceDoc
     void OnDisable()
     {
         CurrentIndex = 0;
-        for (int i = 0; i < finishedList.Length; i++)
-        {
-            finishedList[i] = false;
-        }
-        UIManager.GetInstance().enableCreator -= EnableCreator;
+        // for (int i = 0; i < finishedList.Length; i++)
+        // {
+        //     finishedList[i] = false;
+        // }
+        // UIManager.GetInstance().enableCreator -= EnableCreator;
+    }
+
+    private void ReadJsonDataFromFile()
+    {
+        // load json data from Resources/TestData/.json
     }
 
 
     private void OnEnable()
     {
+        return;
         _root = uiDocument?.rootVisualElement;
         if (_root == null)
         {
@@ -108,6 +112,8 @@ public class KnowledgeCreator : SequenceDoc
         }
 
         SetupKnowledge(UIManager.GetInstance().KnowledgeData);
+        finishedList = new bool[questions.Count];
+
         _progressFill = _root.Q<VisualElement>("ProgressFill");
         _pageRoot     = _root.Q<VisualElement>("PageRoot");
 
