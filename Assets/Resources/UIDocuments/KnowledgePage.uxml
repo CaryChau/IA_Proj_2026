@@ -1,5 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/KnowledgeCommon.uss?fileID=7433441132597879392&amp;guid=7a1b6117ebdb70b429d1c763547cc6c1&amp;type=3#KnowledgeCommon" />
+    <Style src="project://database/Assets/Resources/UIDocuments/Popup/HalfwayQuitStyle.uss?fileID=7433441132597879392&amp;guid=86b3ad404e6b78740b0f4e6dae6264ee&amp;type=3#HalfwayQuitStyle" />
+    <Style src="project://database/Assets/Resources/UIDocuments/Popup/PopupStyle.uss?fileID=7433441132597879392&amp;guid=75511dd5e1e67074ca1705aff8d9a939&amp;type=3#PopupStyle" />
     <Bitbebop.SafeArea>
         <ui:VisualElement name="VisualElement" class="Viewport" style="flex-grow: 1;">
             <ui:VisualElement class="PhoneFrame" style="flex-grow: 1;">

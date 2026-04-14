@@ -88,7 +88,8 @@ public class ListeningQuestion : QuestionBase
 
         var checkBtn = pageInstance.Q<Button>("CheckButton");
         checkBtn.clicked += () => {
-            onCheck(curChoise == correctOptionId);
+            optionButtons.TryGetValue(correctOptionId, out Button btn);
+            onCheck(curChoise == correctOptionId, btn.text);
         };
     }
 

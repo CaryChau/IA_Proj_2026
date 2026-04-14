@@ -1,0 +1,107 @@
+/* ===== Popup Container ===== */
+.HalfwayPopup {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 58%;
+
+    padding: 24px 24px 32px 24px;
+
+    background-color: rgb(20, 34, 40);
+
+    border-top-left-radius: 36px;
+    border-top-right-radius: 36px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition-property: bottom;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
+}
+
+/* Hidden: off-screen */
+.HalfwayPopupHidden {
+    bottom: -1113px
+}
+
+/* Shown */
+.HalfwayPopupShown {
+    bottom: 0;
+}
+
+/* ===== Drag handle ===== */
+.PopupHandle {
+    width: 72px;
+    height: 6px;
+    margin-bottom: 24px;
+
+    background-color: rgba(255,255,255,0.35);
+    border-radius: 3px;
+}
+
+/* ===== Mascot ===== */
+.MascotContainer {
+    width: 240px;
+    height: 240px;
+    margin-bottom: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MascotImage {
+    width: 100%;
+    height: 100%;
+
+    background-image: resource("Textures/CourseCharacter/Begging");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* ===== Message ===== */
+.PopupMessage {
+    color: #FFFFFF;
+    unity-font-size: 32px;
+    unity-font-style: bold;
+    unity-text-align: middle-center;
+
+    margin-bottom: 32px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+/* ===== Buttons ===== */
+.PopupPrimaryButton {
+    width: 100%;
+    height: 72px;
+
+    margin-bottom: 16px;
+
+    background-color: #4CC3FF;
+    color: #0E1F26;
+
+    unity-font-size: 24px;
+    unity-font-style: bold;
+
+    border-radius: 28px;
+    border-width: 0;
+}
+
+.PopupSecondaryButton {
+    width: 100%;
+    height: 48px;
+
+    background-color: transparent;
+    color: #FF5C5C;
+
+    unity-font-size: 22px;
+    unity-font-style: bold;
+
+    border-width: 0;
+}

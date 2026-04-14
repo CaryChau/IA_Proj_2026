@@ -5,8 +5,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Newtonsoft.Json.Linq;
+using Unity.VisualScripting;
 public delegate void NextActionHandler();
-public delegate void OnCheckHandler(bool isRight);
+public delegate void OnCheckHandler(bool isRight, string correctAnswer = "");
 [RequireComponent(typeof(UIDocument))]
 public class KnowledgeCreator : SequenceDoc
 {   
@@ -16,6 +17,8 @@ public class KnowledgeCreator : SequenceDoc
     private VisualElement _root;
     private VisualElement _pageRoot;
     private VisualElement PopupRoot;
+    private Button closeButton;
+    private readonly string GeneralTip = "Give it another try.";
     private VisualElement _progressFill;
     private bool[] finishedList;
 
@@ -140,6 +143,52 @@ public class KnowledgeCreator : SequenceDoc
         CurrentIndex = 0;
     }
 
+    private VisualElement halfwayPopup;
+    private VisualElement CloneTree(VisualTreeAsset asset, string templateRoot)
+    {
+        VisualElement template = asset.CloneTree();
+        template.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
+        template.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
+        template.pickingMode = PickingMode.Ignore;
+        var root = template.Q<VisualElement>(templateRoot);
+        return root;
+    }
+    private void ShowHalfwayQuitPopup()
+    {
+        if (halfwayPopup == null)
+        {
+            var vta = Resources.Load<VisualTreeAsset>(
+                "UIDocuments/Popup/PopupHalfwayQuit");
+
+            halfwayPopup = CloneTree(vta, "HalfwayQuitPopup");
+            PopupRoot.Add(halfwayPopup);
+            halfwayPopup.Q<Button>("KeepLearningBtn").clicked += HideHalfwayQuitPopup;
+            halfwayPopup.Q<Button>("QuitBtn").clicked += () =>
+            {
+                SetTarget(DocType.Navigation, null);
+                OnKnowledgeQuit();
+            };
+        }
+
+        halfwayPopup.RemoveFromClassList("HalfwayPopupHidden");
+        halfwayPopup.AddToClassList("HalfwayPopupShown");
+    }
+
+    private void OnKnowledgeQuit()
+    {
+        closeButton.clicked -= ShowHalfwayQuitPopup;
+        halfwayPopup.RemoveFromClassList("HalfwayPopupShown");
+        halfwayPopup.AddToClassList("HalfwayPopupHidden");
+    }
+
+    private void HideHalfwayQuitPopup()
+    {
+        if (halfwayPopup == null) return;
+
+        halfwayPopup.RemoveFromClassList("HalfwayPopupShown");
+        halfwayPopup.AddToClassList("HalfwayPopupHidden");
+    }
+
     private int topic, difficulty, level;
     
     private void StartQuestion()
@@ -159,6 +208,8 @@ public class KnowledgeCreator : SequenceDoc
         _progressFill = _root.Q<VisualElement>("ProgressFill");
         _pageRoot     = _root.Q<VisualElement>("PageRoot");
         PopupRoot     = _root.Q<VisualElement>("PopupRoot");
+        closeButton   = _root.Q<Button>("CloseButton");
+        closeButton.clicked += ShowHalfwayQuitPopup;
         if (_progressFill == null || _pageRoot == null)
         {
             Debug.LogError("KnowledgeCreator: Required elements 'ProgressFill' or 'PageRoot' not found in UXML.");
@@ -199,15 +250,15 @@ public class KnowledgeCreator : SequenceDoc
             var vta = Resources.Load<VisualTreeAsset>(
                 "UIDocuments/Popup/PopupCorrect");
 
-            popupCorrect = vta.CloneTree();
+            popupCorrect = CloneTree(vta, "PopupRoot");
             PopupRoot.Add(popupCorrect);
+            // Button actions
+            popupCorrect.Q<Button>("GotItBtn").clicked += HidePopup;
         }
 
         var root = popupCorrect.Q<VisualElement>("PopupRoot");
 
 
-        // Button actions
-        popupCorrect.Q<Button>("GotItBtn").clicked += HidePopup;
 
         // Start hidden
         root.RemoveFromClassList("PopupShown");
@@ -223,31 +274,35 @@ public class KnowledgeCreator : SequenceDoc
 
     private VisualElement popupInstance;
 
-    private void ShowIncorrectPopup(string correctAnswer = "")
+    private void ShowIncorrectPopup(string correctAnswer)
     {
         if (popupInstance == null)
         {
             var vta = Resources.Load<VisualTreeAsset>(
                 "UIDocuments/Popup/PopupIncorrect");
 
-            popupInstance = vta.CloneTree();
+            popupInstance = CloneTree(vta, "PopupRoot");
             PopupRoot.Add(popupInstance);
+            // Button actions
+            popupInstance.Q<Button>("GotItBtn").clicked += HidePopup;
         }
 
         var root = popupInstance.Q<VisualElement>("PopupRoot");
 
         // Set correct answer text
         var answerText = popupInstance.Q<Label>("CorrectAnswerText");
-        answerText.style.visibility = Visibility.Visible;
-
+        var correctAnswerLabel = popupInstance.Q<Label>("CorrectAnswerLabel");
+        correctAnswerLabel.style.visibility = Visibility.Visible;
         if (correctAnswer == "")
         {
-            answerText.style.visibility = Visibility.Hidden;
+            correctAnswerLabel.style.visibility = Visibility.Hidden;
+            answerText.text = GeneralTip;
         }
-        answerText.text = correctAnswer;
+        else
+        {
+            answerText.text = correctAnswer;
+        }
 
-        // Button actions
-        popupInstance.Q<Button>("GotItBtn").clicked += HidePopup;
 
         // Start hidden
         root.RemoveFromClassList("PopupShown");
@@ -271,7 +326,7 @@ public class KnowledgeCreator : SequenceDoc
         OnNextAction();
     }
 
-    private void OnCheckHdl(bool isRight)
+    private void OnCheckHdl(bool isRight, string tipAnswer)
     {
         if (isRight)
         {
@@ -286,7 +341,7 @@ public class KnowledgeCreator : SequenceDoc
         }
         else
         {
-            ShowIncorrectPopup();
+            ShowIncorrectPopup(tipAnswer);
         }
     }
 
