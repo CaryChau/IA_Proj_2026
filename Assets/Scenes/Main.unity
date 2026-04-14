@@ -564,7 +564,8 @@ MonoBehaviour:
   targetId: 0
   uiDocument: {fileID: 0}
   questionUxmlResources:
-  - ListeningPage
+  - SelectOnePage
+  testUxml: SelectOnePage
   startIndex: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

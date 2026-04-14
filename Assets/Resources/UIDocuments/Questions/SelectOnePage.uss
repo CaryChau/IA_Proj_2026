@@ -1,14 +1,12 @@
-/* 全局容器 */
 .main-container {
     flex-grow: 1;
-    background-color: #FFFFFF;
-    padding-top: 50px; /* 預留手機頂部狀態列空間 */
+    background-color: rgb(255, 255, 255);
+    padding-top: 50px;
     padding-bottom: 30px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-/* --- 頂部區域 --- */
 .top-bar {
     flex-direction: row;
     align-items: center;
@@ -19,14 +17,14 @@
 .icon-settings {
     width: 35px;
     height: 35px;
-    background-color: #D3D3D3; /* 齒輪設定佔位 */
+    background-color: rgb(211, 211, 211);
     border-radius: 8px;
 }
 
 .progress-bar-container {
     flex-grow: 1;
     height: 18px;
-    background-color: #E5E5E5;
+    background-color: rgb(229, 229, 229);
     border-radius: 9px;
     margin-left: 15px;
     margin-right: 15px;
@@ -34,9 +32,9 @@
 }
 
 .progress-bar-fill {
-    width: 65%; /* 進度 */
+    width: 65%;
     height: 100%;
-    background-color: #FFC800; /* 黃色進度條 */
+    background-color: rgb(255, 200, 0);
     border-radius: 9px;
 }
 
@@ -48,26 +46,24 @@
 .energy-icon {
     width: 20px;
     height: 25px;
-    background-color: #FF4B4B; /* 閃電圖示佔位 (粉紅色) */
-    -unity-background-image-tint-color: #FF4B4B;
+    background-color: rgb(255, 75, 75);
+    -unity-background-image-tint-color: rgb(255, 75, 75);
     margin-right: 5px;
 }
 
 .energy-text {
-    color: #FF4B4B;
+    color: rgb(255, 75, 75);
     font-size: 20px;
     -unity-font-style: bold;
 }
 
-/* --- 標題 --- */
 .header-text {
     font-size: 28px;
     -unity-font-style: bold;
-    color: #3C3C3C;
+    color: rgb(60, 60, 60);
     margin-bottom: 40px;
 }
 
-/* --- 角色與對話框 --- */
 .character-section {
     flex-direction: row;
     align-items: center;
@@ -77,7 +73,7 @@
 .character-image {
     width: 140px;
     height: 160px;
-    background-color: #FF7B7B; /* 角色圖示佔位 */
+    background-color: rgb(255, 123, 123);
     border-radius: 20px;
 }
 
@@ -85,17 +81,16 @@
     margin-left: 15px;
     padding: 15px 25px;
     border-width: 2px;
-    border-color: #E5E5E5;
+    border-color: rgb(229, 229, 229);
     border-radius: 15px;
-    background-color: #FFFFFF;
+    background-color: rgb(255, 255, 255);
 }
 
 .speech-text {
     font-size: 22px;
-    color: #3C3C3C;
+    color: rgb(60, 60, 60);
 }
 
-/* --- 選項卡片 --- */
 .options-container {
     flex-direction: column;
 }
@@ -107,43 +102,44 @@
     padding: 15px;
     margin-bottom: 15px;
     border-width: 2px;
-    border-color: #E5E5E5;
+    border-color: rgb(229, 229, 229);
     border-radius: 15px;
-    background-color: #FFFFFF;
-    border-bottom-width: 4px; /* 底部加粗產生按鈕立體感 */
+    background-color: rgb(255, 255, 255);
+    border-bottom-width: 4px;
 }
 
 .option-card .option-pinyin {
     font-size: 16px;
-    color: #AFB2B3;
+    color: rgb(175, 178, 179);
     margin-bottom: 5px;
 }
 
 .option-card .option-character {
     font-size: 24px;
-    color: #4B4B4B;
+    color: rgb(75, 75, 75);
     -unity-font-style: bold;
 }
 
-/* 選中狀態 (Selected) */
 .option-card.selected {
-    background-color: #DDF4FF;
-    border-color: #84D8FF;
+    background-color: rgb(221, 244, 255);
+    border-color: rgb(132, 216, 255);
 }
 
-.option-card.selected .option-pinyin,
+.option-card.selected .option-pinyin {
+    color: rgb(28, 176, 246);
+}
+
 .option-card.selected .option-character {
-    color: #1CB0F6;
+    color: rgb(28, 176, 246);
 }
 
-/* --- 底部按鈕 --- */
 .bottom-bar {
     padding-top: 10px;
 }
 
 .check-button {
-    background-color: #58CC02;
-    color: #FFFFFF;
+    background-color: rgb(88, 204, 2);
+    color: rgb(255, 255, 255);
     font-size: 20px;
     -unity-font-style: bold;
     padding-top: 18px;
@@ -151,13 +147,12 @@
     border-radius: 16px;
     border-width: 0;
     border-bottom-width: 5px;
-    border-bottom-color: #58A700; /* 深綠色陰影 */
+    border-bottom-color: rgb(88, 167, 0);
     transition-duration: 0.1s;
 }
 
-/* 按鈕點擊動畫 */
 .check-button:active {
     border-bottom-width: 0;
-    margin-top: 5px; /* 向下位移模擬被按下的物理效果 */
-    background-color: #58A700;
+    margin-top: 5px;
+    background-color: rgb(88, 167, 0);
 }
