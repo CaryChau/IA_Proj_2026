@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/LevelStyle.uss?fileID=7433441132597879392&amp;guid=2517550378a6c924cb26b935ba8d3197&amp;type=3#LevelStyle" />
     <ui:VisualElement name="Root" class="unity-ui-document__root" style="flex-grow: 0; width: 100%; height: 100%; background-color: rgba(255, 225, 0, 0); flex-direction: column; align-items: center; align-self: auto; display: flex; justify-content: center;">
-        <ui:VisualElement name="TopBar" class="TopHeader" style="flex-grow: 1; flex-direction: row-reverse; justify-content: flex-end; height: 180px; display: flex; position: absolute; align-self: flex-start; align-items: stretch; top: 0; width: 100%;">
+        <ui:VisualElement name="TopBar" class="TopHeader" style="flex-grow: 1; flex-direction: row-reverse; justify-content: flex-end; height: 180px; display: flex; position: relative; align-self: flex-start; align-items: stretch; top: 0; width: 100%;">
             <ui:VisualElement name="TopBarContent" style="flex-grow: 1; width: 100%; height: 100%;" />
         </ui:VisualElement>
-        <ui:VisualElement name="Root-Content" class="ContentArea" style="width: 100%; top: 180px; position: absolute; flex-direction: column; height: 84%;">
+        <ui:VisualElement name="Root-Content" class="ContentArea" style="width: 100%; top: 0; position: relative; flex-direction: column; height: 84%;">
             <ui:VisualElement name="LevelPage" class="Page ActivePage LevelPage" style="position: relative; display: flex;">
                 <ui:VisualElement name="UnitBar" class="UnitBar" style="flex-grow: 1; position: relative; height: 20%;">
                     <ui:VisualElement name="TitleContainer" class="UnitTitleContainer" style="flex-grow: 1; flex-direction: column; width: 100%; background-color: rgba(0, 0, 0, 0); padding-bottom: 30px; padding-top: 20px;">
@@ -19,11 +19,11 @@
             </ui:VisualElement>
             <ui:VisualElement name="ProfilePage" class="Page ProfilePage" />
         </ui:VisualElement>
-        <ui:VisualElement name="Root-BottomBar" class="BottomBar">
-            <ui:VisualElement class="BottomBar-Container">
+        <ui:VisualElement name="Root-BottomBar" class="BottomBar" style="position: relative; background-color: rgb(23, 41, 47);">
+            <ui:VisualElement class="BottomBar-Container" style="background-color: rgba(23, 41, 47, 0);">
                 <ui:Button name="LevelNav" class="NavIconButton NavIconSelected">
                     <ui:VisualElement class="NavIconImage LevelIcon" />
-                    <ui:Label text="Levels" class="NavIconLabel" />
+                    <ui:Label text="Levels" class="NavIconLabel" style="color: rgb(251, 252, 251);" />
                 </ui:Button>
                 <ui:Button name="AchievementNav" class="NavIconButton">
                     <ui:VisualElement class="NavIconImage AchievementIcon" />

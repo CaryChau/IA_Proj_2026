@@ -15,6 +15,7 @@ public class KnowledgeCreator : SequenceDoc
 
     private VisualElement _root;
     private VisualElement _pageRoot;
+    private VisualElement PopupRoot;
     private VisualElement _progressFill;
     private bool[] finishedList;
 
@@ -24,8 +25,7 @@ public class KnowledgeCreator : SequenceDoc
     [Header("Flow")]
     [Tooltip("Start from this index on enable.")]
     [SerializeField] private int startIndex = 0;
-    JObject jsonRoot;
-    JArray questions;
+    JArray questions = null;
     
     public override void OnDocSwitch(OnSwitchArgs args)
     {
@@ -42,7 +42,7 @@ public class KnowledgeCreator : SequenceDoc
     private void ReadJsonDataFromFile()
     {
         // 1) Build file name: t1_d1.json
-        string fileName = $"t{topic}_d{difficulty}.json";
+        string fileName = $"t{topic}_d{difficulty}";
 
         string jsonText;
         try
@@ -125,6 +125,10 @@ public class KnowledgeCreator : SequenceDoc
     
     private void StartQuestion()
     {
+        if (questions == null || questions.Count == 0)
+        {
+            return;
+        }
         _root = uiDocument?.rootVisualElement;
         if (_root == null)
         {
@@ -135,7 +139,7 @@ public class KnowledgeCreator : SequenceDoc
 
         _progressFill = _root.Q<VisualElement>("ProgressFill");
         _pageRoot     = _root.Q<VisualElement>("PageRoot");
-
+        PopupRoot     = _root.Q<VisualElement>("PopupRoot");
         if (_progressFill == null || _pageRoot == null)
         {
             Debug.LogError("KnowledgeCreator: Required elements 'ProgressFill' or 'PageRoot' not found in UXML.");
@@ -160,12 +164,92 @@ public class KnowledgeCreator : SequenceDoc
         if (_currentEvaluator != null)
         {
             _currentEvaluator.onCheck -= OnCheckHdl;
-            _currentEvaluator.onNext -= OnNextAction;
+            // _currentEvaluator.onNext -= OnNextAction;
         }
 
         _currentEvaluator = evaluator;
-        _currentEvaluator.onNext += OnNextAction;
+        // _currentEvaluator.onNext += OnNextAction;
         _currentEvaluator.onCheck += OnCheckHdl;
+    }
+    private VisualElement popupCorrect;
+
+    private void ShowCorrectPopup()
+    {
+        if (popupCorrect == null)
+        {
+            var vta = Resources.Load<VisualTreeAsset>(
+                "UIDocuments/Popup/PopupCorrect");
+
+            popupCorrect = vta.CloneTree();
+            PopupRoot.Add(popupCorrect);
+        }
+
+        var root = popupCorrect.Q<VisualElement>("PopupRoot");
+
+
+        // Button actions
+        popupCorrect.Q<Button>("GotItBtn").clicked += HidePopup;
+
+        // Start hidden
+        root.RemoveFromClassList("PopupShown");
+        root.AddToClassList("PopupHidden");
+
+        // Trigger animation next frame
+        root.schedule.Execute(() =>
+        {
+            root.RemoveFromClassList("PopupHidden");
+            root.AddToClassList("PopupShown");
+        });
+    }
+
+    private VisualElement popupInstance;
+
+    private void ShowIncorrectPopup(string correctAnswer = "")
+    {
+        if (popupInstance == null)
+        {
+            var vta = Resources.Load<VisualTreeAsset>(
+                "UIDocuments/Popup/PopupIncorrect");
+
+            popupInstance = vta.CloneTree();
+            PopupRoot.Add(popupInstance);
+        }
+
+        var root = popupInstance.Q<VisualElement>("PopupRoot");
+
+        // Set correct answer text
+        var answerText = popupInstance.Q<Label>("CorrectAnswerText");
+        answerText.style.visibility = Visibility.Visible;
+
+        if (correctAnswer == "")
+        {
+            answerText.style.visibility = Visibility.Hidden;
+        }
+        answerText.text = correctAnswer;
+
+        // Button actions
+        popupInstance.Q<Button>("GotItBtn").clicked += HidePopup;
+
+        // Start hidden
+        root.RemoveFromClassList("PopupShown");
+        root.AddToClassList("PopupHidden");
+
+        // Trigger animation next frame
+        root.schedule.Execute(() =>
+        {
+            root.RemoveFromClassList("PopupHidden");
+            root.AddToClassList("PopupShown");
+        });
+    }
+
+    private void HidePopup()
+    {
+        if (popupInstance == null) return;
+
+        var root = popupInstance.Q<VisualElement>("PopupRoot");
+        root.RemoveFromClassList("PopupShown");
+        root.AddToClassList("PopupHidden");
+        OnNextAction();
     }
 
     private void OnCheckHdl(bool isRight)
@@ -179,6 +263,11 @@ public class KnowledgeCreator : SequenceDoc
             }
             FinishedCount = count;
             UpdateProgress(Total > 0 ? (float)FinishedCount / Total : 0f);
+            ShowCorrectPopup();
+        }
+        else
+        {
+            ShowIncorrectPopup();
         }
     }
 
@@ -251,10 +340,10 @@ public class KnowledgeCreator : SequenceDoc
         {
             // Aligns with the pattern used in your TopBarCreator: Resources/UIDocuments/<path>
             // If you pass full path including "UIDocuments/", keep using it consistently.
-            var vta = Resources.Load<VisualTreeAsset>(path);
+            var vta = Resources.Load<VisualTreeAsset>("UIDocuments/" + path);
             if (vta != null)
             {
-                JToken question = FindQuestionByType(index);
+                JToken question = FindQuestionByType(3);
                 if (question == null)
                 {
                     throw new Exception("Can not finid question: " + index);

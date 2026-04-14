@@ -1,0 +1,81 @@
+.PopupContainer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /* max-height: 45%; */
+    padding: 24px;
+    background-color: rgb(28, 43, 48);
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    transition-property: bottom;
+    transition-duration: 280ms;
+    transition-timing-function: ease-out;
+}
+
+.PopupHidden {
+    bottom: -330px;
+}
+
+.PopupShown {
+    bottom: 0;
+}
+
+.PopupHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.PopupIcon {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.IncorrectIcon {
+    background-image: url('project://Assets/UI/Icons/error_32.png');
+}
+
+.PopupTitle {
+    color: rgb(255, 92, 92);
+    unity-font-size: 28px;
+    unity-font-style: bold;
+}
+
+.PopupAnswer {
+    color: rgb(255, 138, 138);
+    unity-font-size: 20px;
+    margin-top: 8px;
+}
+
+.PopupAnswerValue {
+    color: rgb(255, 92, 92);
+    unity-font-size: 26px;
+    unity-font-style: bold;
+    margin-bottom: 20px;
+}
+
+.PopupButton {
+    height: 64px;
+    margin-top: 12px;
+    border-radius: 24px;
+    unity-font-size: 22px;
+    unity-font-style: bold;
+    border-width: 0;
+}
+
+.PopupButton--Outline {
+    background-color: transparent;
+    color: rgb(255, 92, 92);
+    border-width: 2px;
+    border-color: rgb(255, 92, 92);
+}
+
+.PopupButton--Primary {
+    background-color: rgb(255, 92, 92);
+    color: rgb(16, 32, 36);
+}

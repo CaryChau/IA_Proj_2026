@@ -56,12 +56,12 @@
     color: rgba(0,0,0,0); /* image-only */
 }
 .PlayButton {
-    background-image: url("project://Assets/UI/Icons/speaker_64.png");
-    background-position: center center; background-repeat: no-repeat; background-size: 80px 80px;
+    background-image: resource("Textures/SpeechIcon");
+    background-position: center center; background-repeat: no-repeat; background-size: 118px 92px;
 }
 .SlowButton {
-    background-image: url("project://Assets/UI/Icons/turtle_56.png");
-    background-position: center center; background-repeat: no-repeat; background-size: 72px 72px;
+    background-image: resource("Textures/SlowSpeechIcon");
+    background-position: center center; background-repeat: no-repeat; background-size: 166px 90px;
 }
 
 /* ===== Question & Transcript ===== */
@@ -140,12 +140,12 @@
 
 /* ===== Primary bottom action ===== */
 .PrimaryAction {
-    width: 100%;
+    width: 90%;
     height: 116px;
 
     margin-top: 8px;
     margin-bottom: 8px;
-
+    align-self: center;
     border-top-left-radius: 34px; border-top-right-radius: 34px;
     border-bottom-left-radius: 34px; border-bottom-right-radius: 34px;
 

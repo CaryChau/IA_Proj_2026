@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/ListeningStyle.uss?fileID=7433441132597879392&amp;guid=9aab6cd4a520b7443b5848778d7de562&amp;type=3#ListeningStyle" />
     <ui:VisualElement>
-        <ui:VisualElement style="width: 100%; height: 100%;">
-            <ui:Label name="Title" text="Tap what you hear" class="PageTitle" style="font-size: 50px; -unity-font-style: bold;" />
-            <ui:VisualElement class="ExerciseRow">
+        <ui:VisualElement style="width: 100%; height: 100%; align-self: auto; justify-content: flex-start; align-items: stretch;">
+            <ui:Label name="Title" text="Tap what you hear" class="PageTitle" style="font-size: 50px; -unity-font-style: bold; " />
+            <ui:VisualElement name="VisualElement" class="ExerciseRow">
                 <ui:VisualElement class="Mascot" />
                 <ui:VisualElement class="AudioCard">
                     <ui:VisualElement class="CardDividerV" />
@@ -14,8 +14,8 @@
             <ui:Label name="QuestionLabel" text="What interaction is described?" class="Question" style="font-size: 45px; -unity-font-style: bold;" />
             <ui:Label name="TranscriptLabel" text="Combining paracetamol with alcohol may increase liver damage." class="Transcript isHidden" />
             <ui:VisualElement class="Options">
-                <ui:Button name="OptionA" text="A. Paracetamol + Ibuprofen" class="OptionButton" style="-unity-font-style: bold; font-size: 40px;" />
-                <ui:Button name="OptionB" text="B. Paracetamol + Alcohol" class="OptionButton" style="font-size: 40px; -unity-font-style: bold;" />
+                <ui:Button name="OptionA" text="A. Paracetamol + Ibuprofen" class="OptionButton" style="-unity-font-style: bold; font-size: 40px; " />
+                <ui:Button name="OptionB" text="B. Paracetamol + Alcohol" class="OptionButton" style="font-size: 40px; -unity-font-style: bold; " />
                 <ui:Button name="OptionC" text="C. Paracetamol + Furosemide" class="OptionButton" style="-unity-font-style: bold; font-size: 40px;" />
             </ui:VisualElement>
             <ui:Button name="Separator" class="MutedAction" />

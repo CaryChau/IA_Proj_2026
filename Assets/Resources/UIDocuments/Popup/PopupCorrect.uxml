@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/Popup/PopupStyle.uss?fileID=7433441132597879392&amp;guid=75511dd5e1e67074ca1705aff8d9a939&amp;type=3#PopupStyle" />
+    <ui:VisualElement name="PopupRoot" class="PopupContainer PopupHidden" style="position: absolute; flex-direction: column; align-self: auto; bottom: 0; height: 350px; justify-content: space-between;">
+        <ui:VisualElement class="PopupHeader">
+            <ui:VisualElement class="PopupIcon IncorrectIcon" />
+            <ui:Label name="ResultLabel" text="Nicely done!" class="PopupTitle" style="font-size: 50px; -unity-font-style: bold; color: rgb(147, 211, 52);" />
+        </ui:VisualElement>
+        <ui:Button name="GotItBtn" text="CONTINUE" class="PopupButton PopupButton--Primary" style="font-size: 50px; -unity-font-style: bold; background-color: rgb(147, 211, 52); flex-direction: column; justify-content: flex-start; align-items: stretch; position: relative; overflow: hidden; flex-wrap: nowrap;" />
+    </ui:VisualElement>
+</ui:UXML>

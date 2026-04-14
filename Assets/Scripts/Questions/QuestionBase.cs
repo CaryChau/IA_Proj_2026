@@ -15,7 +15,7 @@ public enum QuestionType
 }
 public class QuestionBase
 {
-    public NextActionHandler onNext;
+    // public NextActionHandler onNext;
     public OnCheckHandler onCheck;
     protected VisualElement pageInstance;
     protected JToken questionData;
