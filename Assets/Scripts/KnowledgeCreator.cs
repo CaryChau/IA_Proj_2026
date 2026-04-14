@@ -1,3 +1,4 @@
+#define TEST_UXML
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,6 @@ using UnityEngine.UIElements;
 using Newtonsoft.Json.Linq;
 public delegate void NextActionHandler();
 public delegate void OnCheckHandler(bool isRight);
-
 [RequireComponent(typeof(UIDocument))]
 public class KnowledgeCreator : SequenceDoc
 {   
@@ -21,7 +21,23 @@ public class KnowledgeCreator : SequenceDoc
 
     [Tooltip("Optional per-question UXML resource path (Resources/UIDocuments/...). Leave empty to build the page at runtime.")]
     [SerializeField] private List<string> questionUxmlResources = new List<string>();
+#if TEST_UXML
+    #region Test uxml
+    public string testUxml = null;
+    public Dictionary<string, int> uxmlToType;
+    private void InitTestData()
+    {
+        uxmlToType = new Dictionary<string, int>();
+        uxmlToType.Add("ListeningPage", 3);
+        uxmlToType.Add("MatchingPage", 0);
+        uxmlToType.Add("TrueFalsePage", 1);
+        uxmlToType.Add("SelectOnePage", 2);
+        uxmlToType.Add("SpellingPage", 4);
+        uxmlToType.Add("SpeakingPage", 5);
+    }
 
+    #endregion
+#endif
     [Header("Flow")]
     [Tooltip("Start from this index on enable.")]
     [SerializeField] private int startIndex = 0;
@@ -112,6 +128,9 @@ public class KnowledgeCreator : SequenceDoc
 
     private void Awake()
     {
+        #if TEST_UXML
+            InitTestData();
+        #endif
         if (uiDocument == null)
             uiDocument = GetComponent<UIDocument>();
     }
@@ -333,17 +352,23 @@ public class KnowledgeCreator : SequenceDoc
     {
         _pageRoot.Clear();
         string path = SafeGet(questionUxmlResources, index); // may be empty
-
+#if TEST_UXML
+        path = testUxml != null ? testUxml : path;
+#endif
         VisualElement pageInstance;
 
         if (!string.IsNullOrEmpty(path))
         {
             // Aligns with the pattern used in your TopBarCreator: Resources/UIDocuments/<path>
             // If you pass full path including "UIDocuments/", keep using it consistently.
-            var vta = Resources.Load<VisualTreeAsset>("UIDocuments/" + path);
+            var vta = Resources.Load<VisualTreeAsset>("UIDocuments/Questions/" + path);
             if (vta != null)
             {
-                JToken question = FindQuestionByType(3);
+                JToken question = FindQuestionByType(index);
+#if TEST_UXML
+                uxmlToType.TryGetValue(testUxml, out int test_idx);
+                question = FindQuestionByType(test_idx);
+#endif
                 if (question == null)
                 {
                     throw new Exception("Can not finid question: " + index);
@@ -364,6 +389,7 @@ public class KnowledgeCreator : SequenceDoc
             // No template provided; leave a blank container for the handler to populate.
             pageInstance = new VisualElement();
             _pageRoot.Add(pageInstance);
+            Debug.LogError("Please add uxml name in the KnowledgeCreator");
         }
     }
 
