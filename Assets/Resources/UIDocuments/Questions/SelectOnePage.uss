@@ -78,6 +78,7 @@
 }
 
 .speech-bubble {
+    flex-shrink: 1;
     margin-left: 15px;
     padding: 15px 25px;
     border-width: 2px;
@@ -89,13 +90,22 @@
 .speech-text {
     font-size: 22px;
     color: rgb(60, 60, 60);
+    white-space: normal;
+    flex-wrap:wrap;
 }
 
 .options-container {
     flex-direction: column;
+    width:100%;
+    align-items:center;
+    justify-content: center;
+    margin-top:20px;
+    flex-grow:1;
 }
 
 .option-card {
+    width: 90%;
+    max-width: 500px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
