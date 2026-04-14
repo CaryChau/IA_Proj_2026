@@ -1,21 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/SelectOneQuestion.uss?fileID=7433441132597879392&amp;guid=6d397e0a8941a7444929868b58b253de&amp;type=3#SelectOneQuestion" />
+    <Style src="project://database/Assets/Resources/UIDocuments/Questions/SelectOnePage.uss?fileID=7433441132597879392&amp;guid=6d397e0a8941a7444929868b58b253de&amp;type=3#SelectOnePage" />
     <ui:VisualElement class="main-container">
-        <ui:VisualElement class="top-bar">
-            <ui:VisualElement class="icon-settings" />
-            <ui:VisualElement class="progress-bar-container">
-                <ui:VisualElement class="progress-bar-fill" />
-            </ui:VisualElement>
-            <ui:VisualElement class="energy-container">
-                <ui:VisualElement class="energy-icon" />
-                <ui:Label text="18" class="energy-text" />
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:Label text="這個句子正確嗎" class="header-text" />
+        <ui:Label text="Is it true?" class="header-text" />
         <ui:VisualElement class="character-section">
             <ui:VisualElement class="character-image" />
             <ui:VisualElement class="speech-bubble">
-                <ui:Label text="Paracetamol can increase&#10;the effect of Warfarin &#10;when used regularly" class="speech-text" />
+                <ui:Label text="This is title" class="speech-text" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="options-container">
@@ -27,7 +17,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="bottom-bar">
-            <ui:Button text="检查" class="check-button" />
+            <ui:Button text="check" class="check-button" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

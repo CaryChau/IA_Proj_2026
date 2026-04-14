@@ -1,11 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/MatchingQuestion.uss?fileID=7433441132597879392&amp;guid=4ff4af37008961e45915efd6b7e35890&amp;type=3#MatchingQuestion" />
+    <Style src="project://database/Assets/Resources/UIDocuments/Questions/MatchingPage.uss?fileID=7433441132597879392&amp;guid=4ff4af37008961e45915efd6b7e35890&amp;type=3#MatchingPage" />
     <ui:VisualElement class="root-container">
         <ui:VisualElement class="header">
             <ui:VisualElement class="settings-icon" />
-            <ui:VisualElement class="progress-container">
-                <ui:VisualElement class="progress-bar" style="width: 60%;" />
-            </ui:VisualElement>
             <ui:VisualElement class="energy-container">
                 <ui:Label text="19" class="energy-text" />
             </ui:VisualElement>
