@@ -38,7 +38,7 @@
 }
 
 .CourseTabHidden {
-    top: -549px;
+    top: -800px;
 }
 
 .CourseTabShown {

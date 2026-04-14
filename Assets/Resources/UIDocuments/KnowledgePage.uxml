@@ -16,7 +16,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="PageRoot" style="flex-grow: 1;" />
-                <ui:VisualElement name="PopupRoot" style="flex-grow: 1; flex-direction: column; bottom: 0; position: absolute; width: 100%; align-self: center; align-items: stretch; height: 400px;" />
+                <ui:VisualElement name="PopupRoot" style="flex-grow: 1; flex-direction: column; bottom: 0; position: absolute; width: 100%; align-self: center; align-items: stretch;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </Bitbebop.SafeArea>
