@@ -18,7 +18,10 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="PageRoot" style="flex-grow: 1;" />
-                <ui:VisualElement name="PopupRoot" style="flex-grow: 1; flex-direction: column; bottom: 0; position: absolute; width: 100%; align-self: center; align-items: stretch;" />
+                <ui:VisualElement name="PopupRoot" style="flex-grow: 1; flex-direction: column; bottom: 0; position: absolute; width: 100%; align-self: center; align-items: stretch;">
+                    <ui:VisualElement name="BackRoot" style="flex-grow: 1; width: 100%; align-self: center; position: absolute; bottom: 0;" />
+                    <ui:VisualElement name="FrontRoot" style="flex-grow: 1; width: 100%; align-self: center; position: absolute; bottom: 0;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </Bitbebop.SafeArea>

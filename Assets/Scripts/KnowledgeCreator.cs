@@ -17,6 +17,8 @@ public class KnowledgeCreator : SequenceDoc
     private VisualElement _root;
     private VisualElement _pageRoot;
     private VisualElement PopupRoot;
+    private VisualElement PopupBackRoot;
+    private VisualElement PopupFrontRoot;
     private Button closeButton;
     private readonly string GeneralTip = "Give it another try.";
     private VisualElement _progressFill;
@@ -138,11 +140,6 @@ public class KnowledgeCreator : SequenceDoc
             uiDocument = GetComponent<UIDocument>();
     }
 
-    void OnDisable()
-    {
-        CurrentIndex = 0;
-    }
-
     private VisualElement halfwayPopup;
     private VisualElement CloneTree(VisualTreeAsset asset, string templateRoot)
     {
@@ -161,7 +158,7 @@ public class KnowledgeCreator : SequenceDoc
                 "UIDocuments/Popup/PopupHalfwayQuit");
 
             halfwayPopup = CloneTree(vta, "HalfwayQuitPopup");
-            PopupRoot.Add(halfwayPopup);
+            PopupFrontRoot.Add(halfwayPopup);
             halfwayPopup.Q<Button>("KeepLearningBtn").clicked += HideHalfwayQuitPopup;
             halfwayPopup.Q<Button>("QuitBtn").clicked += () =>
             {
@@ -177,8 +174,9 @@ public class KnowledgeCreator : SequenceDoc
     private void OnKnowledgeQuit()
     {
         closeButton.clicked -= ShowHalfwayQuitPopup;
-        halfwayPopup.RemoveFromClassList("HalfwayPopupShown");
-        halfwayPopup.AddToClassList("HalfwayPopupHidden");
+        HideHalfwayQuitPopup();
+        HidePopup(popupCorrect);
+        HidePopup(popupInstance);
     }
 
     private void HideHalfwayQuitPopup()
@@ -203,11 +201,16 @@ public class KnowledgeCreator : SequenceDoc
             Debug.LogError("KnowledgeCreator: UIDocument/rootVisualElement not found.");
             return;
         }
-        finishedList = new bool[questions.Count];
+        if (finishedList == null)
+        {
+            finishedList = new bool[questions.Count];
+        }
 
         _progressFill = _root.Q<VisualElement>("ProgressFill");
         _pageRoot     = _root.Q<VisualElement>("PageRoot");
         PopupRoot     = _root.Q<VisualElement>("PopupRoot");
+        PopupBackRoot = PopupRoot.Q<VisualElement>("BackRoot");
+        PopupFrontRoot = PopupRoot.Q<VisualElement>("FrontRoot");
         closeButton   = _root.Q<Button>("CloseButton");
         closeButton.clicked += ShowHalfwayQuitPopup;
         if (_progressFill == null || _pageRoot == null)
@@ -234,11 +237,9 @@ public class KnowledgeCreator : SequenceDoc
         if (_currentEvaluator != null)
         {
             _currentEvaluator.onCheck -= OnCheckHdl;
-            // _currentEvaluator.onNext -= OnNextAction;
         }
 
         _currentEvaluator = evaluator;
-        // _currentEvaluator.onNext += OnNextAction;
         _currentEvaluator.onCheck += OnCheckHdl;
     }
     private VisualElement popupCorrect;
@@ -251,25 +252,17 @@ public class KnowledgeCreator : SequenceDoc
                 "UIDocuments/Popup/PopupCorrect");
 
             popupCorrect = CloneTree(vta, "PopupRoot");
-            PopupRoot.Add(popupCorrect);
+            PopupBackRoot.Add(popupCorrect);
             // Button actions
-            popupCorrect.Q<Button>("GotItBtn").clicked += HidePopup;
+            popupCorrect.Q<Button>("GotItBtn").clicked += () => {
+                HidePopup(popupCorrect);
+                OnNextAction();
+            };
         }
 
-        var root = popupCorrect.Q<VisualElement>("PopupRoot");
-
-
-
         // Start hidden
-        root.RemoveFromClassList("PopupShown");
-        root.AddToClassList("PopupHidden");
-
-        // Trigger animation next frame
-        root.schedule.Execute(() =>
-        {
-            root.RemoveFromClassList("PopupHidden");
-            root.AddToClassList("PopupShown");
-        });
+        popupCorrect.AddToClassList("PopupShown");
+        popupCorrect.RemoveFromClassList("PopupHidden");
     }
 
     private VisualElement popupInstance;
@@ -282,12 +275,16 @@ public class KnowledgeCreator : SequenceDoc
                 "UIDocuments/Popup/PopupIncorrect");
 
             popupInstance = CloneTree(vta, "PopupRoot");
-            PopupRoot.Add(popupInstance);
+            PopupBackRoot.Add(popupInstance);
             // Button actions
-            popupInstance.Q<Button>("GotItBtn").clicked += HidePopup;
+            popupInstance.Q<Button>("GotItBtn").clicked += () => {
+                HidePopup(popupInstance);
+                OnNextAction();
+                Debug.Log("next...");
+            };
         }
 
-        var root = popupInstance.Q<VisualElement>("PopupRoot");
+        // var root = popupInstance.Q<VisualElement>("PopupRoot");
 
         // Set correct answer text
         var answerText = popupInstance.Q<Label>("CorrectAnswerText");
@@ -305,25 +302,17 @@ public class KnowledgeCreator : SequenceDoc
 
 
         // Start hidden
-        root.RemoveFromClassList("PopupShown");
-        root.AddToClassList("PopupHidden");
-
-        // Trigger animation next frame
-        root.schedule.Execute(() =>
-        {
-            root.RemoveFromClassList("PopupHidden");
-            root.AddToClassList("PopupShown");
-        });
+        popupInstance.AddToClassList("PopupShown");
+        popupInstance.RemoveFromClassList("PopupHidden");
     }
 
-    private void HidePopup()
+    private void HidePopup(VisualElement popupInstance)
     {
         if (popupInstance == null) return;
-
-        var root = popupInstance.Q<VisualElement>("PopupRoot");
-        root.RemoveFromClassList("PopupShown");
-        root.AddToClassList("PopupHidden");
-        OnNextAction();
+        Debug.Log("hide pop up");
+        // var root = popupInstance.Q<VisualElement>("PopupRoot");
+        popupInstance.RemoveFromClassList("PopupShown");
+        popupInstance.AddToClassList("PopupHidden");
     }
 
     private void OnCheckHdl(bool isRight, string tipAnswer)
@@ -351,7 +340,6 @@ public class KnowledgeCreator : SequenceDoc
         if (FinishedCount == Total)
         {
             // get out of question page and show the Congratulation page
-            CurrentIndex = 0;
 
         }
         else
