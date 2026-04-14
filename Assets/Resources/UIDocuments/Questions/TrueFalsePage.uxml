@@ -16,6 +16,7 @@
                 <ui:Label text="False" class="option-character" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1;" />
         <ui:VisualElement class="bottom-bar">
             <ui:Button text="check" class="check-button" />
         </ui:VisualElement>

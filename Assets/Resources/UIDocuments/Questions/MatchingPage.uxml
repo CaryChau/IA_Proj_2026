@@ -3,44 +3,25 @@
     <ui:VisualElement class="root-container">
         <ui:VisualElement class="header">
             <ui:VisualElement class="settings-icon" />
-            <ui:VisualElement class="energy-container">
-                <ui:Label text="19" class="energy-text" />
-            </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Label text="选择配对" class="title" />
+        <ui:Label text="drag match" class="title" />
         <ui:VisualElement class="grid-container">
             <ui:VisualElement class="column">
-                <ui:Button text="菜单" class="card" />
-                <ui:Button text="看" class="card card-disabled" />
-                <ui:Button text="勤奋" class="card" />
-                <ui:Button text="商场" class="card card-selected" />
-                <ui:Button text="老师" class="card" />
+                <ui:Button text="1" class="card" />
+                <ui:Button text="2" class="card card-disabled" />
+                <ui:Button text="3" class="card" />
             </ui:VisualElement>
             <ui:VisualElement class="column">
                 <ui:Button class="card card-complex">
-                    <ui:Label text="kan4lik6" class="pinyin" />
-                    <ui:Label text="勤力" class="hanzi" />
+                    <ui:Label text="A" class="hanzi" />
                 </ui:Button>
                 <ui:Button class="card card-selected card-complex">
-                    <ui:Label text="soeng1coeng4" class="pinyin-selected" />
-                    <ui:Label text="商場" class="hanzi" />
+                    <ui:Label text="B" class="hanzi" />
                 </ui:Button>
                 <ui:Button class="card card-complex">
-                    <ui:Label text="coi3paii2" parse-escape-sequences="true" class="pinyin" />
-                    <ui:Label text="菜牌" enable-rich-text="true" class="hanzi" />
-                </ui:Button>
-                <ui:Button class="card card-complex">
-                    <ui:Label text="lou5si1" class="pinyin" />
-                    <ui:Label text="老師" class="hanzi" />
-                </ui:Button>
-                <ui:Button class="card card-complex">
-                    <ui:Label text="tai2" class="pinyin" />
-                    <ui:Label text="睇" class="hanzi" />
+                    <ui:Label text="C" enable-rich-text="true" class="hanzi" />
                 </ui:Button>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement class="footer">
-            <ui:Button text="检查" class="check-button" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

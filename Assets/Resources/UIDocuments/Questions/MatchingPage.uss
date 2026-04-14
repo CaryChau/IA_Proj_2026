@@ -61,6 +61,8 @@
     font-size: 36px;
     color: #4B4B4B;
     transition: 0.1s all;
+    white-space: normal;
+    flex-wrap:wrap;
 }
 
 /* 選中狀態 (綠色) */
