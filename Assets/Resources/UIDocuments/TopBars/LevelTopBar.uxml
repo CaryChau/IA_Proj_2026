@@ -4,7 +4,7 @@
         <ui:VisualElement class="StatRow">
             <ui:Button name="CourseBtn" class="StatItem" style="background-color: rgba(188, 188, 188, 0);">
                 <ui:VisualElement class="StatIcon FlagIcon" />
-                <ui:Label name="FlagName" text="Paracetamol" class="StatValue StatValue--light" style="font-size: 30px; -unity-font-style: bold;" />
+                <ui:Label name="FlagName" text="Paracetamol" class="StatValue StatValue--light" style="font-size: 40px; -unity-font-style: bold;" />
             </ui:Button>
             <ui:VisualElement class="StatItem" style="display: none;">
                 <ui:VisualElement class="StatIcon FlameIcon" />
@@ -14,7 +14,7 @@
                 <ui:VisualElement class="StatIcon GemIcon" />
                 <ui:Label name="GemValue" text="685" class="StatValue StatValue--blue" style="font-size: 30px; -unity-font-style: bold;" />
             </ui:VisualElement>
-            <ui:VisualElement class="StatItem">
+            <ui:VisualElement name="VisualElement" class="StatItem" style="display: none;">
                 <ui:VisualElement class="StatIcon HeartIcon" />
                 <ui:Label name="HeartValue" text="25" class="StatValue StatValue--pink" style="font-size: 30px; -unity-font-style: bold;" />
             </ui:VisualElement>

@@ -29,8 +29,8 @@
 }
 
 .StatIcon {
-    width: 36px;
-    height: 36px;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
     background-repeat: no-repeat;
     background-position: center center;

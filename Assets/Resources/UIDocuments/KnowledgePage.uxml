@@ -10,7 +10,7 @@
                             <ui:VisualElement name="ProgressFill" class="ProgressFill" style="width: 35%;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement class="EnergyBadge">
+                    <ui:VisualElement class="EnergyBadge" style="display: none;">
                         <ui:VisualElement class="BoltIcon" />
                         <ui:Label name="EnergyValue" text="23" class="EnergyValue" style="font-size: 30px; -unity-font-style: bold;" />
                     </ui:VisualElement>
