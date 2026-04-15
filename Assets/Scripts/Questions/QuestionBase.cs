@@ -21,7 +21,7 @@ public abstract class QuestionBase
 
     protected abstract void InitPage();
 
-    public void LeavePage(Action<VisualElement> cb)
+    public virtual void LeavePage(Action<VisualElement> cb)
     {
         var animRoot = pageInstance.Q<VisualElement>("QuestionRoot");
         animRoot.AddToClassList("QuestionLeave");

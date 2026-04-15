@@ -1,34 +1,30 @@
-/* 容器全屏居中 */
 .screen-container {
     flex-grow: 1;
-    background-color: #FFFFFF;
+    background-color: rgb(255, 255, 255);
     align-items: center;
     justify-content: space-around;
     padding: 40px 20px;
 }
 
-/* 标题文字 */
 .title-text {
     font-size: 32px;
     -unity-font-style: bold;
-    color: #FFC800; /* 多邻国金黄 */
+    color: rgb(255, 200, 0);
     margin-top: 20px;
 }
 
-/* 统计卡片横向排列 */
 .stats-row {
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
 }
 
-/* 卡片基础样式 */
 .stat-card {
     flex: 1;
     margin: 5px;
     border-radius: 15px;
     border-width: 2px;
-    border-bottom-width: 5px; /* 模拟厚度感 */
+    border-bottom-width: 5px;
     padding: 10px;
     align-items: center;
 }
@@ -36,12 +32,12 @@
 .stat-label {
     font-size: 14px;
     -unity-font-style: bold;
-    color: #FFFFFF;
+    color: rgb(255, 255, 255);
     margin-bottom: 8px;
 }
 
 .stat-content {
-    background-color: #FFFFFF;
+    background-color: rgb(255, 255, 255);
     width: 100%;
     height: 60px;
     border-radius: 10px;
@@ -53,29 +49,48 @@
 .stat-value {
     font-size: 20px;
     -unity-font-style: bold;
-    color: #58CC02; /* 默认绿色，会被覆盖 */
+    color: rgb(88, 204, 2);
 }
 
-/* 主题颜色区分 */
-.yellow-theme { border-color: #FFC800; background-color: #FFC800; }
-.yellow-theme .stat-value { color: #FFC800; }
+.yellow-theme {
+    border-color: rgb(255, 200, 0);
+    background-color: rgb(255, 200, 0);
+}
 
-.green-theme { border-color: #58CC02; background-color: #58CC02; }
-.green-theme .stat-value { color: #58CC02; }
+.yellow-theme .stat-value {
+    color: rgb(255, 200, 0);
+}
 
-.blue-theme { border-color: #1CB0F6; background-color: #1CB0F6; }
-.blue-theme .stat-value { color: #1CB0F6; }
+.green-theme {
+    border-color: rgb(88, 204, 2);
+    background-color: rgb(88, 204, 2);
+}
 
-/* 底部领取按钮 */
+.green-theme .stat-value {
+    color: rgb(88, 204, 2);
+}
+
+.blue-theme {
+    border-color: rgb(28, 176, 246);
+    background-color: rgb(28, 176, 246);
+}
+
+.blue-theme .stat-value {
+    color: rgb(28, 176, 246);
+}
+
 .primary-button {
     width: 90%;
     height: 55px;
-    background-color: #1CB0F6;
+    background-color: rgb(28, 176, 246);
     border-radius: 15px;
     border-width: 0;
     border-bottom-width: 5px;
-    border-color: #1899D6;
-    color: #FFFFFF;
+    border-color: rgb(24, 153, 214);
+    color: rgb(255, 255, 255);
     font-size: 18px;
     -unity-font-style: bold;
+}
+
+.duo-character {
 }

@@ -85,6 +85,14 @@
     align-items: stretch;
     align-self: auto;
     flex-wrap: nowrap;
+    transition-property: scale;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+}
+
+
+.SpeakButton--Enlarge {
+    scale: 1.15 1.15;
 }
 
 /* Selected by user */
