@@ -1,4 +1,4 @@
-#define TEST_UXML
+// #define TEST_UXML
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +26,7 @@ public class KnowledgeCreator : SequenceDoc
 
     [Tooltip("Optional per-question UXML resource path (Resources/UIDocuments/...). Leave empty to build the page at runtime.")]
     [SerializeField] private List<string> questionUxmlResources = new List<string>();
+    private Dictionary<string, string> typeToUxml;
 #if TEST_UXML
     #region Test uxml
     public string testUxml = null;
@@ -136,6 +137,13 @@ public class KnowledgeCreator : SequenceDoc
         #if TEST_UXML
             InitTestData();
         #endif
+        typeToUxml = new Dictionary<string, string>();
+        typeToUxml.Add("drag_match", "MatchingPage");
+        typeToUxml.Add("speaking", "SpeakingPage");
+        typeToUxml.Add("true_false", "TrueFalsePage");
+        typeToUxml.Add("listening", "ListeningPage");
+        typeToUxml.Add("spelling", "SpellingPage");
+        typeToUxml.Add("select_one", "SelectOnePage");
         if (uiDocument == null)
             uiDocument = GetComponent<UIDocument>();
     }
@@ -339,6 +347,7 @@ public class KnowledgeCreator : SequenceDoc
     {
         if (isRight)
         {
+            finishedList[CurrentIndex] = true;
             int count = 0;
             for (int i = 0; i < finishedList.Length; i++)
             {
@@ -370,7 +379,11 @@ public class KnowledgeCreator : SequenceDoc
             {
                 for (int i = 0; i < finishedList.Length; i++)
                 {
-                    nextIdx = !finishedList[i] ? i : nextIdx;
+                    if (!finishedList[i])
+                    {
+                        nextIdx = i;
+                        break;
+                    }
                 }
             }
             CurrentIndex = nextIdx;
@@ -415,11 +428,18 @@ public class KnowledgeCreator : SequenceDoc
     private void LoadQuestion(int index)
     {
         _pageRoot.Clear();
-        string path = SafeGet(questionUxmlResources, index); // may be empty
+        VisualElement pageInstance;
+        JToken question = FindQuestionByType(index);
+        string path = "";
+        if (question != null)
+        {
+            typeToUxml.TryGetValue((string)question["type"], out path);
+        }
 #if TEST_UXML
         path = testUxml != null ? testUxml : path;
+        uxmlToType.TryGetValue(testUxml, out int test_idx);
+        question = FindQuestionByType(test_idx);
 #endif
-        VisualElement pageInstance;
 
         if (!string.IsNullOrEmpty(path))
         {
@@ -428,11 +448,6 @@ public class KnowledgeCreator : SequenceDoc
             var vta = Resources.Load<VisualTreeAsset>("UIDocuments/Questions/" + path);
             if (vta != null)
             {
-                JToken question = FindQuestionByType(index);
-#if TEST_UXML
-                uxmlToType.TryGetValue(testUxml, out int test_idx);
-                question = FindQuestionByType(test_idx);
-#endif
                 if (question == null)
                 {
                     throw new Exception("Can not finid question: " + index);

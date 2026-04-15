@@ -76,10 +76,13 @@ public class SpeakingQuestion : QuestionBase
         }
         checkBtn = pageInstance.Q<Button>("CheckButton");
         checkBtn.clicked += () => {
+#if UNITY_EDITOR
+#else
             if (checkBtn.ClassListContains("isDisabled"))
             {
                 return;
             }
+#endif
             onCheck(sampleAnswer == recordStr, sampleAnswer);
         };
     }

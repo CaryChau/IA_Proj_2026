@@ -60,7 +60,7 @@ public class SelectOneQuestion : QuestionBase
             {
                 if (string.IsNullOrEmpty(_currentSelectionId)) return;
                 
-                onCheck?.Invoke(_currentSelectionId == _correctOptionId);
+                onCheck?.Invoke(_currentSelectionId == _correctOptionId, _correctOptionId);
             };
         }
     }

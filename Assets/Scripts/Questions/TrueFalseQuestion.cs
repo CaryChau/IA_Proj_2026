@@ -52,7 +52,7 @@ public class TrueFalseQuestion : QuestionBase
             {
                 if (currentChoice.HasValue)
                 {
-                    onCheck?.Invoke(currentChoice.Value == correctAnswer);
+                    onCheck?.Invoke(currentChoice.Value == correctAnswer, correctAnswer.ToString());
                 }
                 else
                 {

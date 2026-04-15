@@ -42,7 +42,7 @@
     background-color: #1E1E1E;
 
 
-    background-image: ;
+    background-image: resource('Textures/settingIcon');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 28px 28px;
