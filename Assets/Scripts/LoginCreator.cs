@@ -64,7 +64,7 @@ public class LoginCreator : SequenceDoc
         }
         FadeToPage(loginPage, () => {
             ShowLoginPage();
-            inputPage = null;
+            // inputPage = null;
         });
     }
 
@@ -101,22 +101,21 @@ public class LoginCreator : SequenceDoc
         }
     }
 
-    private delegate void OnTextFieldValueChangeDel(EventCallback<ChangeEvent<string>> evt);
-    private OnTextFieldValueChangeDel onTextFieldValueChange;
+    // private delegate void OnTextFieldValueChangeDel(EventCallback<ChangeEvent<string>> evt);
+    private EventCallback<ChangeEvent<string>> onTextFieldValueChange = null;
 
-    private void UpdateBtnState(ref TextField[] input, Button btn)
+    private void UpdateBtnState(TextField[] input, Button btn)
     {
         int length = input.Length;
         TextField[] tempArr = input;
         for (int i = 0; i < length; i++)
         {
             TextField temp = tempArr[i];
-            // if (onTextFieldValueChange != null)
-            // {
-            //     temp.UnregisterValueChangedCallback(onTextFieldValueChange);
-            // }
-            // onTextFieldValueChange = ;
-            temp.RegisterValueChangedCallback(evt =>
+            if (onTextFieldValueChange != null)
+            {
+                temp.UnregisterValueChangedCallback(onTextFieldValueChange);
+            }
+            onTextFieldValueChange = evt =>
             {
                 string val = temp?.value ?? "";
                 bool isAllFill = !string.IsNullOrWhiteSpace(val);
@@ -140,10 +139,11 @@ public class LoginCreator : SequenceDoc
                 {
                     btn.RemoveFromClassList("isDisabled");
                 }
-            });
+            };
+            temp.RegisterValueChangedCallback(onTextFieldValueChange);
         }
     }
-
+    Action signInCb = null;
     private void OnTransferPageShow()
     {
         if (inputPage == null) return;
@@ -159,8 +159,9 @@ public class LoginCreator : SequenceDoc
         transferKeyField.style.display = DisplayStyle.Flex;
 
         transferKeyField = inputPage.Q<TextField>("PasswordField");
-        TextField[] arr = new TextField[2]{usernameField, ((TextField)transferKeyField)};
-        UpdateBtnState(ref arr, signInBtn);
+        ((TextField)transferKeyField).SetValueWithoutNotify("");
+        TextField[] arr = new TextField[2]{usernameField, (TextField)transferKeyField};
+        UpdateBtnState(arr, signInBtn);
         usernameField[0][0].style.fontSize = 50;
         transferKeyField[0][0].style.fontSize = 50;
 
@@ -181,7 +182,11 @@ public class LoginCreator : SequenceDoc
 
         if (signInBtn != null)
         {
-            signInBtn.clicked += () =>
+            if (signInCb != null)
+            {
+                signInBtn.clicked -= signInCb;
+            }
+            signInCb = () =>
             {
                 errorLabel.style.display = DisplayStyle.None;
                 string username = usernameField?.value ?? "";
@@ -212,7 +217,9 @@ public class LoginCreator : SequenceDoc
                         Debug.LogError($"Failed to set transfer key. HTTP Status: {statusCode}");
                     }
                 }));
+
             };
+            signInBtn.clicked += signInCb;
         }
     }
 
@@ -264,9 +271,10 @@ public class LoginCreator : SequenceDoc
         signInBtn.AddToClassList("isDisabled");
         signInBtn.text = "SIGN IN";
         var usernameField = inputPage.Q<TextField>("UsernameField");
+        usernameField.SetValueWithoutNotify("");
         TextField[] arr = new TextField[1]{usernameField};
 
-        UpdateBtnState(ref arr, signInBtn);
+        UpdateBtnState(arr, signInBtn);
         var transferKeyField = inputPage.Q<VisualElement>("TransferKeyField");
         transferKeyField.style.display = DisplayStyle.None;
         usernameField[0][0].style.fontSize = 50;
@@ -289,7 +297,11 @@ public class LoginCreator : SequenceDoc
 
         if (signInBtn != null)
         {
-            signInBtn.clicked += () =>
+            if (signInCb != null)
+            {
+                signInBtn.clicked -= signInCb;
+            }
+            signInCb = () =>
             {
                 errorLabel.style.display = DisplayStyle.None;
                 string username = usernameField?.value ?? "";
@@ -327,6 +339,8 @@ public class LoginCreator : SequenceDoc
                 //     }
                 // });
             };
+            signInBtn.clicked += signInCb;
+
         }
     }
 
