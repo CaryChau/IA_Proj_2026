@@ -63,6 +63,7 @@
     transition: 0.1s all;
     white-space: normal;
     flex-wrap:wrap;
+    transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.1s ease-out;
 }
 
 /* 選中狀態 (綠色) */
@@ -70,6 +71,11 @@
     background-color: #D7FFB8;
     border-color: #58CC02;
     color: #58CC02;
+}
+
+.card-incorrect {
+    border-color: #FF4B4B;
+    color: #FF4B4B;
 }
 
 .card-disabled {

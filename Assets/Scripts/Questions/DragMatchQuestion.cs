@@ -18,8 +18,11 @@ public class DragMatchQuestion : QuestionBase
     private int completedMatches = 0;
     private int totalMatchesNeeded = 0;
 
-    public DragMatchQuestion(VisualElement page, JToken data) : base(page, data)
+    private MonoBehaviour coroutineHost;
+
+    public DragMatchQuestion(VisualElement page, JToken data, MonoBehaviour host) : base(page, data)
     {
+        coroutineHost = host;
         InitPage();
     }
 
@@ -29,14 +32,9 @@ public class DragMatchQuestion : QuestionBase
         JArray draggables = questionData["draggables"] as JArray;
         JArray targets = questionData["targets"] as JArray;
         JArray correctMatches = questionData["correctMatches"] as JArray;
-
         totalMatchesNeeded = targets.Count;
-
         // 建立正確答案字典
-        foreach (var m in correctMatches)
-        {
-            matchMap[m.Value<string>("targetId")] = m.Value<string>("draggableId");
-        }
+        foreach (var m in correctMatches) matchMap[m.Value<string>("targetId")] = m.Value<string>("draggableId");
 
         // 2. 獲取 UI 元件 (假設左右兩欄分別在兩個 .column 中)
         var columns = pageInstance.Query<VisualElement>(className: "column").ToList();
@@ -116,17 +114,34 @@ public class DragMatchQuestion : QuestionBase
                 {
                     onCheck?.Invoke(true); // 觸發 KnowledgeCreator 的成功彈窗
                 }
+                selectedLeft = null;
+                selectedRight = null;
             }
             else
             {
-                // 錯誤：清除選中狀態
-                ClearSelection(leftButtons);
-                ClearSelection(rightButtons);
+                // 錯誤：清除選中狀態並變紅
+                coroutineHost.StartCoroutine(HandleIncorrectMatch(selectedLeft, selectedRight));
             }
-
-            selectedLeft = null;
-            selectedRight = null;
         }
+    }
+
+    private IEnumerator HandleIncorrectMatch(Button left, Button right)
+    {
+        SetAllButtonsEnabled(false);
+
+        left.RemoveFromClassList("card-selected");
+        right.RemoveFromClassList("card-selected");
+        left.AddToClassList("card-incorrect");
+        right.AddToClassList("card-incorrect");
+
+        yield return new WaitForSeconds(1f);
+
+        left.RemoveFromClassList("card-incorrect");
+        right.RemoveFromClassList("card-incorrect");
+        SetAllButtonsEnabled(true);
+
+        selectedLeft = null;
+        selectedRight = null;
     }
 
     private void MarkAsMatched(Button btn)
@@ -139,5 +154,11 @@ public class DragMatchQuestion : QuestionBase
     private void ClearSelection(List<Button> buttons)
     {
         foreach (var b in buttons) b.RemoveFromClassList("card-selected");
+    }
+
+    private void SetAllButtonsEnabled(bool enabled)
+    {
+        foreach (var b in leftButtons) if (!b.ClassListContains("card-disabled")) b.SetEnabled(enabled);
+        foreach (var b in rightButtons) if (!b.ClassListContains("card-disabled")) b.SetEnabled(enabled);
     }
 }

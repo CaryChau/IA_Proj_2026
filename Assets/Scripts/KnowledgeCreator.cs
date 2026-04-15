@@ -396,7 +396,7 @@ public class KnowledgeCreator : SequenceDoc
         switch (type)
         {
             case "drag_match":
-                return new DragMatchQuestion(page, data);
+                return new DragMatchQuestion(page, data, this);
             case "speaking":
                 return new SpeakingQuestion(page, data);
             case "true_false":
