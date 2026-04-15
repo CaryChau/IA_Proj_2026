@@ -13,12 +13,32 @@ public enum QuestionType
     Spelling = 4,
     Speaking = 5
 }
-public class QuestionBase
+public abstract class QuestionBase
 {
-    // public NextActionHandler onNext;
     public OnCheckHandler onCheck;
     protected VisualElement pageInstance;
     protected JToken questionData;
+
+    protected abstract void InitPage();
+
+    public void LeavePage(Action<VisualElement> cb)
+    {
+        var animRoot = pageInstance.Q<VisualElement>("QuestionRoot");
+        animRoot.AddToClassList("QuestionLeave");
+        animRoot.RegisterCallback<TransitionEndEvent>(evt =>
+        {
+            cb?.Invoke(pageInstance);
+        });
+    }
+
+    public void EnterPage()
+    {
+        var animRoot = pageInstance.Q<VisualElement>("QuestionRoot");
+        // animRoot.style.opacity = 0;
+        // animRoot.RemoveFromClassList("FadeInDefault");
+        animRoot.AddToClassList("FadeTarget");
+        
+    }
     
     public QuestionBase(VisualElement page, JToken data)
     {

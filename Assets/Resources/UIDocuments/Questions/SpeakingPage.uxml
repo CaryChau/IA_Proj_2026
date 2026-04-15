@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/Questions/SpeakingStyle.uss?fileID=7433441132597879392&amp;guid=83812efdf7d41e947be3ee3cd675484c&amp;type=3#SpeakingStyle" />
+    <ui:VisualElement name="QuestionRoot" class="SpeakingPage" style="background-color: rgb(15, 31, 38);">
+        <ui:Label name="TitleLabel" text="Speak this sentence" class="SpeakingTitle" style="font-size: 45px; -unity-font-style: bold; color: rgb(234, 243, 244);" />
+        <ui:VisualElement class="MascotRow">
+            <ui:VisualElement class="MascotImage" style="width: 225px; height: 341px; margin-left: 16px;" />
+            <ui:VisualElement class="SpeechBubble" style="background-color: rgb(23, 41, 47);">
+                <ui:Button name="PlaySampleBtn" class="AudioButton" style="width: 118px; height: 92px;" />
+                <ui:Label name="PromptLabel" text="Say the name of the drug that becomes riskier when combined with alcohol due to liver toxicity." class="PromptText" style="font-size: 45px; -unity-font-style: bold; color: rgb(234, 243, 244); width: 599px; height: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Button name="TapToSpeakBtn" text="TAP TO SPEAK" class="SpeakButton" style="background-color: rgb(42, 58, 64); font-size: 45px; -unity-font-style: bold; height: 150px; width: 80%; align-self: center; margin-top: 30px; margin-bottom: 30px; margin-left: 4px; padding-left: 12px; -unity-text-align: middle-center;" />
+        <ui:VisualElement style="height: 280px;" />
+        <ui:Button name="CheckButton" text="CHECK" class="PrimaryAction isDisabled" style="font-size: 40px; -unity-font-style: bold;" />
+    </ui:VisualElement>
+</ui:UXML>

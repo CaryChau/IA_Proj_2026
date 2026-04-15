@@ -265,8 +265,8 @@
         {
           "id": "drug-int-1-4-speaking",
           "type": "speaking",
-          "prompt": "Pronounce this sentence clearly:\n‘Acetylcysteine reduces mucus and may affect how other medicines work.’",
-          "sampleAnswer": "Acetylcysteine reduces mucus and may affect how other medicines work."
+          "prompt": "Acetylcysteine reduces mucus and may affect how other medicines work.",
+          "sampleAnswer": ""
         }
       ]
     },
@@ -333,7 +333,7 @@
           "id": "drug-int-1-5-speaking",
           "type": "speaking",
           "prompt": "Bromhexine can change how cough medicines behave in the body.",
-          "sampleAnswer": "Bromhexine can change how cough medicines behave in the body."
+          "sampleAnswer": ""
         }
       ]
     }

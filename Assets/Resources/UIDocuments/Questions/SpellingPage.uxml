@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDocuments/Questions/SpellingStyle.uss?fileID=7433441132597879392&amp;guid=7124baa9ed79b714ab7522448f150e09&amp;type=3#SpellingStyle" />
+    <ui:VisualElement name="QuestionRoot" class="SpellingPage" style="transition-duration: 0.5s;">
+        <ui:VisualElement class="MascotRow">
+            <ui:VisualElement class="MascotImage" style="width: 225px; height: 341px;" />
+            <ui:VisualElement class="SpeechBubble" style="display: flex; visibility: visible; opacity: 1; background-color: rgb(23, 41, 47);">
+                <ui:Button name="AudioBtn" class="AudioButton" style="width: 118px; height: 92px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                <ui:Label name="PromptLabel" text="Type the name of the drug that may increase bleeding risk when combined with paracetamol." class="PromptText" style="font-size: 50px; -unity-font-style: bold; white-space: normal; text-overflow: clip; -unity-text-align: upper-left; width: 584px; background-color: rgb(15, 31, 38); color: rgb(234, 243, 244); margin-left: 4px; margin-bottom: 4px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="Divider" />
+        <ui:TextField name="AnswerField" is-password-field="false" select-all-on-focus="true" class="SpellingInput" />
+        <ui:VisualElement style="flex-grow: 1; height: 60%;" />
+        <ui:Button name="CheckButton" text="CHECK" class="PrimaryAction isDisabled" style="font-size: 40px; -unity-font-style: bold;" />
+    </ui:VisualElement>
+</ui:UXML>

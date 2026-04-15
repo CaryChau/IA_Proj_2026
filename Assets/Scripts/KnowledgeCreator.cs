@@ -147,8 +147,8 @@ public class KnowledgeCreator : SequenceDoc
         template.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
         template.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
         template.pickingMode = PickingMode.Ignore;
-        var root = template.Q<VisualElement>(templateRoot);
-        return root;
+        // var root = template.Q<VisualElement>(templateRoot);
+        return template;
     }
     private void ShowHalfwayQuitPopup()
     {
@@ -159,6 +159,7 @@ public class KnowledgeCreator : SequenceDoc
 
             halfwayPopup = CloneTree(vta, "HalfwayQuitPopup");
             PopupFrontRoot.Add(halfwayPopup);
+            halfwayPopup = halfwayPopup.Q<VisualElement>("HalfwayQuitPopup");
             halfwayPopup.Q<Button>("KeepLearningBtn").clicked += HideHalfwayQuitPopup;
             halfwayPopup.Q<Button>("QuitBtn").clicked += () =>
             {
@@ -237,10 +238,29 @@ public class KnowledgeCreator : SequenceDoc
         if (_currentEvaluator != null)
         {
             _currentEvaluator.onCheck -= OnCheckHdl;
+            // _currentEvaluator.LeavePage((e) =>
+            // {
+            //     _pageRoot.Remove(e);
+            // });
+            _currentEvaluator = null;
         }
 
         _currentEvaluator = evaluator;
+        // _currentEvaluator.EnterPage();
         _currentEvaluator.onCheck += OnCheckHdl;
+    }
+
+    private void OnFinishQuestion()
+    {
+        if (_currentEvaluator != null)
+        {
+            _currentEvaluator.onCheck -= OnCheckHdl;
+            _currentEvaluator.LeavePage((e) =>
+            {
+                _pageRoot.Remove(e);
+            });
+            _currentEvaluator = null;
+        }
     }
     private VisualElement popupCorrect;
 
@@ -253,6 +273,7 @@ public class KnowledgeCreator : SequenceDoc
 
             popupCorrect = CloneTree(vta, "PopupRoot");
             PopupBackRoot.Add(popupCorrect);
+            popupCorrect = popupCorrect.Q<VisualElement>("PopupRoot");
             // Button actions
             popupCorrect.Q<Button>("GotItBtn").clicked += () => {
                 HidePopup(popupCorrect);
@@ -276,11 +297,11 @@ public class KnowledgeCreator : SequenceDoc
 
             popupInstance = CloneTree(vta, "PopupRoot");
             PopupBackRoot.Add(popupInstance);
+            popupInstance = popupInstance.Q<VisualElement>("PopupRoot");
             // Button actions
             popupInstance.Q<Button>("GotItBtn").clicked += () => {
                 HidePopup(popupInstance);
                 OnNextAction();
-                Debug.Log("next...");
             };
         }
 
@@ -289,10 +310,10 @@ public class KnowledgeCreator : SequenceDoc
         // Set correct answer text
         var answerText = popupInstance.Q<Label>("CorrectAnswerText");
         var correctAnswerLabel = popupInstance.Q<Label>("CorrectAnswerLabel");
-        correctAnswerLabel.style.visibility = Visibility.Visible;
+        correctAnswerLabel.style.display = DisplayStyle.Flex;
         if (correctAnswer == "")
         {
-            correctAnswerLabel.style.visibility = Visibility.Hidden;
+            correctAnswerLabel.style.display = DisplayStyle.None;
             answerText.text = GeneralTip;
         }
         else
@@ -309,8 +330,7 @@ public class KnowledgeCreator : SequenceDoc
     private void HidePopup(VisualElement popupInstance)
     {
         if (popupInstance == null) return;
-        Debug.Log("hide pop up");
-        // var root = popupInstance.Q<VisualElement>("PopupRoot");
+
         popupInstance.RemoveFromClassList("PopupShown");
         popupInstance.AddToClassList("PopupHidden");
     }
@@ -340,7 +360,8 @@ public class KnowledgeCreator : SequenceDoc
         if (FinishedCount == Total)
         {
             // get out of question page and show the Congratulation page
-
+            OnFinishQuestion();
+            // fade in the course completed.
         }
         else
         {
@@ -416,9 +437,9 @@ public class KnowledgeCreator : SequenceDoc
                 {
                     throw new Exception("Can not finid question: " + index);
                 }
-                pageInstance = vta.CloneTree();
-                RegisterQuestion(InstanceQuestion((string)question["type"], pageInstance, question));
+                pageInstance = CloneTree(vta, "QuestionRoot");
                 _pageRoot.Add(pageInstance);
+                RegisterQuestion(InstanceQuestion((string)question["type"], pageInstance, question));
             }
             else
             {

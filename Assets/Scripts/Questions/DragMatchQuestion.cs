@@ -23,7 +23,7 @@ public class DragMatchQuestion : QuestionBase
         InitPage();
     }
 
-    private void InitPage()
+    protected override void InitPage()
     {
         // 1. 解析 JSON 數據
         JArray draggables = questionData["draggables"] as JArray;

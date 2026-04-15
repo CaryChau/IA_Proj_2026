@@ -17,7 +17,7 @@ public class SelectOneQuestion : QuestionBase
         InitPage();
     }
 
-    private void InitPage()
+    protected override void InitPage()
     {
         _promptLabel = pageInstance.Q<Label>(className: "speech-text");
         _checkButton = pageInstance.Q<Button>(className: "check-button");

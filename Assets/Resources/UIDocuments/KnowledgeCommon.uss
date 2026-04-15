@@ -105,3 +105,20 @@
     unity-font-size: 28px;
     unity-font-style: bold;
 }
+
+.QuestionDefault {
+    justify-content: flex-start;
+}
+
+.QuestionLeave {
+    translate: -100% 0;
+}
+
+.FadeDefault {
+    opacity: 0;
+}
+
+.FadeTarget {
+    opacity: 1;
+    transition-duration: 0s;
+}

@@ -19,7 +19,7 @@ public class TrueFalseQuestion : QuestionBase
         InitPage();
     }
 
-    private void InitPage()
+    protected override void InitPage()
     {
         speechLabel = pageInstance.Q<Label>(className: "speech-text");
 

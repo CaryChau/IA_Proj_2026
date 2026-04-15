@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Newtonsoft.Json.Linq;
+using TextSpeech;
 
 public class ListeningQuestion : QuestionBase
 {
     private Label questionLabel;
     private Label transcriptLabel;
+    private Button checkBtn;
 
     private readonly Dictionary<string, Button> optionButtons =
         new Dictionary<string, Button>();
@@ -21,7 +23,7 @@ public class ListeningQuestion : QuestionBase
         InitPage();
     }
 
-    private void InitPage()
+    protected override void InitPage()
     {
         // ---------- 1. Query UI elements ----------
         questionLabel   = pageInstance.Q<Label>("QuestionLabel");
@@ -35,14 +37,26 @@ public class ListeningQuestion : QuestionBase
         // Defensive checks (very important in UITK)
         if (questionLabel == null)
             Debug.LogError("[ListeningQuestion] QuestionLabel not found.");
-        if (transcriptLabel == null)
-            Debug.LogError("[ListeningQuestion] TranscriptLabel not found.");
+        // if (transcriptLabel == null)
+        //     Debug.LogError("[ListeningQuestion] TranscriptLabel not found.");
 
         // ---------- 2. Read JSON fields ----------
         string prompt = questionData.Value<string>("prompt");
         string transcript = questionData.Value<string>("audioTranscript");
         correctOptionId = questionData.Value<string>("correctOptionId");
 
+        var playBtn = pageInstance.Q<Button>("PlayButton");
+        playBtn.clicked += () =>
+        {
+            TextToSpeech.Instance.Setting("en-US", 1, 1);
+            TextToSpeech.Instance.StartSpeak(transcript);
+        };
+        var slowBtn = pageInstance.Q<Button>("SlowButton");
+        slowBtn.clicked += () =>
+        {
+            TextToSpeech.Instance.Setting("en-US", 1, 0.5f);
+            TextToSpeech.Instance.StartSpeak(transcript);
+        };
         // ---------- 3. Assign question text ----------
         if (questionLabel != null)
             questionLabel.text = prompt;
@@ -50,9 +64,7 @@ public class ListeningQuestion : QuestionBase
         if (transcriptLabel != null)
         {
             transcriptLabel.text = transcript;
-
-            // Optional: hide transcript initially
-            transcriptLabel.AddToClassList("isHidden");
+            transcriptLabel.style.display = DisplayStyle.None;
         }
 
         // ---------- 4. Assign options ----------
@@ -86,10 +98,20 @@ public class ListeningQuestion : QuestionBase
             btn.clicked += () => OnOptionSelected(capturedId);
         }
 
-        var checkBtn = pageInstance.Q<Button>("CheckButton");
+        checkBtn = pageInstance.Q<Button>("CheckButton");
         checkBtn.clicked += () => {
+            if (checkBtn.ClassListContains("isDisabled"))
+            {
+                return;
+            }
             optionButtons.TryGetValue(correctOptionId, out Button btn);
             onCheck(curChoise == correctOptionId, btn.text);
+        };
+
+        var scriptShowBtn = pageInstance.Q<Button>("ScriptShowBtn");
+        scriptShowBtn.clicked += () =>
+        {
+            transcriptLabel.style.display = DisplayStyle.Flex;
         };
     }
 
@@ -104,6 +126,7 @@ public class ListeningQuestion : QuestionBase
         if (optionButtons.TryGetValue(selectedId, out var btn))
         {
             btn.AddToClassList("selected");
+            checkBtn.RemoveFromClassList("isDisabled");
         }
 
         curChoise = selectedId;

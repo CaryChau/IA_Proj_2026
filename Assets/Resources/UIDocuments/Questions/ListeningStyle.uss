@@ -1,160 +1,233 @@
-/* ===== Title ===== */
 .PageTitle {
-    color: #EAF3F4;
+    color: rgb(234, 243, 244);
     unity-font-size: 56px;
     unity-font-style: bold;
-
     margin-top: 12px;
     margin-bottom: 16px;
 }
 
-/* ===== Exercise Row ===== */
 .ExerciseRow {
     width: 100%;
     height: 360px;
-
-    display: flex; flex-direction: row; align-items: center;
-
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: 12px;
     margin-bottom: 24px;
 }
+
 .Mascot {
-    width: 260px;        /* tuned for 1080w */
+    width: 260px;
     height: 340px;
-    background-image: url("project://Assets/UI/Images/mascot_placeholder.png");
-    background-position: center bottom; background-repeat: no-repeat; background-size: contain;
+    background-image: resource('Textures/CourseCharacter/LookHere');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
     margin-right: 24px;
 }
+
 .AudioCard {
     flex-grow: 1;
-    height: 300px; min-height: 300px; position: relative;
-
-    background-color: #17292F;
-    border-top-left-radius: 28px; border-top-right-radius: 28px;
-    border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;
-
-    padding-left: 12px; padding-right: 12px;
-
-    display: flex; flex-direction: row; align-items: center; justify-content: space-between;
+    height: 300px;
+    min-height: 300px;
+    position: relative;
+    background-color: rgb(23, 41, 47);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
+
 .CardDividerV {
-    position: absolute; left: 50%; top: 24px; bottom: 24px;
-    width: 2px; background-color: #254048;
+    position: absolute;
+    left: 50%;
+    top: 24px;
+    bottom: 24px;
+    width: 2px;
+    background-color: rgb(37, 64, 72);
 }
+
 .AudioHalfButton {
     flex-grow: 1;
     height: 240px;
-    margin-left: 12px; margin-right: 12px;
-
-    border-top-left-radius: 22px; border-top-right-radius: 22px;
-    border-bottom-left-radius: 22px; border-bottom-right-radius: 22px;
-
-    background-color: #0F1F26;
-    border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;
-    border-top-color: #263A41; border-right-color: #263A41; border-bottom-color: #263A41; border-left-color: #263A41;
-
-    color: rgba(0,0,0,0); /* image-only */
+    margin-left: 12px;
+    margin-right: 12px;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+    background-color: rgb(15, 31, 38);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-color: rgb(38, 58, 65);
+    border-right-color: rgb(38, 58, 65);
+    border-bottom-color: rgb(38, 58, 65);
+    border-left-color: rgb(38, 58, 65);
+    color: rgba(0, 0, 0, 0);
 }
+
 .PlayButton {
-    background-image: resource("Textures/SpeechIcon");
-    background-position: center center; background-repeat: no-repeat; background-size: 118px 92px;
-}
-.SlowButton {
-    background-image: resource("Textures/SlowSpeechIcon");
-    background-position: center center; background-repeat: no-repeat; background-size: 166px 90px;
+    background-image: resource('Textures/SpeechIcon');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 118px 92px;
 }
 
-/* ===== Question & Transcript ===== */
+.SlowButton {
+    background-image: resource('Textures/SlowSpeechIcon');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 166px 90px;
+}
+
 .Question {
-    color: #EAF3F4;
+    color: rgb(234, 243, 244);
     unity-font-size: 40px;
     unity-font-style: bold;
-
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
 .Transcript {
-    color: rgba(234,243,244,0.70);
+    color: rgba(234, 243, 244, 0.7);
     unity-font-size: 26px;
     margin-top: 6px;
     margin-bottom: 12px;
 }
-.isHidden { display: none; }
 
-/* ===== Options (A, B, C) ===== */
+.isHidden {
+    display: none;
+}
+
 .Options {
     width: 100%;
-    display: flex; flex-direction: column;
+    display: flex;
+    flex-direction: column;
     margin-top: 6px;
 }
+
 .OptionButton {
     height: 112px;
-    margin-top: 16px; margin-bottom: 8px;
-    padding-left: 24px; padding-right: 24px;
-
-    border-top-left-radius: 24px; border-top-right-radius: 24px;
-    border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;
-
-    background-color: #1A2B31;
-    color: #D6E4E7;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    background-color: rgb(26, 43, 49);
+    color: rgb(214, 228, 231);
     unity-font-size: 32px;
     unity-font-style: bold;
     unity-text-align: upper-left;
-
-    border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;
-    border-top-color: #32464D; border-right-color: #32464D; border-bottom-color: #32464D; border-left-color: #32464D;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-color: rgb(50, 70, 77);
+    border-right-color: rgb(50, 70, 77);
+    border-bottom-color: rgb(50, 70, 77);
+    border-left-color: rgb(50, 70, 77);
 }
-.OptionButton:hover { background-color: #22363D; }
-.OptionButton:active { background-color: #253C44; }
 
-/* Selected by user */
+.OptionButton:hover {
+    background-color: rgb(34, 54, 61);
+}
+
+.OptionButton:active {
+    background-color: rgb(37, 60, 68);
+}
+
 .OptionButton.selected {
-    background-color: #0F1F26;
-    border-top-color: #58CC02; border-right-color: #58CC02; border-bottom-color: #58CC02; border-left-color: #58CC02;
+    background-color: rgb(15, 31, 38);
+    border-top-color: rgb(88, 204, 2);
+    border-right-color: rgb(88, 204, 2);
+    border-bottom-color: rgb(88, 204, 2);
+    border-left-color: rgb(88, 204, 2);
 }
 
-/* Feedback (optional after check) */
 .OptionButton.correct {
-    background-color: #14341A;
-    border-top-color: #58CC02; border-right-color: #58CC02; border-bottom-color: #58CC02; border-left-color: #58CC02;
-    color: #CFF8AE;
-}
-.OptionButton.incorrect {
-    background-color: #341414;
-    border-top-color: #D93939; border-right-color: #D93939; border-bottom-color: #D93939; border-left-color: #D93939;
-    color: #FFD5D5;
+    background-color: rgb(20, 52, 26);
+    border-top-color: rgb(88, 204, 2);
+    border-right-color: rgb(88, 204, 2);
+    border-bottom-color: rgb(88, 204, 2);
+    border-left-color: rgb(88, 204, 2);
+    color: rgb(207, 248, 174);
 }
 
-/* ===== Muted action ===== */
+.OptionButton.incorrect {
+    background-color: rgb(52, 20, 20);
+    border-top-color: rgb(217, 57, 57);
+    border-right-color: rgb(217, 57, 57);
+    border-bottom-color: rgb(217, 57, 57);
+    border-left-color: rgb(217, 57, 57);
+    color: rgb(255, 213, 213);
+}
+
 .MutedAction {
     width: 100%;
     height: 56px;
-    margin-top: 18px; margin-bottom: 12px;
-
+    margin-top: 18px;
+    margin-bottom: 12px;
     background-color: transparent;
-    color: rgba(234,243,244,0.45);
-    unity-font-size: 26px; unity-font-style: bold; unity-text-align: middle-center;
-
-    border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;
+    color: rgba(234, 243, 244, 0.45);
+    unity-font-size: 26px;
+    unity-font-style: bold;
+    unity-text-align: middle-center;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
 }
 
-/* ===== Primary bottom action ===== */
 .PrimaryAction {
     width: 90%;
     height: 116px;
-
     margin-top: 8px;
     margin-bottom: 8px;
     align-self: center;
-    border-top-left-radius: 34px; border-top-right-radius: 34px;
-    border-bottom-left-radius: 34px; border-bottom-right-radius: 34px;
-
-    unity-font-size: 36px; unity-font-style: bold; unity-text-align: middle-center;
-
-    border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;
-
-    background-color: #58CC02; color: #0E1F26;
+    border-top-left-radius: 34px;
+    border-top-right-radius: 34px;
+    border-bottom-left-radius: 34px;
+    border-bottom-right-radius: 34px;
+    unity-font-size: 36px;
+    unity-font-style: bold;
+    unity-text-align: middle-center;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgb(88, 204, 2);
+    color: rgb(14, 31, 38);
 }
 
-/* Disabled appearance */
-.isDisabled { background-color: #2A3A40; color: rgba(255,255,255,0.55); }
+.isDisabled {
+    background-color: rgb(42, 58, 64);
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.QuestionDefault {
+    justify-content: flex-start;
+}
+
+.QuestionLeave {
+    translate: -100% 0;
+}
+
+.FadeDefault {
+    opacity: 0;
+}
+
+.FadeTarget {
+    opacity: 1;
+    transition-duration: 0s;
+}

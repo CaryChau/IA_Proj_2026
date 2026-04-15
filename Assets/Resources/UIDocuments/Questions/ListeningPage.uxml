@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Resources/UIDocuments/ListeningStyle.uss?fileID=7433441132597879392&amp;guid=9aab6cd4a520b7443b5848778d7de562&amp;type=3#ListeningStyle" />
-    <ui:VisualElement>
+    <Style src="project://database/Assets/Resources/UIDocuments/Questions/ListeningStyle.uss?fileID=7433441132597879392&amp;guid=9aab6cd4a520b7443b5848778d7de562&amp;type=3#ListeningStyle" />
+    <ui:VisualElement name="QuestionRoot" style="transition-duration: 0.7s; position: absolute; height: 100%; width: 100%;">
         <ui:VisualElement style="width: 100%; height: 100%; align-self: auto; justify-content: flex-start; align-items: stretch;">
-            <ui:Label name="Title" text="Tap what you hear" class="PageTitle" style="font-size: 50px; -unity-font-style: bold; " />
+            <ui:Label name="Title" text="Tap what you hear" class="PageTitle" style="font-size: 50px; -unity-font-style: bold;" />
             <ui:VisualElement name="VisualElement" class="ExerciseRow">
-                <ui:VisualElement class="Mascot" />
+                <ui:VisualElement class="Mascot" style="width: 225px; height: 341px; margin-left: 24px;" />
                 <ui:VisualElement class="AudioCard">
                     <ui:VisualElement class="CardDividerV" />
                     <ui:Button name="PlayButton" tooltip="Play" class="AudioHalfButton PlayButton" />
@@ -12,13 +12,14 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:Label name="QuestionLabel" text="What interaction is described?" class="Question" style="font-size: 45px; -unity-font-style: bold;" />
-            <ui:Label name="TranscriptLabel" text="Combining paracetamol with alcohol may increase liver damage." class="Transcript isHidden" />
+            <ui:Label name="TranscriptLabel" text="Combining paracetamol with alcohol may increase liver damage." class="Transcript" style="display: none; font-size: 40px; -unity-font-style: bold; white-space: normal; margin-left: 16px; margin-right: 16px;" />
             <ui:VisualElement class="Options">
-                <ui:Button name="OptionA" text="A. Paracetamol + Ibuprofen" class="OptionButton" style="-unity-font-style: bold; font-size: 40px; " />
-                <ui:Button name="OptionB" text="B. Paracetamol + Alcohol" class="OptionButton" style="font-size: 40px; -unity-font-style: bold; " />
+                <ui:Button name="OptionA" text="A. Paracetamol + Ibuprofen" class="OptionButton" style="-unity-font-style: bold; font-size: 40px;" />
+                <ui:Button name="OptionB" text="B. Paracetamol + Alcohol" class="OptionButton" style="font-size: 40px; -unity-font-style: bold;" />
                 <ui:Button name="OptionC" text="C. Paracetamol + Furosemide" class="OptionButton" style="-unity-font-style: bold; font-size: 40px;" />
             </ui:VisualElement>
-            <ui:Button name="Separator" class="MutedAction" />
+            <ui:Button name="Separator" class="MutedAction" style="height: 245px;" />
+            <ui:Button name="ScriptShowBtn" text="CAN&apos;T LISTEN NOW" style="font-size: 40px; -unity-font-style: bold; background-color: rgba(188, 188, 188, 0); color: rgb(160, 167, 170); margin-bottom: 70px; margin-top: 70px;" />
             <ui:Button name="CheckButton" text="CHECK" class="PrimaryAction isDisabled" style="font-size: 40px; -unity-font-style: bold;" />
         </ui:VisualElement>
     </ui:VisualElement>
