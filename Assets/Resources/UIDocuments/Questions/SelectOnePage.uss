@@ -55,15 +55,17 @@
 
 .energy-text {
     color: rgb(255, 75, 75);
-    font-size: 20px;
+    font-size: 50px;
     -unity-font-style: bold;
 }
 
 .header-text {
     font-size: 50px;
     -unity-font-style: bold;
-    color: rgb(60, 60, 60);
+    color: rgb(255, 255, 255);
     margin-bottom: 40px;
+    white-space: normal;
+    flex-wrap: wrap;
 }
 
 .character-section {
@@ -90,19 +92,19 @@
 }
 
 .speech-text {
-    font-size: 22px;
-    color: rgb(60, 60, 60);
+    font-size: 50px;
+    color: rgb(255, 255, 255);
     white-space: normal;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }
 
 .options-container {
     flex-direction: column;
-    width:100%;
-    align-items:center;
+    width: 100%;
+    align-items: center;
     justify-content: space-evenly;
-    margin-top:20px;
-    flex-grow:1;
+    margin-top: 20px;
+    flex-grow: 1;
 }
 
 .option-card {
@@ -121,15 +123,17 @@
 }
 
 .option-card .option-pinyin {
-    font-size: 16px;
+    font-size: 50px;
     color: rgb(175, 178, 179);
     margin-bottom: 5px;
 }
 
 .option-card .option-character {
-    font-size: 24px;
-    color: rgb(75, 75, 75);
+    font-size: 50px;
+    color: rgb(255, 255, 255);
     -unity-font-style: bold;
+    white-space: normal;
+    flex-wrap: wrap;
 }
 
 .option-card.selected {
@@ -152,7 +156,7 @@
 .check-button {
     background-color: rgb(88, 204, 2);
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 50px;
     -unity-font-style: bold;
     padding-top: 18px;
     padding-bottom: 18px;

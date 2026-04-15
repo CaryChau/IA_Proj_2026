@@ -1,24 +1,24 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/Questions/SelectOnePage.uss?fileID=7433441132597879392&amp;guid=6d397e0a8941a7444929868b58b253de&amp;type=3#SelectOnePage" />
-    <ui:VisualElement class="main-container" style="width: 100%; height: 100%;">
+    <ui:VisualElement class="main-container" style="width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0);">
         <ui:Label text="Choose Right" class="header-text" />
         <ui:VisualElement class="character-section">
             <ui:VisualElement class="character-image" />
-            <ui:VisualElement class="speech-bubble">
+            <ui:VisualElement class="speech-bubble" style="background-color: rgba(56, 56, 56, 0);">
                 <ui:Label text="Which One?" class="speech-text" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="options-container">
-            <ui:VisualElement class="option-card">
+            <ui:VisualElement class="option-card" style="background-color: rgba(255, 255, 255, 0);">
                 <ui:Label text="A" class="option-character" />
             </ui:VisualElement>
-            <ui:VisualElement class="option-card">
+            <ui:VisualElement class="option-card" style="background-color: rgba(255, 255, 255, 0);">
                 <ui:Label text="B" class="option-character" />
             </ui:VisualElement>
-            <ui:VisualElement class="option-card">
+            <ui:VisualElement class="option-card" style="background-color: rgba(255, 255, 255, 0);">
                 <ui:Label text="C" class="option-character" />
             </ui:VisualElement>
-            <ui:VisualElement class="option-card">
+            <ui:VisualElement class="option-card" style="background-color: rgba(255, 255, 255, 0);">
                 <ui:Label text="D" class="option-character" />
             </ui:VisualElement>
         </ui:VisualElement>

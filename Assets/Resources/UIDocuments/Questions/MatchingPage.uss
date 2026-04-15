@@ -33,7 +33,7 @@
 .title {
     font-size: 60px;
     -unity-font-style: bold;
-    color: #4B4B4B;
+    color: #ffffff;
     align-self: flex-start;
     margin-bottom: 60px;
 }
@@ -53,13 +53,13 @@
 /* 卡片基礎樣式 */
 .card {
     height: 140px;
-    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0);
     border-width: 4px;
     border-color: #E5E5E5;
     border-radius: 25px;
     margin-bottom: 20px;
-    font-size: 36px;
-    color: #4B4B4B;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
     transition: 0.1s all;
     white-space: normal;
     flex-wrap:wrap;

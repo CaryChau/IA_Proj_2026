@@ -36,10 +36,10 @@
           "type": "select_one",
           "prompt": "Which drug combination requires caution because it may increase the risk of liver toxicity?",
           "options": [
-            { "id": "A", "text": "Paracetamol + Amlodipine" },
-            { "id": "B", "text": "Paracetamol + Alcohol" },
-            { "id": "C", "text": "Paracetamol + Lisinopril" },
-            { "id": "D", "text": "Paracetamol + Metoprolol" }
+            { "id": "A", "text": "A.Paracetamol + Amlodipine" },
+            { "id": "B", "text": "B.Paracetamol + Alcohol" },
+            { "id": "C", "text": "C.Paracetamol + Lisinopril" },
+            { "id": "D", "text": "D.Paracetamol + Metoprolol" }
           ],
           "correctOptionId": "B"
         },
