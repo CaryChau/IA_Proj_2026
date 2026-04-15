@@ -12,7 +12,7 @@
                 <ui:Button name="ShowPasswordButton" class="eye-icon" style="align-items: stretch; justify-content: flex-start;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button name="SignInButton" text="SIGN IN" class="sign-in-button" style="height: 100px; font-size: 40px; -unity-font-style: bold;" />
+        <ui:Button name="SignInButton" text="SIGN IN" class="sign-in-button isDisabled" style="height: 100px; font-size: 40px; -unity-font-style: bold; opacity: 1;" />
         <ui:Button name="ForgotPasswordButton" text="FORGOT PASSWORD" class="forgot-password-button" style="font-size: 40px; -unity-font-style: bold; -unity-font: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); display: none;" />
     </ui:VisualElement>
 </ui:UXML>

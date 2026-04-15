@@ -62,7 +62,10 @@ public class LoginCreator : SequenceDoc
             loginPage = loginPageAsset.Instantiate();
             loginPage.style.height = Length.Percent(100f);
         }
-        FadeToPage(loginPage, ShowLoginPage);
+        FadeToPage(loginPage, () => {
+            ShowLoginPage();
+            inputPage = null;
+        });
     }
 
     private void OnTransferBtnClicked()
@@ -98,6 +101,49 @@ public class LoginCreator : SequenceDoc
         }
     }
 
+    private delegate void OnTextFieldValueChangeDel(EventCallback<ChangeEvent<string>> evt);
+    private OnTextFieldValueChangeDel onTextFieldValueChange;
+
+    private void UpdateBtnState(ref TextField[] input, Button btn)
+    {
+        int length = input.Length;
+        TextField[] tempArr = input;
+        for (int i = 0; i < length; i++)
+        {
+            TextField temp = tempArr[i];
+            // if (onTextFieldValueChange)
+            // {
+            //     temp.UnregisterValueChangedCallback(onTextFieldValueChange);
+            // }
+            // onTextFieldValueChange = ;
+            temp.RegisterValueChangedCallback(evt =>
+            {
+                string val = temp?.value ?? "";
+                bool isAllFill = !string.IsNullOrWhiteSpace(val);
+                if (!isAllFill)
+                {
+                    btn.AddToClassList("isDisabled");
+                    return;
+                }
+                for (int j = 0; j < length; j++)
+                {
+                    if (i != j)
+                    {
+                        isAllFill = !string.IsNullOrWhiteSpace(tempArr[j]?.value ?? "");
+                        if (!isAllFill)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (isAllFill)
+                {
+                    btn.RemoveFromClassList("isDisabled");
+                }
+            });
+        }
+    }
+
     private void OnTransferPageShow()
     {
         if (inputPage == null) return;
@@ -105,12 +151,16 @@ public class LoginCreator : SequenceDoc
         backBtn.clicked += OnBackToLoginClicked;
 
         var signInBtn = inputPage.Q<Button>("SignInButton");
+        signInBtn.AddToClassList("isDisabled");
         signInBtn.text = "ACCOUNT TRANSFER";
         var usernameField = inputPage.Q<TextField>("UsernameField");
+        usernameField.SetValueWithoutNotify("");
         var transferKeyField = inputPage.Q<VisualElement>("TransferKeyField");
         transferKeyField.style.display = DisplayStyle.Flex;
 
         transferKeyField = inputPage.Q<TextField>("PasswordField");
+        TextField[] arr = new TextField[2]{usernameField, ((TextField)transferKeyField)};
+        UpdateBtnState(ref arr, signInBtn);
         usernameField[0][0].style.fontSize = 50;
         transferKeyField[0][0].style.fontSize = 50;
 
@@ -145,8 +195,10 @@ public class LoginCreator : SequenceDoc
                     return;
                 }
 
-                signInBtn.SetEnabled(false);
-
+                // signInBtn.SetEnabled(false);
+                signInBtn.RemoveFromClassList("isDisabled");
+                
+                
                 StartCoroutine(SetTransferKeyRequest(username, transferKey, (success, statusCode) =>
                 {
                     if (success)
@@ -209,8 +261,12 @@ public class LoginCreator : SequenceDoc
         var backBtn = inputPage.Q<Button>("BackBtn");
         backBtn.clicked += OnBackToLoginClicked;
         var signInBtn = inputPage.Q<Button>("SignInButton");
+        signInBtn.AddToClassList("isDisabled");
         signInBtn.text = "SIGN IN";
         var usernameField = inputPage.Q<TextField>("UsernameField");
+        TextField[] arr = new TextField[1]{usernameField};
+
+        UpdateBtnState(ref arr, signInBtn);
         var transferKeyField = inputPage.Q<VisualElement>("TransferKeyField");
         transferKeyField.style.display = DisplayStyle.None;
         usernameField[0][0].style.fontSize = 50;
@@ -246,7 +302,7 @@ public class LoginCreator : SequenceDoc
                     return;
                 }
 
-                // signInBtn.SetEnabled(false);
+                signInBtn.RemoveFromClassList("isDisabled");
                 // test jump function
                 SetTarget(DocType.Navigation, null);
                 Debug.Log("Login success! Jump to app content module.");

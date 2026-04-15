@@ -82,8 +82,8 @@
 .sign-in-button {
     width: 90%;
     height: 56px;
-    background-color: rgb(35, 39, 43);
-    color: rgb(126, 138, 146);
+    background-color: rgb(88, 204, 2);
+    color: rgb(14, 31, 38);
     font-size: 22px;
     font-family: "Arial Rounded MT Bold", Arial, sans-serif;
     border-radius: 20px;
@@ -91,6 +91,11 @@
     border-width: 0;
     font-weight: bold;
     opacity: 0.5;
+}
+
+.isDisabled {
+    background-color: rgb(42, 58, 64);
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .forgot-password-button {
