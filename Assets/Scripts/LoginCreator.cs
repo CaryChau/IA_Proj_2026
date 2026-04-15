@@ -111,7 +111,7 @@ public class LoginCreator : SequenceDoc
         for (int i = 0; i < length; i++)
         {
             TextField temp = tempArr[i];
-            // if (onTextFieldValueChange)
+            // if (onTextFieldValueChange != null)
             // {
             //     temp.UnregisterValueChangedCallback(onTextFieldValueChange);
             // }

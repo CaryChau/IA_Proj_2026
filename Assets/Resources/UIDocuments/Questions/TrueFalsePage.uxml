@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/Questions/SelectOnePage.uss?fileID=7433441132597879392&amp;guid=6d397e0a8941a7444929868b58b253de&amp;type=3#SelectOnePage" />
-    <ui:VisualElement class="main-container" style="background-color: rgba(56, 56, 56, 0);">
+    <ui:VisualElement name="QuestionRoot" class="main-container" style="background-color: rgba(56, 56, 56, 0); transition-duration: 0.7s;">
         <ui:Label text="Is it true?" class="header-text" />
         <ui:VisualElement class="character-section">
             <ui:VisualElement class="character-image" />

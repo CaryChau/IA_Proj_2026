@@ -118,3 +118,8 @@
     background-color: rgb(42, 58, 64);
     color: rgba(255, 255, 255, 0.55);
 }
+
+.QuestionLeave {
+    translate: -100% 0;
+    opacity: 0;
+}

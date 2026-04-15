@@ -27,17 +27,18 @@ public abstract class QuestionBase
         animRoot.AddToClassList("QuestionLeave");
         animRoot.RegisterCallback<TransitionEndEvent>(evt =>
         {
+            Debug.Log("Remove old page: " + animRoot.name);
             cb?.Invoke(pageInstance);
         });
     }
 
     public void EnterPage()
     {
-        var animRoot = pageInstance.Q<VisualElement>("QuestionRoot");
+        // var animRoot = pageInstance.Q<VisualElement>("QuestionRoot");
         // animRoot.style.opacity = 0;
         // animRoot.RemoveFromClassList("FadeInDefault");
-        animRoot.AddToClassList("FadeTarget");
-        
+        // animRoot.AddToClassList("FadeTarget");
+        PageAnimator.FadeTo(pageInstance, 0, 1, 500);
     }
     
     public QuestionBase(VisualElement page, JToken data)

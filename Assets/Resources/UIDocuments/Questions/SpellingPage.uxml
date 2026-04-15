@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/Questions/SpellingStyle.uss?fileID=7433441132597879392&amp;guid=7124baa9ed79b714ab7522448f150e09&amp;type=3#SpellingStyle" />
-    <ui:VisualElement name="QuestionRoot" class="SpellingPage" style="transition-duration: 0.5s;">
+    <ui:VisualElement name="QuestionRoot" class="SpellingPage" style="transition-duration: 0.7s;">
         <ui:VisualElement class="MascotRow">
             <ui:VisualElement class="MascotImage" style="width: 225px; height: 341px;" />
             <ui:VisualElement class="SpeechBubble" style="display: flex; visibility: visible; opacity: 1; background-color: rgb(23, 41, 47);">

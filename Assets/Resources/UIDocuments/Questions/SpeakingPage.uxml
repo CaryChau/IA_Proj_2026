@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/Questions/SpeakingStyle.uss?fileID=7433441132597879392&amp;guid=83812efdf7d41e947be3ee3cd675484c&amp;type=3#SpeakingStyle" />
-    <ui:VisualElement name="QuestionRoot" class="SpeakingPage" style="background-color: rgb(15, 31, 38);">
+    <ui:VisualElement name="QuestionRoot" class="SpeakingPage" style="background-color: rgb(15, 31, 38); transition-duration: 0.7s;">
         <ui:Label name="TitleLabel" text="Speak this sentence" class="SpeakingTitle" style="font-size: 45px; -unity-font-style: bold; color: rgb(234, 243, 244);" />
         <ui:VisualElement class="MascotRow">
             <ui:VisualElement class="MascotImage" style="width: 225px; height: 341px; margin-left: 16px;" />

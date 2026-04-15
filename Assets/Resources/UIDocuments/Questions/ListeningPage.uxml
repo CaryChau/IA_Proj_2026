@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/Questions/ListeningStyle.uss?fileID=7433441132597879392&amp;guid=9aab6cd4a520b7443b5848778d7de562&amp;type=3#ListeningStyle" />
-    <ui:VisualElement name="QuestionRoot" style="transition-duration: 0.7s; position: absolute; height: 100%; width: 100%;">
+    <ui:VisualElement name="QuestionRoot" style="transition-duration: 0.7s; position: relative; height: 100%; width: 100%; top: auto; opacity: 1;">
         <ui:VisualElement style="width: 100%; height: 100%; align-self: auto; justify-content: flex-start; align-items: stretch;">
             <ui:Label name="Title" text="Tap what you hear" class="PageTitle" style="font-size: 50px; -unity-font-style: bold;" />
             <ui:VisualElement name="VisualElement" class="ExerciseRow">

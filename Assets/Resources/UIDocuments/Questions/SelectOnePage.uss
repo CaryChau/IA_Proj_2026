@@ -172,3 +172,8 @@
     margin-top: 5px;
     background-color: rgb(88, 167, 0);
 }
+
+.QuestionLeave {
+    translate: -100% 0;
+    opacity: 0;
+}

@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDocuments/Questions/MatchingPage.uss?fileID=7433441132597879392&amp;guid=4ff4af37008961e45915efd6b7e35890&amp;type=3#MatchingPage" />
-    <ui:VisualElement class="root-container" style="background-color: rgba(255, 255, 255, 0);">
+    <ui:VisualElement name="QuestionRoot" class="root-container" style="background-color: rgba(255, 255, 255, 0); transition-duration: 0.7s;">
         <ui:VisualElement class="header">
             <ui:VisualElement class="settings-icon" />
         </ui:VisualElement>

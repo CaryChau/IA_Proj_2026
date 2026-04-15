@@ -149,13 +149,14 @@ public class KnowledgeCreator : SequenceDoc
     }
 
     private VisualElement halfwayPopup;
-    private VisualElement CloneTree(VisualTreeAsset asset, string templateRoot)
+    private VisualElement CloneTree(VisualTreeAsset asset)
     {
         VisualElement template = asset.CloneTree();
         template.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
         template.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
         template.pickingMode = PickingMode.Ignore;
-        // var root = template.Q<VisualElement>(templateRoot);
+        template.style.position = Position.Absolute;
+        template.style.top = 0;
         return template;
     }
     private void ShowHalfwayQuitPopup()
@@ -165,7 +166,7 @@ public class KnowledgeCreator : SequenceDoc
             var vta = Resources.Load<VisualTreeAsset>(
                 "UIDocuments/Popup/PopupHalfwayQuit");
 
-            halfwayPopup = CloneTree(vta, "HalfwayQuitPopup");
+            halfwayPopup = CloneTree(vta);
             PopupFrontRoot.Add(halfwayPopup);
             halfwayPopup = halfwayPopup.Q<VisualElement>("HalfwayQuitPopup");
             halfwayPopup.Q<Button>("KeepLearningBtn").clicked += HideHalfwayQuitPopup;
@@ -186,6 +187,7 @@ public class KnowledgeCreator : SequenceDoc
         HideHalfwayQuitPopup();
         HidePopup(popupCorrect);
         HidePopup(popupInstance);
+        _pageRoot.Clear();
     }
 
     private void HideHalfwayQuitPopup()
@@ -246,15 +248,15 @@ public class KnowledgeCreator : SequenceDoc
         if (_currentEvaluator != null)
         {
             _currentEvaluator.onCheck -= OnCheckHdl;
-            // _currentEvaluator.LeavePage((e) =>
-            // {
-            //     _pageRoot.Remove(e);
-            // });
+            _currentEvaluator.LeavePage((e) =>
+            {
+                _pageRoot.Remove(e);
+            });
             _currentEvaluator = null;
         }
 
         _currentEvaluator = evaluator;
-        // _currentEvaluator.EnterPage();
+        _currentEvaluator.EnterPage();
         _currentEvaluator.onCheck += OnCheckHdl;
     }
 
@@ -279,7 +281,7 @@ public class KnowledgeCreator : SequenceDoc
             var vta = Resources.Load<VisualTreeAsset>(
                 "UIDocuments/Popup/PopupCorrect");
 
-            popupCorrect = CloneTree(vta, "PopupRoot");
+            popupCorrect = CloneTree(vta);
             PopupBackRoot.Add(popupCorrect);
             popupCorrect = popupCorrect.Q<VisualElement>("PopupRoot");
             // Button actions
@@ -303,7 +305,7 @@ public class KnowledgeCreator : SequenceDoc
             var vta = Resources.Load<VisualTreeAsset>(
                 "UIDocuments/Popup/PopupIncorrect");
 
-            popupInstance = CloneTree(vta, "PopupRoot");
+            popupInstance = CloneTree(vta);
             PopupBackRoot.Add(popupInstance);
             popupInstance = popupInstance.Q<VisualElement>("PopupRoot");
             // Button actions
@@ -427,7 +429,7 @@ public class KnowledgeCreator : SequenceDoc
 
     private void LoadQuestion(int index)
     {
-        _pageRoot.Clear();
+        // _pageRoot.Clear();
         VisualElement pageInstance;
         JToken question = FindQuestionByType(index);
         string path = "";
@@ -452,7 +454,7 @@ public class KnowledgeCreator : SequenceDoc
                 {
                     throw new Exception("Can not finid question: " + index);
                 }
-                pageInstance = CloneTree(vta, "QuestionRoot");
+                pageInstance = CloneTree(vta);
                 _pageRoot.Add(pageInstance);
                 RegisterQuestion(InstanceQuestion((string)question["type"], pageInstance, question));
             }
