@@ -92,6 +92,7 @@ public class SpeakingQuestion : QuestionBase
         checkBtn = pageInstance.Q<Button>("CheckButton");
         checkBtn.clicked += () => {
 #if UNITY_EDITOR
+            recordStr = "Paracetamol";
 #else
             if (checkBtn.ClassListContains("isDisabled"))
             {

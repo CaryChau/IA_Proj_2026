@@ -27,6 +27,10 @@ public class KnowledgeCreator : SequenceDoc
     [Tooltip("Optional per-question UXML resource path (Resources/UIDocuments/...). Leave empty to build the page at runtime.")]
     [SerializeField] private List<string> questionUxmlResources = new List<string>();
     private Dictionary<string, string> typeToUxml;
+    private int tryCount = 0;
+    private const int BaseEXP = 30;
+    private float elapsedTime;
+    
 #if TEST_UXML
     #region Test uxml
     public string testUxml = null;
@@ -144,6 +148,8 @@ public class KnowledgeCreator : SequenceDoc
         typeToUxml.Add("listening", "ListeningPage");
         typeToUxml.Add("spelling", "SpellingPage");
         typeToUxml.Add("select_one", "SelectOnePage");
+        typeToUxml.Add("game_over", "GameOver");
+        
         if (uiDocument == null)
             uiDocument = GetComponent<UIDocument>();
     }
@@ -233,8 +239,14 @@ public class KnowledgeCreator : SequenceDoc
         // Initialize state & UI
         CurrentIndex  = Mathf.Clamp(startIndex, 0, Mathf.Max(0, Total - 1));
         FinishedCount = 0;
+        for (int i = 0; i < finishedList.Length; i++)
+        {
+            finishedList[i] = false;
+        }
         UpdateProgress(0f);
-
+        tryCount = 0;
+        elapsedTime = Time.time;
+        resultData = new ResultData();
         // Show first question
         LoadQuestion(CurrentIndex);
     }
@@ -347,6 +359,7 @@ public class KnowledgeCreator : SequenceDoc
 
     private void OnCheckHdl(bool isRight, string tipAnswer)
     {
+        tryCount++;
         if (isRight)
         {
             finishedList[CurrentIndex] = true;
@@ -365,6 +378,38 @@ public class KnowledgeCreator : SequenceDoc
         }
     }
 
+    ResultData resultData;
+    private void LoadGameOver()
+    {
+        typeToUxml.TryGetValue("game_over", out string uxml);
+        var vta = Resources.Load<VisualTreeAsset>("UIDocuments/" + uxml);
+        if (vta != null)
+        {
+            var template = CloneTree(vta);
+            _pageRoot.Add(template);
+            float percent = (float)FinishedCount / tryCount;
+            resultData.accuracy = (int)Math.Floor(percent * 100);
+            resultData.exp = (int)Math.Floor(BaseEXP * percent);
+            elapsedTime = Time.time - elapsedTime;
+            var min = (int)Math.Floor(elapsedTime / 60);
+            var sec = (int)Math.Floor(elapsedTime % 60);
+            resultData.timeStr = min + ":";
+            if (sec > 9)
+            {
+                resultData.timeStr += sec;
+            }
+            else
+            {
+                resultData.timeStr += ("0" + sec);
+            }
+            GameOverUI ui = new GameOverUI(template, resultData, () =>
+            {
+                SetTarget(DocType.Navigation, null);
+                OnKnowledgeQuit();
+            });
+        }
+    }
+
     private void OnNextAction()
     {
         
@@ -373,6 +418,7 @@ public class KnowledgeCreator : SequenceDoc
             // get out of question page and show the Congratulation page
             OnFinishQuestion();
             // fade in the course completed.
+            LoadGameOver();
         }
         else
         {

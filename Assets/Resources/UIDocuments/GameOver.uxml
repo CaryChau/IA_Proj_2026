@@ -1,33 +1,33 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/GameOver.uss?fileID=7433441132597879392&amp;guid=0a1408268c62bc543ae007c622403e86&amp;type=3#GameOver" />
-    <ui:VisualElement class="screen-container" style="background-color: rgb(15, 31, 38); justify-content: center;">
-        <ui:VisualElement class="header-section" style="align-items: center;">
+    <Style src="project://database/Assets/Resources/UIDocuments/GameOver.uss?fileID=7433441132597879392&amp;guid=0a1408268c62bc543ae007c622403e86&amp;type=3#GameOver" />
+    <ui:VisualElement class="screen-container" style="background-color: rgb(15, 31, 38); justify-content: center; top: 0; position: absolute; width: 100%;">
+        <ui:VisualElement class="header-section" style="align-items: center; margin-top: 160px;">
             <ui:VisualElement style="background-image: resource(&apos;Textures/CourseCharacter/Congratulation&apos;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.96); background-color: rgba(0, 0, 0, 0); height: 518px; width: 403px;" />
             <ui:Label text="Lesson Complete!" class="title-text" style="font-size: 50px;" />
         </ui:VisualElement>
         <ui:VisualElement class="stats-row" style="margin-top: 76px; margin-bottom: 76px;">
             <ui:VisualElement class="stat-card yellow-theme">
-                <ui:Label text="总经验" class="stat-label" />
+                <ui:Label text="TOTAL EXP" class="stat-label" style="font-size: 30px;" />
                 <ui:VisualElement class="stat-content">
                     <ui:VisualElement class="icon-xp" />
-                    <ui:Label name="xp-value" text="30" class="stat-value" />
+                    <ui:Label name="exp-value" text="30" class="stat-value" style="font-size: 35px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement class="stat-card green-theme">
-                <ui:Label text="超级棒" class="stat-label" />
+                <ui:Label text="GOOD" class="stat-label" style="font-size: 30px;" />
                 <ui:VisualElement class="stat-content">
                     <ui:VisualElement class="icon-accuracy" />
-                    <ui:Label name="accuracy-value" text="100%" class="stat-value" />
+                    <ui:Label name="accuracy-value" text="100%" class="stat-value" style="font-size: 35px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement class="stat-card blue-theme">
-                <ui:Label text="熟练快手" class="stat-label" />
+                <ui:Label text="COMMITED" class="stat-label" style="font-size: 30px;" />
                 <ui:VisualElement class="stat-content">
                     <ui:VisualElement class="icon-time" />
-                    <ui:Label name="time-value" text="3:10" class="stat-value" />
+                    <ui:Label name="time-value" text="3:10" class="stat-value" style="font-size: 35px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button text="领取经验" class="primary-button" />
+        <ui:Button text="CLAIM EXP" class="primary-button" style="font-size: 40px; align-items: center; width: 60%; height: 100px;" />
     </ui:VisualElement>
 </ui:UXML>
